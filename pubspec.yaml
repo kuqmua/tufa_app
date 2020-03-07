@@ -1,0 +1,45 @@
+name: Tufa
+description: A new Flutter application.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_icons: ^1.0.0+1
+  expandable: ^4.1.2
+#  rect_getter: ^0.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  assets:
+    - assets/
+  fonts:
+    - family: Lora
+      fonts:
+        - asset: fonts/Lora-Regular.ttf
+        - asset: fonts/Lora-Italic.ttf
+          style: italic
+    - family: Roboto
+      fonts:
+        - asset: fonts/Roboto-Regular.ttf
+        - asset: fonts/Roboto-Bold.ttf
+          weight: 700
+    - family: Oswald
+      fonts:
+        - asset: fonts/Oswald-Regular.ttf
+        - asset: fonts/Oswald-Bold.ttf
+          weight: 700
+    - family: IBMPlexMono
+      fonts:
+        - asset: fonts/IBMPlexMono-Regular.ttf
+        - asset: fonts/IBMPlexMono-Bold.ttf
+          weight: 700
+  uses-material-design: true
