@@ -47,7 +47,7 @@ class _TopPostPartState extends State<TopPostPart> {
             HorizontalLine(),
             Icon(
               MaterialIcons.expand_more,
-              size: 25,
+              size: 20,
             ),
             /*
             IconButton(
