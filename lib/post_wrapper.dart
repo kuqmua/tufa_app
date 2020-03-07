@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:Tufa/post.dart';
 import 'package:Tufa/my_divider.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class PostWrapper extends StatefulWidget {
   @override
@@ -10,11 +11,23 @@ class PostWrapper extends StatefulWidget {
 class _PostWrapperState extends State<PostWrapper> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(children: <Widget>[
+    return Stack(children: [
+      Column(children: <Widget>[
         Post(),
         MyDivider(),
       ]),
-    );
+      Positioned(
+        right: -15,
+        top: -5,
+        child: IconButton(
+          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+          onPressed: () {},
+          icon: Icon(
+            MaterialIcons.expand_more,
+            size: 27,
+          ),
+        ),
+      )
+    ]);
   }
 }

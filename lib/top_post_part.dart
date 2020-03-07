@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:Tufa/autor_name.dart';
-import 'package:Tufa/horizontal_line.dart';
+//import 'package:Tufa/horizontal_line.dart';
 import 'package:Tufa/publication_date.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
@@ -29,38 +29,17 @@ class _TopPostPartState extends State<TopPostPart> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-      child: Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Icon(
-                  Entypo.medium,
-                ),
-                AutorName()
-              ],
-            ),
-            PublicationDate(),
-            HorizontalLine(),
-            Icon(
-              MaterialIcons.expand_more,
-              size: 20,
-            ),
-            /*
-            IconButton(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-              onPressed: () {},
-              icon: Icon(
-                MaterialIcons.expand_more,
-                size: 20,
-              ),
-            ),
-            */
-          ],
-        ),
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          Icon(
+            FontAwesome.twitch,
+          ),
+          AutorName(),
+          PublicationDate(),
+          //HorizontalLine(),
+        ],
       ),
     );
   }

@@ -11,15 +11,18 @@ class PublicationDate extends StatefulWidget {
 class _PublicationDateState extends State<PublicationDate> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(0, 0, 5, 0),
-      child: Text(
-        '1h',
-        style: TextStyle(
-          color: grey,
-          fontSize: 18,
-          fontFamily: 'Lora',
-          fontWeight: FontWeight.w300,
+    return Expanded(
+      flex: 1,
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(0, 0, 25, 0),
+        child: Text(
+          '1h',
+          style: TextStyle(
+            color: grey,
+            fontSize: 18,
+            fontFamily: 'Lora',
+            fontWeight: FontWeight.w300,
+          ),
         ),
       ),
     );
