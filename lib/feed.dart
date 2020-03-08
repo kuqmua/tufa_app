@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:Tufa/my_list_view.dart';
-import 'package:Tufa/pseudo_floating_action_button.dart';
+//import 'package:Tufa/pseudo_floating_action_button.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:Tufa/colors.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -18,7 +18,7 @@ class _FeedState extends State<Feed> {
         floatingActionButton: SpeedDial(
           // both default to 16
           marginRight: 330,
-          marginBottom: 10,
+          marginBottom: 20,
           animatedIcon: AnimatedIcons.menu_close,
           animatedIconTheme: IconThemeData(size: 22.0),
           // this is ignored if animatedIcon is non null
@@ -46,36 +46,31 @@ class _FeedState extends State<Feed> {
                 ),
                 backgroundColor: blue,
                 //label: 'First',
-                labelStyle: TextStyle(fontSize: 18.0),
+                //labelStyle: TextStyle(fontSize: 18.0),
                 onTap: () => print('FIRST CHILD')),
             SpeedDialChild(
-              child: Icon(Icons.brush),
+              child: Icon(SimpleLineIcons.logout),
               backgroundColor: blue,
               //label: 'Second',
-              labelStyle: TextStyle(fontSize: 18.0),
+              //labelStyle: TextStyle(fontSize: 18.0),
               onTap: () => print('SECOND CHILD'),
             ),
             SpeedDialChild(
               child: Icon(AntDesign.search1),
               backgroundColor: blue,
               //label: 'Third',
-              labelStyle: TextStyle(fontSize: 18.0),
+              //labelStyle: TextStyle(fontSize: 18.0),
               onTap: () => print('THIRD CHILD'),
             ),
           ],
         ),
         body: Padding(
           padding: EdgeInsets.fromLTRB(10, 0, 13, 0),
-          child: Stack(
-            children: <Widget>[
-              isLoading
-                  ? Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : MyListView(),
-              PseudoFloatingActionButton()
-            ],
-          ),
+          child: isLoading
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : MyListView(),
         ));
   }
 }
