@@ -17,6 +17,7 @@ class _PublicationDateState extends State<PublicationDate> {
         padding: EdgeInsets.fromLTRB(0, 0, 25, 0),
         child: Text(
           '1h',
+          textAlign: TextAlign.center,
           style: TextStyle(
             color: grey,
             fontSize: 18,

@@ -29,18 +29,16 @@ class _TopPostPartState extends State<TopPostPart> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          Icon(
-            FontAwesome.twitch,
-          ),
-          AutorName(),
-          PublicationDate(),
-          //HorizontalLine(),
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: <Widget>[
+        Icon(
+          FontAwesome.twitch,
+        ),
+        AutorName(),
+        PublicationDate(),
+        //HorizontalLine(),
+      ],
     );
   }
 }

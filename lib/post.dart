@@ -29,6 +29,7 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
   static const fontSize = 16.0;
   static const iconSize = 20.0;
   final bool large = false;
+  final bool hasImage = true;
   //final bool expandedNeeded;
 
   build(context) => Container(
@@ -117,7 +118,7 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                           Text(
                             someText,
                             softWrap: true,
-                            maxLines: 10,
+                            maxLines: hasImage ? 5 : 10,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                                 color: postTextColor,
@@ -125,15 +126,13 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                                 fontWeight: FontWeight.w300),
                           ),
                         ],
-                      )
-                /*
+                      ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(15.0),
                       child: Image(image: AssetImage('assets/cat.jpg'))),
                 ),
-                */
               ],
             ),
           )
