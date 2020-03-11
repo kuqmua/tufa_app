@@ -50,7 +50,7 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                                 child: Image(
                                     height: btnSize,
                                     width: btnSize,
-                                    image: AssetImage('assets/kot128.png'))),
+                                    image: AssetImage('assets/64cat.webp'))),
                           ),
                           Column(
                             children: List.generate(
@@ -131,7 +131,7 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                   padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(15.0),
-                      child: Image(image: AssetImage('assets/cat.jpg'))),
+                      child: Image(image: AssetImage('assets/3cat.webp'))),
                 ),
               ],
             ),
