@@ -130,9 +130,6 @@ class _FeedState extends State<Feed> with TickerProviderStateMixin {
           animatedIcon: AnimatedIcons.menu_close,
           animatedIconTheme: IconThemeData(size: 20.0),
           visible: dialVisible,
-          // If true user is forced to close dial manually
-          // by tapping main button and overlay is not rendered.
-          closeManually: false,
           curve: Curves.bounceIn,
           onOpen: () => print('OPENING DIAL'),
           onClose: () => print('DIAL CLOSED'),

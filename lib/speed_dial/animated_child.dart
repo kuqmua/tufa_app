@@ -5,8 +5,6 @@ class AnimatedChild extends AnimatedWidget {
   final Color backgroundColor;
   final Color foregroundColor;
   final Widget child;
-
-  final bool visible;
   final VoidCallback onTap;
   final VoidCallback toggleChildren;
   final ShapeBorder shape;
@@ -19,7 +17,6 @@ class AnimatedChild extends AnimatedWidget {
     this.backgroundColor,
     this.foregroundColor,
     this.child,
-    this.visible = false,
     this.onTap,
     this.toggleChildren,
     this.shape,

@@ -38,9 +38,6 @@ class SpeedDial extends StatefulWidget {
   /// Executed when the dial is pressed. If given, the dial only opens on long press!
   final VoidCallback onPress;
 
-  /// If true user is forced to close dial manually by tapping main button. WARNING: If true, overlay is not rendered.
-  final bool closeManually;
-
   /// The speed of the animation
   final int animationSpeed;
 
@@ -56,7 +53,6 @@ class SpeedDial extends StatefulWidget {
       @required this.marginRight,
       this.onOpen,
       this.onClose,
-      this.closeManually = false,
       this.shape = const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(15)),
       ),
@@ -140,13 +136,12 @@ class _SpeedDialState extends State<SpeedDial>
           return AnimatedChild(
             animation: childAnimation,
             index: index,
-            visible: _open,
             backgroundColor: child.backgroundColor,
             foregroundColor: child.foregroundColor,
             child: child.child,
             onTap: child.onTap,
             toggleChildren: () {
-              if (!widget.closeManually) _toggleChildren();
+              _toggleChildren();
             },
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(15)),
