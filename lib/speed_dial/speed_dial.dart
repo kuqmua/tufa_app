@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'animated_child.dart';
 import 'animated_floating_button.dart';
 import 'speed_dial_child.dart';
+import 'package:Tufa/colors.dart';
 
 /// Builds the Speed Dial
 class SpeedDial extends StatefulWidget {
@@ -14,17 +14,11 @@ class SpeedDial extends StatefulWidget {
 
   /// The curve used to animate the button on scrolling.
   final Curve curve;
-  final Color backgroundColor;
-  final Color foregroundColor;
-  final ShapeBorder shape;
   final double marginRight;
   final double marginBottom;
 
   /// The animated icon to show as the main button child. If this is provided the [child] is ignored.
   final AnimatedIconData animatedIcon;
-
-  /// The theme for the animated icon.
-  final IconThemeData animatedIconTheme;
 
   /// The child of the main button, ignored if [animatedIcon] is non [null].
   final Widget child;
@@ -44,18 +38,12 @@ class SpeedDial extends StatefulWidget {
   SpeedDial(
       {this.children = const [],
       this.visible = true,
-      this.backgroundColor,
-      this.foregroundColor,
       this.animatedIcon,
-      this.animatedIconTheme,
       this.child,
       @required this.marginBottom,
       @required this.marginRight,
       this.onOpen,
       this.onClose,
-      this.shape = const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(15)),
-      ),
       this.curve = Curves.linear,
       this.onPress,
       this.animationSpeed = 100});
@@ -136,8 +124,6 @@ class _SpeedDialState extends State<SpeedDial>
           return AnimatedChild(
             animation: childAnimation,
             index: index,
-            backgroundColor: child.backgroundColor,
-            foregroundColor: child.foregroundColor,
             child: child.child,
             onTap: child.onTap,
             toggleChildren: () {
@@ -158,8 +144,8 @@ class _SpeedDialState extends State<SpeedDial>
         ? AnimatedIcon(
             icon: widget.animatedIcon,
             progress: _controller,
-            color: widget.animatedIconTheme?.color,
-            size: widget.animatedIconTheme?.size,
+            color: white,
+            size: 20,
           )
         : widget.child;
 
@@ -167,13 +153,10 @@ class _SpeedDialState extends State<SpeedDial>
 
     var animatedFloatingButton = AnimatedFloatingButton(
       visible: widget.visible,
-      backgroundColor: widget.backgroundColor,
-      foregroundColor: widget.foregroundColor,
       onLongPress: _toggleChildren,
       callback:
           (_open || widget.onPress == null) ? _toggleChildren : widget.onPress,
       child: child,
-      shape: widget.shape,
       curve: widget.curve,
     );
 
@@ -187,7 +170,6 @@ class _SpeedDialState extends State<SpeedDial>
           children: List.from(fabChildren)
             ..add(
               Container(
-                //margin: EdgeInsets.only(top: 8.0, right: 2.0),
                 child: animatedFloatingButton,
               ),
             ),
@@ -199,7 +181,6 @@ class _SpeedDialState extends State<SpeedDial>
   @override
   Widget build(BuildContext context) {
     final children = [
-      //if (!widget.closeManually) _renderOverlay(),
       _renderButton(),
     ];
 

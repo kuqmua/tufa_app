@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:Tufa/colors.dart';
 
 class AnimatedChild extends AnimatedWidget {
   final int index;
-  final Color backgroundColor;
-  final Color foregroundColor;
   final Widget child;
   final VoidCallback onTap;
   final VoidCallback toggleChildren;
@@ -14,8 +13,6 @@ class AnimatedChild extends AnimatedWidget {
     Key key,
     Animation<double> animation,
     this.index,
-    this.backgroundColor,
-    this.foregroundColor,
     this.child,
     this.onTap,
     this.toggleChildren,
@@ -55,8 +52,8 @@ class AnimatedChild extends AnimatedWidget {
               width: animation.value,
               child: FloatingActionButton(
                 onPressed: _performAction,
-                backgroundColor: backgroundColor,
-                foregroundColor: foregroundColor,
+                backgroundColor: blue,
+                foregroundColor: white,
                 child: buttonChild,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15)),

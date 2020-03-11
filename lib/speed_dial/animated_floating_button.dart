@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:Tufa/colors.dart';
 
 class AnimatedFloatingButton extends StatelessWidget {
   final bool visible;
   final VoidCallback callback;
   final VoidCallback onLongPress;
   final Widget child;
-  final Color backgroundColor;
-  final Color foregroundColor;
-  final ShapeBorder shape;
   final Curve curve;
 
   AnimatedFloatingButton({
     this.visible = true,
     this.callback,
     this.child,
-    this.backgroundColor,
-    this.foregroundColor,
-    this.shape = const RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(15)),
-    ),
     this.curve = Curves.linear,
     this.onLongPress,
   });
@@ -44,8 +37,8 @@ class AnimatedFloatingButton extends StatelessWidget {
           onLongPress: onLongPress,
           child: FloatingActionButton(
             child: visible ? child : null,
-            backgroundColor: backgroundColor,
-            foregroundColor: foregroundColor,
+            backgroundColor: blue,
+            foregroundColor: white,
             onPressed: callback,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(15)),
