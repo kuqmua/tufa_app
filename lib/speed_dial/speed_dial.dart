@@ -12,9 +12,6 @@ class SpeedDial extends StatefulWidget {
   /// Used to get the button hidden on scroll. See examples for more info.
   final bool visible;
 
-  final double marginRight;
-  final double marginBottom;
-
   /// The animated icon to show as the main button child. If this is provided the [child] is ignored.
   final AnimatedIconData animatedIcon;
 
@@ -35,8 +32,6 @@ class SpeedDial extends StatefulWidget {
       {this.children = const [],
       this.visible = true,
       @required this.animatedIcon,
-      @required this.marginBottom,
-      @required this.marginRight,
       this.onOpen,
       this.onClose,
       this.onPress,
@@ -50,6 +45,7 @@ class _SpeedDialState extends State<SpeedDial>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
+  ValueNotifier<bool> checkVisible = ValueNotifier(true);
   bool _open = false;
 
   void closeChildrenOnScroll() {
@@ -57,18 +53,10 @@ class _SpeedDialState extends State<SpeedDial>
       _toggleChildren();
     }
   }
-  //ScrollController scrollController;
 
   @override
   void initState() {
     super.initState();
-    /*
-    scrollController = ScrollController()
-      ..addListener(() {
-        setDialVisible(scrollController.position.userScrollDirection ==
-            ScrollDirection.forward);
-      });
-      */
     _controller = AnimationController(
       duration: _calculateMainControllerDuration(),
       vsync: this,
@@ -145,37 +133,29 @@ class _SpeedDialState extends State<SpeedDial>
   }
 
   Widget _renderButton() {
-    var child = AnimatedIcon(
-      icon: widget.animatedIcon,
-      progress: _controller,
-      color: white,
-      size: 20,
-    );
-
     var fabChildren = _getChildrenList();
-
-    var animatedFloatingButton = AnimatedFloatingButton(
-      visible: widget.visible,
-      onLongPress: _toggleChildren,
-      callback:
-          (_open || widget.onPress == null) ? _toggleChildren : widget.onPress,
-      child: child,
-    );
-
     return Positioned(
-      bottom: widget.marginBottom,
-      right: widget.marginRight,
-      child: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: List.from(fabChildren)
-            ..add(
-              Container(
-                child: animatedFloatingButton,
+      bottom: 20,
+      right: 322.5,
+      child: Column(
+        children: List.from(fabChildren)
+          ..add(
+            Container(
+              child: AnimatedFloatingButton(
+                visible: widget.visible,
+                onLongPress: _toggleChildren,
+                callback: (_open || widget.onPress == null)
+                    ? _toggleChildren
+                    : widget.onPress,
+                child: AnimatedIcon(
+                  icon: widget.animatedIcon,
+                  progress: _controller,
+                  color: white,
+                  size: 20,
+                ),
               ),
             ),
-        ),
+          ),
       ),
     );
   }
@@ -185,18 +165,22 @@ class _SpeedDialState extends State<SpeedDial>
     final children = [
       _renderButton(),
     ];
+    /*
     final containers = [
       Container(
-        //color: Colors.yellow,
+        color: Color.fromRGBO(135, 135, 135, 0.5),
         height: 2,
         width: 2,
       ),
     ];
+    */
 
     return Stack(
         alignment: Alignment.bottomRight,
-        fit: StackFit.expand,
+        //fit: StackFit.expand,
         overflow: Overflow.visible,
-        children: widget.visible ? children : containers);
+        children: children
+        //widget.visible ? children : containers
+        );
   }
 }

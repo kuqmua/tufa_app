@@ -46,8 +46,6 @@ class _FeedState extends State<Feed> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButton: SpeedDial(
-          marginRight: 322.5,
-          marginBottom: 20,
           animatedIcon: AnimatedIcons.menu_close,
           visible: dialVisible,
           //curve: Curves.bounceIn,
