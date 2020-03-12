@@ -52,6 +52,11 @@ class _SpeedDialState extends State<SpeedDial>
 
   bool _open = false;
 
+  void closeChildrenOnScroll() {
+    if (widget.visible == false) {
+      _toggleChildren();
+    }
+  }
   //ScrollController scrollController;
 
   @override
@@ -132,9 +137,6 @@ class _SpeedDialState extends State<SpeedDial>
             toggleChildren: () {
               _toggleChildren();
             },
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-            ),
           );
         })
         .toList()
@@ -183,12 +185,18 @@ class _SpeedDialState extends State<SpeedDial>
     final children = [
       _renderButton(),
     ];
+    final containers = [
+      Container(
+        //color: Colors.yellow,
+        height: 2,
+        width: 2,
+      ),
+    ];
 
     return Stack(
-      alignment: Alignment.bottomRight,
-      fit: StackFit.expand,
-      overflow: Overflow.visible,
-      children: children,
-    );
+        alignment: Alignment.bottomRight,
+        fit: StackFit.expand,
+        overflow: Overflow.visible,
+        children: widget.visible ? children : containers);
   }
 }

@@ -6,8 +6,6 @@ class AnimatedChild extends AnimatedWidget {
   final Widget child;
   final VoidCallback onTap;
   final VoidCallback toggleChildren;
-  final ShapeBorder shape;
-  final String heroTag;
 
   AnimatedChild({
     Key key,
@@ -16,8 +14,6 @@ class AnimatedChild extends AnimatedWidget {
     this.child,
     this.onTap,
     this.toggleChildren,
-    this.shape,
-    this.heroTag,
   }) : super(key: key, listenable: animation);
 
   void _performAction() {
@@ -40,27 +36,20 @@ class AnimatedChild extends AnimatedWidget {
           );
 
     return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            width: 44.0,
-            height: animation.value,
-            margin: EdgeInsets.only(bottom: 15.0),
-            child: Container(
-              height: 44.0,
-              width: animation.value,
-              child: FloatingActionButton(
-                onPressed: _performAction,
-                backgroundColor: blue,
-                foregroundColor: white,
-                child: buttonChild,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-              ),
-            ),
-          )
-        ],
+      width: 44.0,
+      height: animation.value,
+      margin: EdgeInsets.only(bottom: 15.0),
+      child: Container(
+        height: 44.0,
+        width: animation.value,
+        child: FloatingActionButton(
+          onPressed: _performAction,
+          backgroundColor: blue,
+          foregroundColor: white,
+          child: buttonChild,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        ),
       ),
     );
   }
