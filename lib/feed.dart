@@ -50,7 +50,7 @@ class _FeedState extends State<Feed> with TickerProviderStateMixin {
           marginBottom: 20,
           animatedIcon: AnimatedIcons.menu_close,
           visible: dialVisible,
-          curve: Curves.bounceIn,
+          //curve: Curves.bounceIn,
           onOpen: () => print('OPENING DIAL'),
           onClose: () => print('DIAL CLOSED'),
           children: [
@@ -60,7 +60,6 @@ class _FeedState extends State<Feed> with TickerProviderStateMixin {
                   size: 20,
                 ),
                 backgroundColor: blue,
-                shape: RoundedRectangleBorder(),
                 onTap: () => print('FIRST CHILD')),
             SpeedDialChild(
               child: Icon(

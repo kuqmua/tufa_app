@@ -46,7 +46,7 @@ class AnimatedChild extends AnimatedWidget {
           Container(
             width: 44.0,
             height: animation.value,
-            margin: EdgeInsets.only(bottom: 5.0),
+            margin: EdgeInsets.only(bottom: 15.0),
             child: Container(
               height: 44.0,
               width: animation.value,

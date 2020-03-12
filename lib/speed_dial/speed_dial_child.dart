@@ -6,14 +6,11 @@ class SpeedDialChild {
   final Color backgroundColor;
   final Color foregroundColor;
   final VoidCallback onTap;
-  final ShapeBorder shape;
 
-  SpeedDialChild(
-      {this.child,
-      this.backgroundColor,
-      this.foregroundColor,
-      this.onTap,
-      this.shape = const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(15)),
-      )});
+  SpeedDialChild({
+    this.child,
+    this.backgroundColor,
+    this.foregroundColor,
+    this.onTap,
+  });
 }

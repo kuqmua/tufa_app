@@ -12,8 +12,6 @@ class SpeedDial extends StatefulWidget {
   /// Used to get the button hidden on scroll. See examples for more info.
   final bool visible;
 
-  /// The curve used to animate the button on scrolling.
-  final Curve curve;
   final double marginRight;
   final double marginBottom;
 
@@ -21,7 +19,7 @@ class SpeedDial extends StatefulWidget {
   final AnimatedIconData animatedIcon;
 
   /// The child of the main button, ignored if [animatedIcon] is non [null].
-  final Widget child;
+  //final Widget child;
 
   /// Executed when the dial is opened.
   final VoidCallback onOpen;
@@ -31,20 +29,16 @@ class SpeedDial extends StatefulWidget {
 
   /// Executed when the dial is pressed. If given, the dial only opens on long press!
   final VoidCallback onPress;
-
-  /// The speed of the animation
   final int animationSpeed;
 
   SpeedDial(
       {this.children = const [],
       this.visible = true,
-      this.animatedIcon,
-      this.child,
+      @required this.animatedIcon,
       @required this.marginBottom,
       @required this.marginRight,
       this.onOpen,
       this.onClose,
-      this.curve = Curves.linear,
       this.onPress,
       this.animationSpeed = 100});
 
@@ -58,9 +52,18 @@ class _SpeedDialState extends State<SpeedDial>
 
   bool _open = false;
 
+  //ScrollController scrollController;
+
   @override
   void initState() {
     super.initState();
+    /*
+    scrollController = ScrollController()
+      ..addListener(() {
+        setDialVisible(scrollController.position.userScrollDirection ==
+            ScrollDirection.forward);
+      });
+      */
     _controller = AnimationController(
       duration: _calculateMainControllerDuration(),
       vsync: this,
@@ -140,14 +143,12 @@ class _SpeedDialState extends State<SpeedDial>
   }
 
   Widget _renderButton() {
-    var child = widget.animatedIcon != null
-        ? AnimatedIcon(
-            icon: widget.animatedIcon,
-            progress: _controller,
-            color: white,
-            size: 20,
-          )
-        : widget.child;
+    var child = AnimatedIcon(
+      icon: widget.animatedIcon,
+      progress: _controller,
+      color: white,
+      size: 20,
+    );
 
     var fabChildren = _getChildrenList();
 
@@ -157,7 +158,6 @@ class _SpeedDialState extends State<SpeedDial>
       callback:
           (_open || widget.onPress == null) ? _toggleChildren : widget.onPress,
       child: child,
-      curve: widget.curve,
     );
 
     return Positioned(
