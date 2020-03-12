@@ -165,7 +165,7 @@ class _SpeedDialState extends State<SpeedDial>
     final children = [
       _renderButton(),
     ];
-    /*
+
     final containers = [
       Container(
         color: Color.fromRGBO(135, 135, 135, 0.5),
@@ -173,14 +173,11 @@ class _SpeedDialState extends State<SpeedDial>
         width: 2,
       ),
     ];
-    */
 
     return Stack(
         alignment: Alignment.bottomRight,
         //fit: StackFit.expand,
         overflow: Overflow.visible,
-        children: children
-        //widget.visible ? children : containers
-        );
+        children: widget.visible ? children : containers);
   }
 }
