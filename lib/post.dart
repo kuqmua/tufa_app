@@ -71,12 +71,12 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                         ]),
                       ],
                     )),
-            left: 0,
+            right: 0,
             top: 0,
             bottom: 0,
           ),
           Padding(
-            padding: EdgeInsets.only(left: btnSize + 10),
+            padding: EdgeInsets.only(right: btnSize + 10),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,

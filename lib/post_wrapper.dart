@@ -17,7 +17,7 @@ class _PostWrapperState extends State<PostWrapper> {
         MyDivider(),
       ]),
       Positioned(
-        right: -15,
+        right: 40,
         top: -5,
         child: IconButton(
           padding: EdgeInsets.fromLTRB(0, 0, 0, 0),

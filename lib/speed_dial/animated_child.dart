@@ -1,20 +1,72 @@
 import 'package:flutter/material.dart';
-import 'package:Tufa/colors.dart';
 
 class AnimatedChild extends AnimatedWidget {
   final int index;
+  final Color backgroundColor;
+  final Color foregroundColor;
+  final double elevation;
   final Widget child;
+
+  final String label;
+  final TextStyle labelStyle;
+  final Color labelBackgroundColor;
+  final Widget labelWidget;
+
+  final bool visible;
   final VoidCallback onTap;
   final VoidCallback toggleChildren;
+  final ShapeBorder shape;
+  final String heroTag;
 
   AnimatedChild({
     Key key,
     Animation<double> animation,
     this.index,
+    this.backgroundColor,
+    this.foregroundColor,
+    this.elevation = 6.0,
     this.child,
+    this.label,
+    this.labelStyle,
+    this.labelBackgroundColor,
+    this.labelWidget,
+    this.visible = false,
     this.onTap,
     this.toggleChildren,
+    this.shape,
+    this.heroTag,
   }) : super(key: key, listenable: animation);
+
+  Widget buildLabel() {
+    final Animation<double> animation = listenable;
+
+    if (!((label != null || labelWidget != null) &&
+        visible &&
+        animation.value == 44.0)) {
+      return Container();
+    }
+
+    if (labelWidget != null) return labelWidget;
+
+    return GestureDetector(
+      onTap: _performAction,
+      child: Container(
+          padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 8.0),
+          margin: EdgeInsets.fromLTRB(0, 0, 15, 15),
+          decoration: BoxDecoration(
+            color: labelBackgroundColor ?? Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(6.0)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.7),
+                offset: Offset(0.8, 0.8),
+                blurRadius: 2.4,
+              )
+            ],
+          ),
+          child: Text(label, style: labelStyle)),
+    );
+  }
 
   void _performAction() {
     if (onTap != null) onTap();
@@ -36,20 +88,33 @@ class AnimatedChild extends AnimatedWidget {
           );
 
     return Container(
-      width: 44.0,
-      height: animation.value,
-      margin: EdgeInsets.only(bottom: 15.0),
-      child: Container(
-        height: 44.0,
-        width: animation.value,
-        child: FloatingActionButton(
-          onPressed: _performAction,
-          backgroundColor: blue,
-          foregroundColor: white,
-          child: buttonChild,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          buildLabel(),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 15),
+            child: Container(
+              width: 44.0,
+              height: animation.value,
+              padding: EdgeInsets.only(bottom: 44.0 - animation.value),
+              child: Container(
+                height: 44.0,
+                width: animation.value,
+                child: FloatingActionButton(
+                  heroTag: heroTag,
+                  onPressed: _performAction,
+                  backgroundColor: backgroundColor,
+                  foregroundColor: foregroundColor,
+                  elevation: elevation ?? 6.0,
+                  child: buttonChild,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                ),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
