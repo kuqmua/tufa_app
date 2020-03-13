@@ -47,7 +47,7 @@ class _FeedState extends State<Feed> with TickerProviderStateMixin {
     return Scaffold(
         floatingActionButton: SpeedDial(
           // both default to 16
-          marginRight: -3,
+          marginRight: -10,
           marginBottom: 20,
           animatedIcon: AnimatedIcons.menu_close,
           animatedIconTheme: IconThemeData(size: 20.0),
@@ -91,7 +91,7 @@ class _FeedState extends State<Feed> with TickerProviderStateMixin {
           ],
         ),
         body: Padding(
-          padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
+          padding: EdgeInsets.fromLTRB(0, 0, 6, 0),
           child: isLoading
               ? Center(
                   child: CircularProgressIndicator(),

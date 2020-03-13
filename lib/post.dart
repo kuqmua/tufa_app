@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:expandable/expandable.dart';
 
 import 'package:Tufa/button_container.dart';
 import 'package:Tufa/top_post_part.dart';
@@ -20,11 +19,12 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
       'Managed to tie the caustics and dispersion effects into the roughness and normal inputs of my glass shader properly so imperfection maps effect it correctly. Its a subtle difference compared to the Blender original but I like it a lot I think.';
   //MaterialCommunityIcons.dots_horizontal,
   List<IconData> list = [
+    MaterialIcons.expand_more,
     Feather.share_2,
     AntDesign.staro,
     MaterialCommunityIcons.comment_outline
   ];
-  static const btnSize = 44.0;
+  static const btnSize = 40.0;
   static const bottomButtonMargin = 5.0;
   static const fontSize = 16.0;
   static const iconSize = 20.0;
@@ -33,6 +33,7 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
   //final bool expandedNeeded;
 
   build(context) => Container(
+        padding: EdgeInsets.fromLTRB(50, 0, 0, 0),
         margin: EdgeInsets.fromLTRB(0, 8, 0, 8),
         child: Stack(children: [
           Positioned(
@@ -43,15 +44,19 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                           btnSize: btnSize,
                         ),
                         Column(children: <Widget>[
+                          /*
                           Padding(
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                            
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(15.0),
                                 child: Image(
                                     height: btnSize,
                                     width: btnSize,
                                     image: AssetImage('assets/64cat.webp'))),
+                                    
                           ),
+                          */
                           Column(
                             children: List.generate(
                                 cns.maxHeight <
@@ -76,57 +81,27 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
             bottom: 0,
           ),
           Padding(
-            padding: EdgeInsets.only(right: btnSize + 10),
+            padding: EdgeInsets.only(right: btnSize + 3),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                large
-                    ? ExpandableTheme(
-                        data: ExpandableThemeData(
-                            iconColor: grey,
-                            iconSize: iconSize,
-                            iconPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                            animationDuration:
-                                const Duration(milliseconds: 300)),
-                        child: ExpandablePanel(
-                          header: TopPostPart(),
-                          collapsed: Text(
-                            someText,
-                            softWrap: true,
-                            maxLines: 5,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                color: postTextColor,
-                                fontSize: fontSize,
-                                fontWeight: FontWeight.w300),
-                          ),
-                          expanded: Text(
-                            someText,
-                            softWrap: true,
-                            style: TextStyle(
-                                color: postTextColor,
-                                fontSize: fontSize,
-                                fontWeight: FontWeight.w300),
-                          ),
-                        ),
-                      )
-                    : Column(
-                        children: <Widget>[
-                          TopPostPart(),
-                          Text(
-                            someText,
-                            softWrap: true,
-                            maxLines: hasImage ? 5 : 10,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                color: postTextColor,
-                                fontSize: fontSize,
-                                fontWeight: FontWeight.w300),
-                          ),
-                        ],
-                      ),
+                Column(
+                  children: <Widget>[
+                    TopPostPart(),
+                    Text(
+                      someText,
+                      softWrap: true,
+                      maxLines: hasImage ? 5 : 10,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          color: postTextColor,
+                          fontSize: fontSize,
+                          fontWeight: FontWeight.w300),
+                    ),
+                  ],
+                ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                   child: ClipRRect(

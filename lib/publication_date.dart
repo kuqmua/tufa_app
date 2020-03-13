@@ -14,7 +14,7 @@ class _PublicationDateState extends State<PublicationDate> {
     return Expanded(
       flex: 1,
       child: Padding(
-        padding: EdgeInsets.fromLTRB(0, 0, 25, 0),
+        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: Text(
           '1h',
           textAlign: TextAlign.center,

@@ -29,21 +29,21 @@ class AnimatedFloatingButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var margin = visible ? 0.0 : 22.0;
+    var margin = visible ? 0.0 : 20.0;
 
     return Container(
         constraints: BoxConstraints(
           minHeight: 0.0,
           minWidth: 0.0,
         ),
-        width: 44.0,
-        height: 44.0,
+        width: 40.0,
+        height: 40.0,
         child: AnimatedContainer(
           curve: curve,
           margin: EdgeInsets.all(margin),
           duration: Duration(milliseconds: 150),
-          width: visible ? 44.0 : 0.0,
-          height: visible ? 44.0 : 0.0,
+          width: visible ? 40.0 : 0.0,
+          height: visible ? 40.0 : 0.0,
           child: GestureDetector(
             onLongPress: onLongPress,
             child: FloatingActionButton(

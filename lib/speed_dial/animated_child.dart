@@ -42,7 +42,7 @@ class AnimatedChild extends AnimatedWidget {
 
     if (!((label != null || labelWidget != null) &&
         visible &&
-        animation.value == 44.0)) {
+        animation.value == 40.0)) {
       return Container();
     }
 
@@ -76,7 +76,7 @@ class AnimatedChild extends AnimatedWidget {
   Widget build(BuildContext context) {
     final Animation<double> animation = listenable;
 
-    final Widget buttonChild = animation.value > 43.0
+    final Widget buttonChild = animation.value > 39.0
         ? Container(
             width: animation.value,
             height: animation.value,
@@ -95,11 +95,11 @@ class AnimatedChild extends AnimatedWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 15),
             child: Container(
-              width: 44.0,
+              width: 40.0,
               height: animation.value,
-              padding: EdgeInsets.only(bottom: 44.0 - animation.value),
+              padding: EdgeInsets.only(bottom: 40.0 - animation.value),
               child: Container(
-                height: 44.0,
+                height: 40.0,
                 width: animation.value,
                 child: FloatingActionButton(
                   heroTag: heroTag,

@@ -30,7 +30,7 @@ class _TopPostPartState extends State<TopPostPart> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         Icon(
           FontAwesome.twitch,
