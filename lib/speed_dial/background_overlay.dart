@@ -14,7 +14,6 @@ class BackgroundOverlay extends AnimatedWidget {
   }) : super(key: key, listenable: animation);
 
   Widget build(BuildContext context) {
-    final Animation<double> animation = listenable;
     return Container(
         child: BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),

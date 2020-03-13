@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:Tufa/autor_name.dart';
-//import 'package:Tufa/horizontal_line.dart';
 import 'package:Tufa/publication_date.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
@@ -30,10 +29,11 @@ class _TopPostPartState extends State<TopPostPart> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Icon(
           FontAwesome.twitch,
+          size: 18,
         ),
         AutorName(),
         PublicationDate(),

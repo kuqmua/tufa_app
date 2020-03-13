@@ -5,7 +5,6 @@ class PostText extends StatelessWidget {
   final String text;
   final int maxLines;
   final double fontSize;
-  final String fontFamily;
   final FontWeight fontWeight;
   final TextOverflow textOverflow;
 
@@ -14,7 +13,6 @@ class PostText extends StatelessWidget {
     @required this.text,
     this.maxLines,
     this.fontSize,
-    this.fontFamily,
     this.fontWeight,
     this.textOverflow,
   }) : super(key: key);
@@ -30,9 +28,8 @@ class PostText extends StatelessWidget {
         overflow: textOverflow ?? TextOverflow.ellipsis,
         style: TextStyle(
             color: postTextColor,
-            fontSize: fontSize,
-            fontFamily: fontFamily,
-            fontWeight: fontWeight),
+            fontSize: fontSize ?? 16,
+            fontWeight: fontWeight ?? FontWeight.w300),
       ),
     );
   }

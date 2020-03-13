@@ -3,20 +3,27 @@ import 'package:flutter_icons/flutter_icons.dart';
 
 import 'package:Tufa/button_container.dart';
 import 'package:Tufa/top_post_part.dart';
-import 'package:Tufa/colors.dart';
 import 'package:Tufa/vertical_line.dart';
+import 'package:Tufa/post_text.dart';
 
 class Post extends StatefulWidget {
   createState() => PostState();
 }
 
 class PostState extends State<Post> with SingleTickerProviderStateMixin {
-  String fewText =
-      'Got permission to post some screenshots of our company internal immediate mode UI game engine editor. So far only good experiences for both programmers and artists.';
   String someText =
       'Got permission to post some screenshots of our company internal immediate mode UI game engine editor. So far only good experiences for both programmers and artists. Some advantages were instant onboarding of team into UI programming and 1/3 in code size compared to old Qt code.'
       'Over the years, Ive learned the lesson of input vs output on the interwebs. You spend days on something and it flies under the radar. You spend a few minutes making shitty  drawings on screenshots and everyone loves it xD Remember, always do art for yourself. Not others <3'
       'Managed to tie the caustics and dispersion effects into the roughness and normal inputs of my glass shader properly so imperfection maps effect it correctly. Its a subtle difference compared to the Blender original but I like it a lot I think.';
+
+  void onButtonPressed() {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container();
+        });
+  }
+
   //MaterialCommunityIcons.dots_horizontal,
   List<IconData> list = [
     MaterialIcons.expand_more,
@@ -51,14 +58,16 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                                     ? (cns.maxHeight -
                                             (btnSize + bottomButtonMargin)) ~/
                                         (btnSize + bottomButtonMargin)
-                                    : 3,
+                                    : 4,
                                 (i) => ButtonContainer(
-                                    icon: list[i],
-                                    margin: EdgeInsets.fromLTRB(
-                                        0, 0, 0, bottomButtonMargin),
-                                    backgroundSize: btnSize,
-                                    iconSize: iconSize,
-                                    borderWidth: 1.5)),
+                                      icon: list[i],
+                                      margin: EdgeInsets.fromLTRB(
+                                          0, 0, 0, bottomButtonMargin),
+                                      backgroundSize: btnSize,
+                                      iconSize: iconSize,
+                                      borderWidth: 1.5,
+                                      onTap: i == 0 ? onButtonPressed : null,
+                                    )),
                           ),
                         ]),
                       ],
@@ -68,7 +77,7 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
             bottom: 0,
           ),
           Padding(
-            padding: EdgeInsets.only(right: btnSize + 3),
+            padding: EdgeInsets.only(right: btnSize + 5),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -77,15 +86,9 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                 Column(
                   children: <Widget>[
                     TopPostPart(),
-                    Text(
-                      someText,
-                      softWrap: true,
+                    PostText(
+                      text: someText,
                       maxLines: hasImage ? 5 : 10,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          color: postTextColor,
-                          fontSize: fontSize,
-                          fontWeight: FontWeight.w300),
                     ),
                   ],
                 ),

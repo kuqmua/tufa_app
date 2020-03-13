@@ -52,7 +52,7 @@ class AnimatedChild extends AnimatedWidget {
       onTap: _performAction,
       child: Container(
           padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 8.0),
-          margin: EdgeInsets.fromLTRB(0, 0, 15, 15),
+          margin: EdgeInsets.fromLTRB(0, 0, 15, 30),
           decoration: BoxDecoration(
             color: labelBackgroundColor ?? Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(6.0)),
@@ -93,7 +93,7 @@ class AnimatedChild extends AnimatedWidget {
         children: <Widget>[
           buildLabel(),
           Padding(
-            padding: const EdgeInsets.only(bottom: 15),
+            padding: const EdgeInsets.only(bottom: 30),
             child: Container(
               width: 40.0,
               height: animation.value,
