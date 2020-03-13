@@ -1,3 +1,4 @@
+import 'package:Tufa/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
@@ -19,8 +20,20 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
   void onButtonPressed() {
     showModalBottomSheet(
         context: context,
+        backgroundColor: Theme.of(context).primaryColor,
+        //barrierColor: background.withOpacity(0.5),
         builder: (context) {
-          return Container();
+          return Container(
+              child: Center(
+            child: Text(
+              "Metainfo \n (not done yet)",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 40,
+              ),
+            ),
+          ));
         });
   }
 
@@ -37,7 +50,6 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
   static const iconSize = 20.0;
   final bool large = false;
   final bool hasImage = true;
-  //final bool expandedNeeded;
 
   build(context) => Container(
         padding: EdgeInsets.fromLTRB(50, 0, 0, 0),
