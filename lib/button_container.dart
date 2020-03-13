@@ -7,6 +7,7 @@ class ButtonContainer extends StatelessWidget {
   final double backgroundSize;
   final double iconSize;
   final double borderWidth;
+  final VoidCallback onTap;
 
   const ButtonContainer(
       {Key key,
@@ -14,7 +15,8 @@ class ButtonContainer extends StatelessWidget {
       @required this.margin,
       @required this.backgroundSize,
       @required this.iconSize,
-      @required this.borderWidth})
+      @required this.borderWidth,
+      this.onTap})
       : super(key: key);
 
   @override
@@ -32,7 +34,7 @@ class ButtonContainer extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(15)),
       ),
       child: IconButton(
-        onPressed: () {},
+        onPressed: onTap,
         icon: Icon(
           icon,
           size: iconSize,

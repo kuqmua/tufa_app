@@ -44,19 +44,6 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                           btnSize: btnSize,
                         ),
                         Column(children: <Widget>[
-                          /*
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
-                            
-                            child: ClipRRect(
-                                borderRadius: BorderRadius.circular(15.0),
-                                child: Image(
-                                    height: btnSize,
-                                    width: btnSize,
-                                    image: AssetImage('assets/64cat.webp'))),
-                                    
-                          ),
-                          */
                           Column(
                             children: List.generate(
                                 cns.maxHeight <

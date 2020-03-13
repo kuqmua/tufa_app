@@ -13,17 +13,14 @@ class _PublicationDateState extends State<PublicationDate> {
   Widget build(BuildContext context) {
     return Expanded(
       flex: 1,
-      child: Padding(
-        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-        child: Text(
-          '1h',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: grey,
-            fontSize: 18,
-            fontFamily: 'Lora',
-            fontWeight: FontWeight.w300,
-          ),
+      child: Text(
+        '1h',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          color: grey,
+          fontSize: 18,
+          fontFamily: 'Lora',
+          fontWeight: FontWeight.w300,
         ),
       ),
     );
