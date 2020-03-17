@@ -1,6 +1,7 @@
 import 'package:Tufa/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'dart:ui';
 
 import 'package:Tufa/button_container.dart';
 import 'package:Tufa/top_post_part.dart';
@@ -20,20 +21,30 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
   void onButtonPressed() {
     showModalBottomSheet(
         context: context,
+        //backgroundColor: Colors.yellow,
         backgroundColor: Theme.of(context).primaryColor,
-        //barrierColor: background.withOpacity(0.5),
+        barrierColor: Color.fromRGBO(255, 255, 255, 0),
         builder: (context) {
-          return Container(
-              child: Center(
-            child: Text(
-              "Metainfo \n (not done yet)",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 40,
-              ),
+          return Stack(children: [
+            Positioned(
+              child: Container(
+                  child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                child: Container(color: backgroundColor.withOpacity(0.5)),
+              )),
             ),
-          ));
+            Container(
+                child: Center(
+              child: Text(
+                "Metainfo \n (not done yet)",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 40,
+                ),
+              ),
+            )),
+          ]);
         });
   }
 

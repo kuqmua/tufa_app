@@ -16,7 +16,7 @@ class _AutorNameState extends State<AutorName> {
       child: Padding(
         padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
         child: new Text(
-          'Casey Muratori',
+          'Random autor',
           overflow: TextOverflow.ellipsis,
           style: new TextStyle(
             fontSize: 17.0,
