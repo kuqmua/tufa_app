@@ -58,7 +58,7 @@ class _FeedState extends State<Feed> with TickerProviderStateMixin {
           // by tapping main button and overlay is not rendered.
           closeManually: false,
           curve: Curves.bounceIn,
-          overlayColor: backgroundColor,
+          overlayColor: Colors.black,
           overlayOpacity: 0.5,
           onOpen: () => print('OPENING DIAL'),
           onClose: () => print('DIAL CLOSED'),

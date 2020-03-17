@@ -21,30 +21,34 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
   void onButtonPressed() {
     showModalBottomSheet(
         context: context,
-        //backgroundColor: Colors.yellow,
         backgroundColor: Theme.of(context).primaryColor,
-        barrierColor: Color.fromRGBO(255, 255, 255, 0),
+        barrierColor: Colors.black.withOpacity(0.5),
         builder: (context) {
-          return Stack(children: [
-            Positioned(
-              child: Container(
-                  child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                child: Container(color: backgroundColor.withOpacity(0.5)),
-              )),
-            ),
-            Container(
-                child: Center(
-              child: Text(
-                "Metainfo \n (not done yet)",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 40,
+          return Container(
+              child: Center(
+            child: Row(
+              children: <Widget>[
+                Container(
+                  width: 50,
+                  color: borderColor,
+                  padding: EdgeInsets.fromLTRB(50, 0, 0, 0),
                 ),
-              ),
-            )),
-          ]);
+                Text(
+                  "Metainfo \n (not done yet)",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 40,
+                  ),
+                ),
+                Container(
+                  width: 50,
+                  color: borderColor,
+                  padding: EdgeInsets.fromLTRB(50, 0, 0, 0),
+                ),
+              ],
+            ),
+          ));
         });
   }
 

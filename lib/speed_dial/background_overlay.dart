@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'package:Tufa/colors.dart';
 import 'package:flutter/material.dart';
 
 class BackgroundOverlay extends AnimatedWidget {
@@ -14,14 +13,10 @@ class BackgroundOverlay extends AnimatedWidget {
   }) : super(key: key, listenable: animation);
 
   Widget build(BuildContext context) {
+    //final Animation<double> animation = listenable;
     return Container(
-        child: BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-      child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(50)),
-              color: backgroundColor.withOpacity(0.5))),
-    ));
+      color: color.withOpacity(0.5),
+    );
   }
 }
 
