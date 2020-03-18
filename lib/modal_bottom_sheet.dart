@@ -2,6 +2,7 @@ import 'package:Tufa/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:Tufa/modal_bottom_sheet_choice.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:Tufa/my_divider.dart';
 
 class ModalBottomSheet extends StatefulWidget {
   ModalBottomSheet({Key key}) : super(key: key);
@@ -49,7 +50,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
               ),
               Expanded(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Container(
                       width: 90,
@@ -60,26 +61,32 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
                         borderRadius: BorderRadius.all(Radius.circular(15)),
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: <Widget>[
-                          ModalBottomSheetChoice(
-                              icon: Feather.share_2, text: 'Share post'),
-                          ModalBottomSheetChoice(
-                              icon: AntDesign.staro, text: 'Add in bookmarks'),
-                          ModalBottomSheetChoice(
-                              icon: MaterialCommunityIcons.comment_outline,
-                              text: 'Open Comments'),
-                          ModalBottomSheetChoice(
-                              icon: Entypo.block,
-                              text: 'Block content provider'),
-                          ModalBottomSheetChoice(
-                              icon: SimpleLineIcons.user_unfollow,
-                              text: 'Unfollow user'),
-                        ],
+                    Expanded(
+                      child: Container(
+                        margin: EdgeInsets.fromLTRB(30, 30, 30, 30),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            ModalBottomSheetChoice(
+                                icon: Feather.share_2, text: 'Share post'),
+                            MyDivider(),
+                            ModalBottomSheetChoice(
+                                icon: AntDesign.staro,
+                                text: 'Add in bookmarks'),
+                            MyDivider(),
+                            ModalBottomSheetChoice(
+                                icon: MaterialCommunityIcons.comment_outline,
+                                text: 'Open Comments'),
+                            MyDivider(),
+                            ModalBottomSheetChoice(
+                                icon: SimpleLineIcons.user_unfollow,
+                                text: 'Unfollow user'),
+                            MyDivider(),
+                            ModalBottomSheetChoice(
+                                icon: Entypo.block,
+                                text: 'Block content provider'),
+                          ],
+                        ),
                       ),
                     ),
                   ],

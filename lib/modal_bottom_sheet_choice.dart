@@ -11,7 +11,7 @@ class ModalBottomSheetChoice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
+      margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[

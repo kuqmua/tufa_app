@@ -16,7 +16,7 @@ class _PublicationDateState extends State<PublicationDate> {
       textAlign: TextAlign.center,
       style: TextStyle(
         color: grey,
-        fontSize: 18,
+        fontSize: 17,
         fontFamily: 'Lora',
         fontWeight: FontWeight.w300,
       ),

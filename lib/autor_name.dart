@@ -11,18 +11,15 @@ class AutorName extends StatefulWidget {
 class _AutorNameState extends State<AutorName> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 4,
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-        child: new Text(
-          'Random autor',
-          overflow: TextOverflow.ellipsis,
-          style: new TextStyle(
-            fontSize: 17.0,
-            fontFamily: 'Lora',
-            color: white,
-          ),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+      child: new Text(
+        'Random autor',
+        overflow: TextOverflow.ellipsis,
+        style: new TextStyle(
+          fontSize: 17.0,
+          fontFamily: 'Lora',
+          color: white,
         ),
       ),
     );
