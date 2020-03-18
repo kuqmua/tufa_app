@@ -40,7 +40,8 @@ class _PostWrapperState extends State<PostWrapper> {
                               child: Image(
                                   height: 40,
                                   width: 40,
-                                  image: AssetImage('assets/64cat.webp')))
+                                  image:
+                                      AssetImage('assets/cat200x200x30.jpg')))
                         ]),
                       ]),
                     ],

@@ -1,4 +1,3 @@
-import 'package:Tufa/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'dart:ui';
@@ -102,7 +101,10 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                   padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(15.0),
-                      child: Image(image: AssetImage('assets/3cat.webp'))),
+                      child: Image(
+                          height: 165,
+                          width: 295,
+                          image: AssetImage('assets/k800x50.jpg'))),
                 ),
               ],
             ),
