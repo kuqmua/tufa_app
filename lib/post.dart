@@ -7,6 +7,7 @@ import 'package:Tufa/button_container.dart';
 import 'package:Tufa/top_post_part.dart';
 import 'package:Tufa/vertical_line.dart';
 import 'package:Tufa/post_text.dart';
+import 'package:Tufa/modal_bottom_sheet.dart';
 
 class Post extends StatefulWidget {
   createState() => PostState();
@@ -18,40 +19,6 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
       'Over the years, Ive learned the lesson of input vs output on the interwebs. You spend days on something and it flies under the radar. You spend a few minutes making shitty  drawings on screenshots and everyone loves it xD Remember, always do art for yourself. Not others <3'
       'Managed to tie the caustics and dispersion effects into the roughness and normal inputs of my glass shader properly so imperfection maps effect it correctly. Its a subtle difference compared to the Blender original but I like it a lot I think.';
 
-  void onButtonPressed() {
-    showModalBottomSheet(
-        context: context,
-        backgroundColor: Theme.of(context).primaryColor,
-        barrierColor: Colors.black.withOpacity(0.5),
-        builder: (context) {
-          return Container(
-              child: Center(
-            child: Row(
-              children: <Widget>[
-                Container(
-                  width: 50,
-                  color: borderColor,
-                  padding: EdgeInsets.fromLTRB(50, 0, 0, 0),
-                ),
-                Text(
-                  "Metainfo \n (not done yet)",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 40,
-                  ),
-                ),
-                Container(
-                  width: 50,
-                  color: borderColor,
-                  padding: EdgeInsets.fromLTRB(50, 0, 0, 0),
-                ),
-              ],
-            ),
-          ));
-        });
-  }
-
   //MaterialCommunityIcons.dots_horizontal,
   List<IconData> list = [
     MaterialIcons.expand_more,
@@ -59,6 +26,18 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
     AntDesign.staro,
     MaterialCommunityIcons.comment_outline
   ];
+//Radius.circular(15)
+//Theme.of(context).primaryColor
+  void onButtonPressed() {
+    showModalBottomSheet(
+        context: context,
+        backgroundColor: Colors.transparent,
+        barrierColor: Colors.black.withOpacity(0.5),
+        builder: (context) {
+          return ModalBottomSheet();
+        });
+  }
+
   static const btnSize = 40.0;
   static const bottomButtonMargin = 5.0;
   static const fontSize = 16.0;

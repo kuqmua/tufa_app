@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'Tufa',
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: true,
       home: MyHomePage(),
       theme: ThemeData(
         primaryColor: background,
