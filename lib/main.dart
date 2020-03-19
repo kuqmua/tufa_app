@@ -82,6 +82,49 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    return SafeArea(
+        child: Scaffold(
+            body: ListView(
+      padding: EdgeInsets.fromLTRB(24, 0, 24, 0),
+      children: <Widget>[
+        SizedBox(
+          height: 220,
+        ),
+        TextField(
+          decoration: InputDecoration(
+            labelText: "Username",
+            filled: true,
+          ),
+        ),
+        SizedBox(
+          height: 220,
+        ),
+        TextField(
+          decoration: InputDecoration(
+            labelText: "Password",
+            filled: true,
+          ),
+          obscureText: true,
+        ),
+        ButtonBar(children: <Widget>[
+          FlatButton(
+            child: Text("Cancel"),
+            onPressed: () {},
+          ),
+          RaisedButton(
+            child: Text("Next"),
+            onPressed: () {},
+          )
+        ])
+      ],
+    )));
+  }
+}
+/*
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
     return SafeArea(child: Feed());
   }
 }
+*/

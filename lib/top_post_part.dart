@@ -35,7 +35,7 @@ class _TopPostPartState extends State<TopPostPart> {
         Container(
           margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
           child: Icon(
-            FontAwesome.twitch,
+            FontAwesome.reddit_square,
             size: 17,
           ),
         ),

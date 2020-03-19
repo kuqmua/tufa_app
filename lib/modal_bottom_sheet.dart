@@ -21,7 +21,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 300,
+        height: 400,
         decoration: BoxDecoration(
           color: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.only(
@@ -79,12 +79,22 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
                                 text: 'Open Comments'),
                             MyDivider(),
                             ModalBottomSheetChoice(
+                                icon: SimpleLineIcons.user_follow,
+                                text: 'Follow user'),
+                            MyDivider(),
+                            ModalBottomSheetChoice(
                                 icon: SimpleLineIcons.user_unfollow,
                                 text: 'Unfollow user'),
                             MyDivider(),
                             ModalBottomSheetChoice(
                                 icon: Entypo.block,
                                 text: 'Block content provider'),
+                            MyDivider(),
+                            ModalBottomSheetChoice(
+                                icon: AntDesign.filter, text: 'Filter'),
+                            MyDivider(),
+                            ModalBottomSheetChoice(
+                                icon: AntDesign.link, text: 'Show post links'),
                           ],
                         ),
                       ),
