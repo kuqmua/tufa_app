@@ -30,68 +30,46 @@ class _TopPostPartState extends State<TopPostPart> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
-        Row(
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
-              child: Icon(
-                FontAwesome.twitch,
-                size: 17,
-              ),
-            ),
-            AutorName(),
-            Container(
-              margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
-              child: Text(
-                'r/pytorch ',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: grey,
-                  fontSize: 16,
-                  fontFamily: 'Lora',
-                  fontWeight: FontWeight.w300,
-                ),
-              ),
-            ),
-            PublicationDate(),
-          ],
-        ),
-
-        Expanded(
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: Container(
-                  width: 60,
-                  height: 14,
-                  decoration: BoxDecoration(
-                    //color: border,
-                    border: Border.all(
-                      color: blue,
-                      width: 1.3,
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                  ),
-                  /*
-                  child: Text(
-                    '',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: blue,
-                      fontSize: 16,
-                      fontFamily: 'Lora',
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                  */
-                ),
-              )
-            ],
+        Container(
+          margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
+          child: Icon(
+            FontAwesome.twitch,
+            size: 17,
           ),
         ),
-        //HorizontalLine(),
+        Flexible(fit: FlexFit.loose, child: AutorName()),
+        Flexible(
+          child: Container(
+            margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
+            child: Text(
+              'r/pytorch',
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                color: grey,
+                fontSize: 16,
+                fontFamily: 'Lora',
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+          ),
+        ),
+        PublicationDate(),
+        /*
+        Container(
+          width: 30,
+          height: 14,
+          decoration: BoxDecoration(
+            //color: border,
+            border: Border.all(
+              color: blue,
+              width: 1.3,
+            ),
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+          ),
+        ),
+        */
       ],
     );
   }
