@@ -30,7 +30,7 @@ class ModalBottomSheetChoice extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 20,
+                fontSize: 18,
               ),
             ),
           ),

@@ -34,29 +34,18 @@ class _TopPostPartState extends State<TopPostPart> {
       children: <Widget>[
         Row(
           children: <Widget>[
-            Icon(
-              FontAwesome.twitch,
-              size: 16,
+            Container(
+              margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
+              child: Icon(
+                FontAwesome.twitch,
+                size: 17,
+              ),
             ),
             AutorName(),
-            PublicationDate(),
-          ],
-        ),
-
-        Row(
-          children: <Widget>[
             Container(
-              width: 50,
-              decoration: BoxDecoration(
-                //color: border,
-                border: Border.all(
-                  color: border,
-                  width: 1.3,
-                ),
-                borderRadius: BorderRadius.all(Radius.circular(15)),
-              ),
+              margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
               child: Text(
-                '#',
+                'r/pytorch ',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: grey,
@@ -65,8 +54,42 @@ class _TopPostPartState extends State<TopPostPart> {
                   fontWeight: FontWeight.w300,
                 ),
               ),
-            )
+            ),
+            PublicationDate(),
           ],
+        ),
+
+        Expanded(
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  width: 60,
+                  height: 14,
+                  decoration: BoxDecoration(
+                    //color: border,
+                    border: Border.all(
+                      color: blue,
+                      width: 1.3,
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                  ),
+                  /*
+                  child: Text(
+                    '',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: blue,
+                      fontSize: 16,
+                      fontFamily: 'Lora',
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                  */
+                ),
+              )
+            ],
+          ),
         ),
         //HorizontalLine(),
       ],
