@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:Tufa/feed.dart';
 import 'package:Tufa/colors.dart';
+import 'package:Tufa/login_screen/login_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -80,51 +81,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool login = true;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            body: ListView(
-      padding: EdgeInsets.fromLTRB(24, 0, 24, 0),
-      children: <Widget>[
-        SizedBox(
-          height: 220,
-        ),
-        TextField(
-          decoration: InputDecoration(
-            labelText: "Username",
-            filled: true,
-          ),
-        ),
-        SizedBox(
-          height: 220,
-        ),
-        TextField(
-          decoration: InputDecoration(
-            labelText: "Password",
-            filled: true,
-          ),
-          obscureText: true,
-        ),
-        ButtonBar(children: <Widget>[
-          FlatButton(
-            child: Text("Cancel"),
-            onPressed: () {},
-          ),
-          RaisedButton(
-            child: Text("Next"),
-            onPressed: () {},
-          )
-        ])
-      ],
-    )));
+    return SafeArea(child: login ? LoginScreen() : Feed());
   }
 }
-/*
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(child: Feed());
-  }
-}
-*/

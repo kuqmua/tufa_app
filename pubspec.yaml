@@ -11,6 +11,7 @@ dependencies:
     sdk: flutter
 
   flutter_icons: ^1.0.0+1
+  flutter_svg: ^0.17.3+1
 #  expandable: ^4.1.2
 #  flutter_speed_dial: ^1.2.5
 #  rect_getter: ^0.0.1
@@ -21,7 +22,9 @@ dev_dependencies:
 
 flutter:
   assets:
-    - assets/
+    - assets/svg/tufa.svg
+    - assets/cat200x200x30.jpg
+    - assets/k800x50.jpg
   fonts:
     - family: Lora
       fonts:
