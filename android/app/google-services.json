@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "387259940069",
+    "firebase_url": "https://tufa-e108c.firebaseio.com",
+    "project_id": "tufa-e108c",
+    "storage_bucket": "tufa-e108c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:387259940069:android:42694a4fee89d7d46ba80c",
+        "android_client_info": {
+          "package_name": "com.myflutterappexample.Tufa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "387259940069-fq96u592tr1is6o5n4vl5vg9nss8hi60.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtuynXHPXfkXuQlIRPAGs5HuWE0Dqhmf0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "387259940069-fq96u592tr1is6o5n4vl5vg9nss8hi60.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

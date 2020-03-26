@@ -7,14 +7,18 @@ class MyDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 1,
+      height: 0.5,
+      color: borderColor,
+      width: 343,
+      /*
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: [
-          background,
-          border,
-          background,
+          backgroundColor,
+          borderColor,
+          backgroundColor,
         ], begin: Alignment.centerLeft, end: Alignment.centerRight),
       ),
+      */
     )
         /*
     Container(

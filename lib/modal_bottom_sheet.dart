@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:Tufa/modal_bottom_sheet_choice.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:Tufa/my_divider.dart';
+import 'package:Tufa/mbsh_line_gradient.dart';
 
 class ModalBottomSheet extends StatefulWidget {
   ModalBottomSheet({Key key}) : super(key: key);
@@ -31,23 +32,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Container(
-                width: 1.5,
-                margin: EdgeInsets.fromLTRB(24, 30, 25, 0),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment
-                        .bottomCenter, // 10% of the width, so there are ten blinds.
-                    colors: [
-                      background,
-                      border,
-                    ], // whitish to gray
-                    tileMode: TileMode
-                        .repeated, // repeats the gradient over the canvas
-                  ),
-                ),
-              ),
+              MbshLineGradient(),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -57,7 +42,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
                       height: 5,
                       margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
                       decoration: BoxDecoration(
-                        color: border,
+                        color: borderColor,
                         borderRadius: BorderRadius.all(Radius.circular(15)),
                       ),
                     ),
@@ -102,21 +87,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
                   ],
                 ),
               ),
-              Container(
-                width: 1.5,
-                margin: EdgeInsets.fromLTRB(25, 30, 25, 0),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      background,
-                      border,
-                    ],
-                    tileMode: TileMode.repeated,
-                  ),
-                ),
-              ),
+              MbshLineGradient(),
             ],
           ),
         ));

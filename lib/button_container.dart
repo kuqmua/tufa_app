@@ -35,12 +35,30 @@ class ButtonContainer extends StatelessWidget {
       ),
       child: IconButton(
         onPressed: onTap,
+        splashColor: borderColor,
         icon: Icon(
           icon,
           size: iconSize,
-          color: iconColor,
+          color: grey,
         ),
       ),
     );
   }
 }
+
+/*
+Container(
+      width: backgroundSize,
+      height: backgroundSize,
+      margin: margin,
+      decoration: BoxDecoration(
+        //color: backgroundColor,
+        border: Border.all(
+          color: borderColor,
+          width: borderWidth,
+        ),
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+      ),
+      )
+
+*/

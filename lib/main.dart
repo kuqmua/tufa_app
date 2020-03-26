@@ -10,8 +10,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: background,
-      systemNavigationBarColor: background,
+      statusBarColor: backgroundColor,
+      systemNavigationBarColor: backgroundColor,
       systemNavigationBarIconBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.light,
     ));
@@ -25,11 +25,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: true,
       home: MyHomePage(),
       theme: ThemeData(
-        primaryColor: background,
-        accentColor: border,
-        scaffoldBackgroundColor: background,
+        primaryColor: backgroundColor,
+        accentColor: borderColor,
+        scaffoldBackgroundColor: backgroundColor,
         textSelectionColor: blue,
-        backgroundColor: background,
+        backgroundColor: backgroundColor,
         //textTheme: ,
         iconTheme: IconThemeData(
           color: grey,
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         ),
         fontFamily: 'Lora',
 
-        //buttonColor, для кнопок с текстом
+        buttonColor: backgroundColor,
         //buttonTheme , для кнопок с текстом
         //textTheme ,
         //focusColor ,
@@ -81,7 +81,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool login = true;
+  bool login = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: login ? LoginScreen() : Feed());

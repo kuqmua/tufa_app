@@ -27,7 +27,7 @@ class PostText extends StatelessWidget {
         maxLines: maxLines ?? null,
         overflow: textOverflow ?? TextOverflow.ellipsis,
         style: TextStyle(
-            color: postTextColor,
+            color: softerwhite,
             fontSize: fontSize ?? 16,
             fontWeight: fontWeight ?? FontWeight.w300),
       ),

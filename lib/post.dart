@@ -7,6 +7,7 @@ import 'package:Tufa/top_post_part.dart';
 import 'package:Tufa/vertical_line.dart';
 import 'package:Tufa/post_text.dart';
 import 'package:Tufa/modal_bottom_sheet.dart';
+import 'package:Tufa/colors.dart';
 
 class Post extends StatefulWidget {
   createState() => PostState();
@@ -38,16 +39,97 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
   }
 
   static const btnSize = 40.0;
-  static const bottomButtonMargin = 5.0;
+  static const standartMargin = 5.0;
   static const fontSize = 16.0;
   static const iconSize = 20.0;
   final bool large = false;
   final bool hasImage = true;
 
   build(context) => Container(
-        padding: EdgeInsets.fromLTRB(50, 0, 0, 0),
-        margin: EdgeInsets.fromLTRB(0, 8, 0, 8),
+        padding: EdgeInsets.fromLTRB(standartMargin, 0, standartMargin, 0),
         child: Stack(children: [
+          Container(
+            padding: EdgeInsets.fromLTRB(btnSize + standartMargin, 0, 0, 0),
+            child: Stack(children: [
+              Positioned(
+                child: LayoutBuilder(
+                    builder: (context, cns) => Stack(
+                          children: <Widget>[
+                            VerticalLine(
+                              btnSize: btnSize,
+                            ),
+                            Container(
+                              margin: const EdgeInsets.fromLTRB(
+                                  0, standartMargin, 0, standartMargin),
+                              child: Column(children: <Widget>[
+                                Column(
+                                  children: List.generate(
+                                    (cns.maxHeight - 20) <
+                                            ((btnSize + standartMargin) * 3 +
+                                                btnSize)
+                                        ? (cns.maxHeight - 20) <
+                                                ((btnSize + standartMargin) *
+                                                        2 +
+                                                    btnSize)
+                                            ? (cns.maxHeight - 20) <
+                                                    ((btnSize +
+                                                            standartMargin) +
+                                                        btnSize)
+                                                ? 1
+                                                : 2
+                                            : 3
+                                        : 4,
+                                    (i) => ButtonContainer(
+                                      icon: list[i],
+                                      margin: EdgeInsets.fromLTRB(
+                                          0, 0, 0, standartMargin),
+                                      backgroundSize: btnSize,
+                                      iconSize: iconSize,
+                                      borderWidth: 0.75,
+                                      onTap: i == 0 ? onButtonPressed : null,
+                                    ),
+                                  ),
+                                ),
+                              ]),
+                            ),
+                          ],
+                        )),
+                right: 0,
+                top: 0,
+                bottom: 0,
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    0, 0, btnSize + standartMargin, standartMargin * 2),
+                margin: EdgeInsets.fromLTRB(0, standartMargin - 1, 0, 0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Column(
+                      children: <Widget>[
+                        TopPostPart(),
+                        PostText(
+                          text: someText,
+                          maxLines: hasImage ? 5 : 10,
+                        ),
+                      ],
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(0, standartMargin, 0, 0),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15.0),
+                          child: Image(
+                              //height: 165,
+                              //width: 295,
+                              image: AssetImage('assets/k800x50.jpg'))),
+                    ),
+                  ],
+                ),
+              )
+            ]),
+          ),
           Positioned(
             child: LayoutBuilder(
                 builder: (context, cns) => Stack(
@@ -55,60 +137,24 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                         VerticalLine(
                           btnSize: btnSize,
                         ),
-                        Column(children: <Widget>[
-                          Column(
-                            children: List.generate(
-                                cns.maxHeight <
-                                        ((btnSize + bottomButtonMargin) * 4 + 1)
-                                    ? (cns.maxHeight -
-                                            (btnSize + bottomButtonMargin)) ~/
-                                        (btnSize + bottomButtonMargin)
-                                    : 4,
-                                (i) => ButtonContainer(
-                                      icon: list[i],
-                                      margin: EdgeInsets.fromLTRB(
-                                          0, 0, 0, bottomButtonMargin),
-                                      backgroundSize: btnSize,
-                                      iconSize: iconSize,
-                                      borderWidth: 1.5,
-                                      onTap: i == 0 ? onButtonPressed : null,
-                                    )),
-                          ),
-                        ]),
+                        Padding(
+                          padding: const EdgeInsets.only(top: standartMargin),
+                          child: Column(children: <Widget>[
+                            ClipRRect(
+                                borderRadius: BorderRadius.circular(15.0),
+                                child: Image(
+                                    height: btnSize,
+                                    width: btnSize,
+                                    image:
+                                        AssetImage('assets/cat200x200x30.jpg')))
+                          ]),
+                        ),
                       ],
                     )),
-            right: 0,
+            left: 0,
             top: 0,
             bottom: 0,
           ),
-          Padding(
-            padding: EdgeInsets.only(right: btnSize + 5),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    TopPostPart(),
-                    PostText(
-                      text: someText,
-                      maxLines: hasImage ? 5 : 10,
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15.0),
-                      child: Image(
-                          height: 165,
-                          width: 295,
-                          image: AssetImage('assets/k800x50.jpg'))),
-                ),
-              ],
-            ),
-          )
         ]),
       );
 }

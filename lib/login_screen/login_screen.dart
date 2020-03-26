@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Text(
                           "Sign in",
                           style: TextStyle(
-                            color: border,
+                            color: borderColor,
                             fontSize: 16,
                             fontFamily: 'Lora',
                             fontWeight: FontWeight.w300,
@@ -54,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ],
             ),
             FlatButton(
-              color: border,
+              color: borderColor,
               shape: RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(15.0),
                 //side: BorderSide(color: Colors.red)

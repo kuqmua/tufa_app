@@ -20,7 +20,7 @@ class ModalBottomSheetChoice extends StatelessWidget {
             child: Icon(
               icon,
               size: 20,
-              color: iconColor,
+              color: grey,
             ),
           ),
           Container(
