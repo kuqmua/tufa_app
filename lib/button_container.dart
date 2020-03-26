@@ -19,6 +19,10 @@ class ButtonContainer extends StatelessWidget {
       this.onTap})
       : super(key: key);
 
+  void pressed() {
+    print("pressed");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +39,7 @@ class ButtonContainer extends StatelessWidget {
       ),
       child: IconButton(
         onPressed: onTap,
-        splashColor: borderColor,
+        splashColor: Theme.of(context).splashColor,
         icon: Icon(
           icon,
           size: iconSize,

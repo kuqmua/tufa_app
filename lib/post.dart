@@ -3,11 +3,11 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'dart:ui';
 
 import 'package:Tufa/button_container.dart';
-import 'package:Tufa/top_post_part.dart';
+import 'package:Tufa/top_post_part/tpp.dart';
 import 'package:Tufa/vertical_line.dart';
 import 'package:Tufa/post_text.dart';
-import 'package:Tufa/modal_bottom_sheet.dart';
-import 'package:Tufa/colors.dart';
+import 'package:Tufa/modal_bottom_sheet/mbsh.dart';
+//import 'package:Tufa/colors.dart';
 
 class Post extends StatefulWidget {
   createState() => PostState();
@@ -34,101 +34,64 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
         backgroundColor: Colors.transparent,
         barrierColor: Colors.black.withOpacity(0.5),
         builder: (context) {
-          return ModalBottomSheet();
+          return Mbsh();
         });
   }
 
-  static const btnSize = 40.0;
-  static const standartMargin = 5.0;
-  static const fontSize = 16.0;
-  static const iconSize = 20.0;
+  static const double btnSize = 40.0;
+  static const double standartMargin = 5.0;
+  static const double fontSize = 16.0;
+  static const double iconSize = 20.0;
   final bool large = false;
   final bool hasImage = true;
 
   build(context) => Container(
         padding: EdgeInsets.fromLTRB(standartMargin, 0, standartMargin, 0),
         child: Stack(children: [
-          Container(
-            padding: EdgeInsets.fromLTRB(btnSize + standartMargin, 0, 0, 0),
-            child: Stack(children: [
-              Positioned(
-                child: LayoutBuilder(
-                    builder: (context, cns) => Stack(
-                          children: <Widget>[
-                            VerticalLine(
-                              btnSize: btnSize,
-                            ),
-                            Container(
-                              margin: const EdgeInsets.fromLTRB(
-                                  0, standartMargin, 0, standartMargin),
-                              child: Column(children: <Widget>[
-                                Column(
-                                  children: List.generate(
-                                    (cns.maxHeight - 20) <
-                                            ((btnSize + standartMargin) * 3 +
+          Positioned(
+            child: LayoutBuilder(
+                builder: (context, cns) => Stack(
+                      children: <Widget>[
+                        VerticalLine(
+                          btnSize: btnSize,
+                        ),
+                        Container(
+                          margin: const EdgeInsets.fromLTRB(
+                              0, standartMargin, 0, standartMargin),
+                          child: Column(children: <Widget>[
+                            Column(
+                              children: List.generate(
+                                (cns.maxHeight - 20) <
+                                        ((btnSize + standartMargin) * 3 +
+                                            btnSize)
+                                    ? (cns.maxHeight - 20) <
+                                            ((btnSize + standartMargin) * 2 +
                                                 btnSize)
                                         ? (cns.maxHeight - 20) <
-                                                ((btnSize + standartMargin) *
-                                                        2 +
+                                                ((btnSize + standartMargin) +
                                                     btnSize)
-                                            ? (cns.maxHeight - 20) <
-                                                    ((btnSize +
-                                                            standartMargin) +
-                                                        btnSize)
-                                                ? 1
-                                                : 2
-                                            : 3
-                                        : 4,
-                                    (i) => ButtonContainer(
-                                      icon: list[i],
-                                      margin: EdgeInsets.fromLTRB(
-                                          0, 0, 0, standartMargin),
-                                      backgroundSize: btnSize,
-                                      iconSize: iconSize,
-                                      borderWidth: 0.75,
-                                      onTap: i == 0 ? onButtonPressed : null,
-                                    ),
-                                  ),
+                                            ? 1
+                                            : 2
+                                        : 3
+                                    : 4,
+                                (i) => ButtonContainer(
+                                  icon: list[i],
+                                  margin: EdgeInsets.fromLTRB(
+                                      0, 0, 0, standartMargin),
+                                  backgroundSize: btnSize,
+                                  iconSize: iconSize,
+                                  borderWidth: 0.75,
+                                  onTap: i == 0 ? onButtonPressed : null,
                                 ),
-                              ]),
+                              ),
                             ),
-                          ],
-                        )),
-                right: 0,
-                top: 0,
-                bottom: 0,
-              ),
-              Container(
-                padding: EdgeInsets.fromLTRB(
-                    0, 0, btnSize + standartMargin, standartMargin * 2),
-                margin: EdgeInsets.fromLTRB(0, standartMargin - 1, 0, 0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        TopPostPart(),
-                        PostText(
-                          text: someText,
-                          maxLines: hasImage ? 5 : 10,
+                          ]),
                         ),
                       ],
-                    ),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(0, standartMargin, 0, 0),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15.0),
-                          child: Image(
-                              //height: 165,
-                              //width: 295,
-                              image: AssetImage('assets/k800x50.jpg'))),
-                    ),
-                  ],
-                ),
-              )
-            ]),
+                    )),
+            right: 0,
+            top: 0,
+            bottom: 0,
           ),
           Positioned(
             child: LayoutBuilder(
@@ -155,6 +118,41 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
             top: 0,
             bottom: 0,
           ),
+          Container(
+            padding: EdgeInsets.fromLTRB(
+                btnSize + standartMargin,
+                standartMargin - 1,
+                btnSize + standartMargin,
+                standartMargin * 2),
+            //margin: EdgeInsets.fromLTRB(0, , 0, 0),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    Tpp(
+                      standartMargin: standartMargin,
+                    ),
+                    PostText(
+                      text: someText,
+                      maxLines: hasImage ? 5 : 10,
+                    ),
+                  ],
+                ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, standartMargin, 0, 0),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15.0),
+                      child: Image(
+                          //height: 165,
+                          //width: 295,
+                          image: AssetImage('assets/k800x50.jpg'))),
+                ),
+              ],
+            ),
+          )
         ]),
       );
 }

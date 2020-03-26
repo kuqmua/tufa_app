@@ -8,10 +8,8 @@ class VerticalLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned.fill(
-      //right: btnSize / 2 - 0.9,
-      //left: btnSize / 2 - 0.9,
-      right: 19.75,
-      left: 19.75,
+      right: btnSize / 2 - 0.25,
+      left: btnSize / 2 - 0.25,
       top: 0,
       bottom: 0,
       child: Container(

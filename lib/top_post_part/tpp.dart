@@ -1,61 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:Tufa/autor_name.dart';
-import 'package:Tufa/publication_date.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:Tufa/colors.dart';
+import 'package:Tufa/top_post_part/autor_name.dart';
+import 'package:Tufa/top_post_part/publication_date.dart';
+import 'package:Tufa/top_post_part/provider_icon.dart';
+import 'package:Tufa/top_post_part/provider_name.dart';
 
-class TopPostPart extends StatefulWidget {
-  TopPostPart({Key key}) : super(key: key);
+class Tpp extends StatefulWidget {
+  final double standartMargin;
+  Tpp({Key key, @required this.standartMargin}) : super(key: key);
 
   @override
-  _TopPostPartState createState() => _TopPostPartState();
+  _TppState createState() => _TppState();
 }
 
-class _TopPostPartState extends State<TopPostPart> {
-  List<IconData> list = [
-    Entypo.vk,
-    AntDesign.youtube,
-    MaterialCommunityIcons.hackernews,
-    AntDesign.github,
-    FontAwesome.twitch,
-    MaterialCommunityIcons.alpha_h_circle,
-    Feather.book,
-    Entypo.medium,
-    MaterialCommunityIcons.artstation,
-    EvilIcons.sc_telegram,
-    FontAwesome.reddit_square,
-    FontAwesome.twitter_square,
-    MaterialCommunityIcons.alpha_n_box
-  ];
+class _TppState extends State<Tpp> {
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Container(
-          margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
-          child: Icon(
-            FontAwesome.reddit_square,
-            size: 17,
-          ),
+          margin: EdgeInsets.only(right: widget.standartMargin),
+          child: ProviderIcon(),
         ),
-        Flexible(fit: FlexFit.loose, child: AutorName()),
+        Flexible(
+            fit: FlexFit.loose,
+            child: Container(
+                margin: EdgeInsets.only(right: widget.standartMargin),
+                child: AutorName())),
         Flexible(
           child: Container(
-            margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
-            child: Text(
-              'r/pytorch',
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                color: grey,
-                fontSize: 16,
-                fontFamily: 'Lora',
-                fontWeight: FontWeight.w300,
-              ),
-            ),
-          ),
+              margin: EdgeInsets.only(right: widget.standartMargin),
+              child: ProviderName()),
         ),
-        PublicationDate(),
+        PublicationDate(standartMargin: widget.standartMargin),
         /*
         Container(
           width: 30,

@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         //textTheme: ,
         iconTheme: IconThemeData(
           color: grey,
-          size: 18.0,
+          size: 18.0, //пока что ни на что не влияет
         ),
         fontFamily: 'Lora',
 
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         //focusColor ,
         //hoverColor ,
         //highlightColor ,
-        //splashColor ,
+        splashColor: borderColor,
         //unselectedWidgetColor ,
         //disabledColor ,
         //textSelectionColor ,

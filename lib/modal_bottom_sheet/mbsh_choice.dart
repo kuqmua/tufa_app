@@ -1,11 +1,10 @@
 import 'package:Tufa/colors.dart';
 import 'package:flutter/material.dart';
 
-class ModalBottomSheetChoice extends StatelessWidget {
+class MbshChoice extends StatelessWidget {
   final IconData icon;
   final String text;
-  const ModalBottomSheetChoice(
-      {Key key, @required this.icon, @required this.text})
+  const MbshChoice({Key key, @required this.icon, @required this.text})
       : super(key: key);
 
   @override

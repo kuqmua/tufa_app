@@ -1,18 +1,18 @@
 import 'package:Tufa/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:Tufa/modal_bottom_sheet_choice.dart';
+import 'package:Tufa/modal_bottom_sheet/mbsh_choice.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:Tufa/my_divider.dart';
-import 'package:Tufa/mbsh_line_gradient.dart';
+import 'package:Tufa/modal_bottom_sheet/mbsh_line_gradient.dart';
 
-class ModalBottomSheet extends StatefulWidget {
-  ModalBottomSheet({Key key}) : super(key: key);
+class Mbsh extends StatefulWidget {
+  Mbsh({Key key}) : super(key: key);
 
   @override
-  _ModalBottomSheetState createState() => _ModalBottomSheetState();
+  _MbshState createState() => _MbshState();
 }
 
-class _ModalBottomSheetState extends State<ModalBottomSheet> {
+class _MbshState extends State<Mbsh> {
   List<IconData> list = [
     MaterialIcons.expand_more,
     Feather.share_2,
@@ -52,33 +52,32 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            ModalBottomSheetChoice(
+                            MbshChoice(
                                 icon: Feather.share_2, text: 'Share post'),
                             MyDivider(),
-                            ModalBottomSheetChoice(
+                            MbshChoice(
                                 icon: AntDesign.staro,
                                 text: 'Add in bookmarks'),
                             MyDivider(),
-                            ModalBottomSheetChoice(
+                            MbshChoice(
                                 icon: MaterialCommunityIcons.comment_outline,
                                 text: 'Open Comments'),
                             MyDivider(),
-                            ModalBottomSheetChoice(
+                            MbshChoice(
                                 icon: SimpleLineIcons.user_follow,
                                 text: 'Follow user'),
                             MyDivider(),
-                            ModalBottomSheetChoice(
+                            MbshChoice(
                                 icon: SimpleLineIcons.user_unfollow,
                                 text: 'Unfollow user'),
                             MyDivider(),
-                            ModalBottomSheetChoice(
+                            MbshChoice(
                                 icon: Entypo.block,
                                 text: 'Block content provider'),
                             MyDivider(),
-                            ModalBottomSheetChoice(
-                                icon: AntDesign.filter, text: 'Filter'),
+                            MbshChoice(icon: AntDesign.filter, text: 'Filter'),
                             MyDivider(),
-                            ModalBottomSheetChoice(
+                            MbshChoice(
                                 icon: AntDesign.link, text: 'Show post links'),
                           ],
                         ),
