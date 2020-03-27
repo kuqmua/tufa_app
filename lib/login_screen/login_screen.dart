@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:Tufa/colors.dart';
 import 'package:Tufa/login_screen/text_form.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:Tufa/login_screen/tufa_svg.dart';
+import 'package:Tufa/login_screen/sign_in_button.dart';
+import 'package:Tufa/login_screen/sign_up_button.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key key}) : super(key: key);
@@ -22,54 +23,19 @@ class _LoginScreenState extends State<LoginScreen> {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                SvgPicture.asset('assets/svg/tufa.svg',
-                    height: 200,
-                    color: Colors.white,
-                    semanticsLabel: 'Acme Logo'),
+                TufaSvg(),
                 TextForm(),
                 TextForm(),
                 Row(
                   children: <Widget>[
                     Expanded(
-                      child: RaisedButton(
-                        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(15.0),
-                          //side: BorderSide(color: Colors.red)
-                        ),
-                        child: Text(
-                          "Sign in",
-                          style: TextStyle(
-                            color: borderColor,
-                            fontSize: 16,
-                            fontFamily: 'Lora',
-                            fontWeight: FontWeight.w300,
-                          ),
-                        ),
-                        onPressed: () {},
-                      ),
+                      child: SignInButton(),
                     ),
                   ],
                 ),
               ],
             ),
-            FlatButton(
-              color: borderColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(15.0),
-                //side: BorderSide(color: Colors.red)
-              ),
-              child: Text(
-                "Sign up",
-                style: TextStyle(
-                  color: softerwhite,
-                  fontSize: 16,
-                  fontFamily: 'Lora',
-                  fontWeight: FontWeight.w300,
-                ),
-              ),
-              onPressed: () {},
-            )
+            SignUpButton()
           ],
         ),
       ),

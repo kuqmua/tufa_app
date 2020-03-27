@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:Tufa/colors.dart';
 
 class AutorName extends StatefulWidget {
   AutorName({
@@ -16,11 +15,7 @@ class _AutorNameState extends State<AutorName> {
     return Text(
       'Random autor',
       overflow: TextOverflow.ellipsis,
-      style: TextStyle(
-        fontSize: 17.0,
-        fontFamily: 'Lora',
-        color: white,
-      ),
+      style: Theme.of(context).textTheme.bodyText1,
     );
   }
 }

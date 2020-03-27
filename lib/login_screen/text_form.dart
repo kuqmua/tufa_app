@@ -15,14 +15,29 @@ class _TextFormState extends State<TextForm> {
       padding: const EdgeInsets.only(bottom: 30),
       child: TextField(
         //scrollPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+        onSubmitted: (String value) async {
+          await showDialog<void>(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text('Thanks!'),
+                content: Text('You typed "$value".'),
+                actions: <Widget>[
+                  FlatButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text('OK'),
+                  ),
+                ],
+              );
+            },
+          );
+        },
+
         maxLengthEnforced: true,
         //maxLength: 30,
-        style: TextStyle(
-          color: white,
-          fontSize: 18,
-          fontFamily: 'Lora',
-          fontWeight: FontWeight.w300,
-        ),
+        style: Theme.of(context).textTheme.headline1,
         enableSuggestions: true,
         enableInteractiveSelection: true,
         cursorColor: blue,
@@ -38,12 +53,7 @@ class _TextFormState extends State<TextForm> {
             borderRadius: BorderRadius.all(Radius.circular(15)),
           ),
           hintText: "Password",
-          hintStyle: TextStyle(
-            color: white,
-            //fontSize: 16,
-            fontFamily: 'Lora',
-            fontWeight: FontWeight.w300,
-          ),
+          hintStyle: Theme.of(context).textTheme.headline1,
           filled: true,
         ),
         obscureText: true,

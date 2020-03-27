@@ -5,14 +5,16 @@ import 'package:Tufa/post_wrapper.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:Tufa/colors.dart';
+import 'package:Tufa/full_post/full_post.dart';
 
-class Feed extends StatefulWidget {
+class Wrapper extends StatefulWidget {
   @override
-  _FeedState createState() => _FeedState();
+  _WrapperState createState() => _WrapperState();
 }
 
-class _FeedState extends State<Feed> with TickerProviderStateMixin {
+class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
   bool isLoading = false;
+  bool isFullPost = true;
 
   ScrollController scrollController;
   bool dialVisible = true;
@@ -94,7 +96,7 @@ class _FeedState extends State<Feed> with TickerProviderStateMixin {
           ? Center(
               child: CircularProgressIndicator(),
             )
-          : buildBody(),
+          : isFullPost ? FullPost() : buildBody(),
     );
   }
 }

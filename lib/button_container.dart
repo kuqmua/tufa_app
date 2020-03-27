@@ -28,11 +28,11 @@ class ButtonContainer extends StatelessWidget {
     return Container(
       width: backgroundSize,
       height: backgroundSize,
-      margin: margin,
+      margin: margin ?? 5,
       decoration: BoxDecoration(
-        color: backgroundColor,
+        color: Theme.of(context).primaryColor,
         border: Border.all(
-          color: borderColor,
+          color: Theme.of(context).accentColor,
           width: borderWidth,
         ),
         borderRadius: BorderRadius.all(Radius.circular(15)),

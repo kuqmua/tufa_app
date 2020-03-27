@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:Tufa/colors.dart';
 
 class PublicationDate extends StatefulWidget {
   final double standartMargin;
@@ -17,12 +16,7 @@ class _PublicationDateState extends State<PublicationDate> {
       child: Text(
         '1h',
         textAlign: TextAlign.center,
-        style: TextStyle(
-          color: grey,
-          fontSize: 17,
-          fontFamily: 'Lora',
-          fontWeight: FontWeight.w300,
-        ),
+        style: Theme.of(context).textTheme.headline4,
       ),
     );
   }
