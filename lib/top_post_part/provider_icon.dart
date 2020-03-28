@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class ProviderIcon extends StatelessWidget {
-  const ProviderIcon({Key key}) : super(key: key);
+  final double iconSize;
+  const ProviderIcon({Key key, this.iconSize}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Icon(
       FontAwesome.reddit_square,
-      size: 17,
+      size: iconSize ?? 17,
     );
   }
 }

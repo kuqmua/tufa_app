@@ -12,7 +12,7 @@ class ButtonContainer extends StatelessWidget {
   const ButtonContainer(
       {Key key,
       @required this.icon,
-      @required this.margin,
+      this.margin,
       @required this.backgroundSize,
       @required this.iconSize,
       @required this.borderWidth,
@@ -28,7 +28,7 @@ class ButtonContainer extends StatelessWidget {
     return Container(
       width: backgroundSize,
       height: backgroundSize,
-      margin: margin ?? 5,
+      margin: margin ?? null,
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColor,
         border: Border.all(
