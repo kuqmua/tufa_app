@@ -5,12 +5,14 @@ class PostText extends StatelessWidget {
   final String text;
   final int maxLines;
   final TextOverflow textOverflow;
+  final double fontSize;
 
   const PostText({
     Key key,
     @required this.text,
     this.maxLines,
     this.textOverflow,
+    this.fontSize,
   }) : super(key: key);
 
   @override
@@ -25,7 +27,7 @@ class PostText extends StatelessWidget {
           style: TextStyle(
             fontFamily: "Lora",
             fontWeight: FontWeight.w300,
-            fontSize: 18,
+            fontSize: fontSize ?? 18,
             color: softerwhite,
           ),
         ));

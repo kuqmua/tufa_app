@@ -14,7 +14,7 @@ class Wrapper extends StatefulWidget {
 
 class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
   bool isLoading = false;
-  bool isFullPost = true;
+  bool isFullPost = false;
 
   ScrollController scrollController;
   bool dialVisible = true;

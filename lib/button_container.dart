@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:Tufa/colors.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class ButtonContainer extends StatelessWidget {
   final IconData icon;
@@ -8,6 +9,7 @@ class ButtonContainer extends StatelessWidget {
   final double iconSize;
   final double borderWidth;
   final VoidCallback onTap;
+  final bool bookmarked;
 
   const ButtonContainer(
       {Key key,
@@ -16,12 +18,9 @@ class ButtonContainer extends StatelessWidget {
       @required this.backgroundSize,
       @required this.iconSize,
       @required this.borderWidth,
-      this.onTap})
+      this.onTap,
+      this.bookmarked})
       : super(key: key);
-
-  void pressed() {
-    print("pressed");
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +40,9 @@ class ButtonContainer extends StatelessWidget {
         onPressed: onTap,
         splashColor: Theme.of(context).splashColor,
         icon: Icon(
-          icon,
+          bookmarked == null
+              ? icon
+              : bookmarked == false ? icon : AntDesign.star,
           size: iconSize,
           color: grey,
         ),
