@@ -1,11 +1,15 @@
+import 'package:Tufa/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:Tufa/speed_dial/speed_dial.dart';
-import 'package:Tufa/speed_dial/speed_dial_child.dart';
-import 'package:Tufa/post_wrapper.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:Tufa/colors.dart';
+
+import 'package:Tufa/post_wrapper.dart';
 import 'package:Tufa/full_post/full_post.dart';
+
+//import 'package:Tufa/speed_dial/speed_dial.dart';
+//import 'package:Tufa/speed_dial/speed_dial_child.dart';
+//import 'package:flutter_icons/flutter_icons.dart';
+//import 'package:Tufa/colors.dart';
 
 class Wrapper extends StatefulWidget {
   @override
@@ -47,6 +51,131 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomAppBar(
+          color: backgroundColor,
+          child: new Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              IconButton(
+                  icon: new Icon(
+                    Icons.home,
+                    color: grey,
+                  ),
+                  disabledColor: Colors.green,
+                  onPressed: () {}),
+              IconButton(
+                  icon: new Icon(
+                    AntDesign.search1,
+                    color: grey,
+                  ),
+                  disabledColor: Colors.green,
+                  onPressed: () {}),
+              IconButton(
+                  icon: Icon(
+                    AntDesign.filter,
+                    color: grey,
+                  ),
+                  disabledColor: Colors.green,
+                  onPressed: () {}),
+              IconButton(
+                  icon: Icon(
+                    Feather.bookmark,
+                    color: grey,
+                  ),
+                  disabledColor: Colors.green,
+                  onPressed: () {}),
+              IconButton(
+                  icon: Icon(
+                    Entypo.menu,
+                    color: grey,
+                  ),
+                  disabledColor: Colors.green,
+                  onPressed: () {}),
+            ],
+          )), //bottom
+      /*
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: backgroundColor,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: 0, // this will be set when a new tab is tapped
+        items: [
+          BottomNavigationBarItem(
+            icon: new Icon(
+              Icons.home,
+              color: grey,
+            ),
+            title: new Text(
+              'Home',
+              style: TextStyle(
+                fontFamily: "Lora",
+                fontWeight: FontWeight.w300,
+                fontSize: 15,
+                color: grey,
+              ),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: new Icon(
+              AntDesign.search1,
+              color: grey,
+            ),
+            title: new Text(
+              'Find',
+              style: TextStyle(
+                fontFamily: "Lora",
+                fontWeight: FontWeight.w300,
+                fontSize: 15,
+                color: grey,
+              ),
+            ),
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(
+                AntDesign.filter,
+                color: grey,
+              ),
+              title: Text(
+                'Filter',
+                style: TextStyle(
+                  fontFamily: "Lora",
+                  fontWeight: FontWeight.w300,
+                  fontSize: 15,
+                  color: grey,
+                ),
+              )),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Feather.bookmark,
+                color: grey,
+              ),
+              title: Text(
+                'Bookmarks',
+                style: TextStyle(
+                  fontFamily: "Lora",
+                  fontWeight: FontWeight.w300,
+                  fontSize: 15,
+                  color: grey,
+                ),
+              )),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Entypo.menu,
+                color: grey,
+              ),
+              title: Text(
+                'Menu',
+                style: TextStyle(
+                  fontFamily: "Lora",
+                  fontWeight: FontWeight.w300,
+                  fontSize: 15,
+                  color: grey,
+                ),
+              )),
+        ],
+      ),
+      */
+      /*
       floatingActionButton: SpeedDial(
         // both default to 16
         marginRight: -11,
@@ -92,6 +221,7 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
           ),
         ],
       ),
+      */
       body: isLoading
           ? Center(
               child: CircularProgressIndicator(),
