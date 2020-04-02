@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:Tufa/wrapper.dart';
+//import 'package:Tufa/wrapper.dart';
 import 'package:Tufa/colors.dart';
 import 'package:Tufa/login_screen/login_screen.dart';
+import 'package:Tufa/my_list_view.dart';
+import 'package:Tufa/full_post/full_post.dart';
 
 void main() => runApp(MyApp());
 
@@ -114,9 +116,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool login = false;
+  bool loginPage = false;
+  bool isLoading = false;
+  bool isFullPost = true;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: login ? LoginScreen() : Wrapper());
+    return SafeArea(
+        child: loginPage
+            ? LoginScreen()
+            : isFullPost ? FullPost() : MyListView(isLoading: false));
   }
 }
