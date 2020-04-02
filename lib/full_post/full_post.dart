@@ -106,13 +106,24 @@ class FullPostState extends State<FullPost>
                                       children: <Widget>[
                                         Container(
                                             margin: EdgeInsets.only(right: 5),
-                                            child: AutorName()),
-                                        PublicationDate(standartMargin: 5)
+                                            child: AutorName(
+                                              autorText: 'Random autor',
+                                            )),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 5),
+                                          child: PublicationDate(
+                                            dateText: '10:38 PM 20 Mar 2020',
+                                          ),
+                                        )
                                       ],
                                     ),
                                     Container(
                                         margin: EdgeInsets.only(right: 5),
-                                        child: ProviderName()),
+                                        child: ProviderName(
+                                          providerText: 'r/pytorch',
+                                          textColor: borderColor,
+                                        )),
                                   ],
                                 ),
                               ],

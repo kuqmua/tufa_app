@@ -188,7 +188,7 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                       standartMargin: standartMargin,
                     ),
                     PostText(
-                      fontSize: 16,
+                      fontSize: 17,
                       text: someText,
                       maxLines: hasImage ? 5 : 10,
                     ),

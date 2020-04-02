@@ -3,6 +3,7 @@ import 'package:Tufa/top_post_part/autor_name.dart';
 import 'package:Tufa/top_post_part/publication_date.dart';
 import 'package:Tufa/top_post_part/provider_icon.dart';
 import 'package:Tufa/top_post_part/provider_name.dart';
+import 'package:Tufa/colors.dart';
 
 class Tpp extends StatefulWidget {
   final double standartMargin;
@@ -26,13 +27,25 @@ class _TppState extends State<Tpp> {
             fit: FlexFit.loose,
             child: Container(
                 margin: EdgeInsets.only(right: widget.standartMargin),
-                child: AutorName())),
+                child: AutorName(
+                  autorText: 'Random autor',
+                  fontSize: 18,
+                  textColor: white,
+                ))),
         Flexible(
           child: Container(
               margin: EdgeInsets.only(right: widget.standartMargin),
-              child: ProviderName()),
+              child: ProviderName(
+                providerText: 'r/pytorch',
+                textColor: grey,
+              )),
         ),
-        PublicationDate(standartMargin: widget.standartMargin),
+        Container(
+            margin: EdgeInsets.only(right: widget.standartMargin),
+            child: PublicationDate(
+              dateText: '1h',
+              textColor: grey,
+            )),
         /*
         Container(
           width: 30,

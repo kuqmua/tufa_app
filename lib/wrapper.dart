@@ -4,8 +4,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 import 'package:Tufa/post_wrapper.dart';
-import 'package:Tufa/full_post/full_post.dart';
-
+//import 'package:Tufa/full_post/full_post.dart';
+import 'package:Tufa/full_post/second_full_post.dart';
 //import 'package:Tufa/speed_dial/speed_dial.dart';
 //import 'package:Tufa/speed_dial/speed_dial_child.dart';
 //import 'package:flutter_icons/flutter_icons.dart';
@@ -18,7 +18,7 @@ class Wrapper extends StatefulWidget {
 
 class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
   bool isLoading = false;
-  bool isFullPost = false;
+  bool isFullPost = true;
 
   ScrollController scrollController;
   bool dialVisible = true;
@@ -222,6 +222,7 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
         ],
       ),
       */
+
       body: isLoading
           ? Center(
               child: CircularProgressIndicator(),
