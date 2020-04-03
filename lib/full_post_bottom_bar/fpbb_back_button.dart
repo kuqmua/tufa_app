@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:Tufa/colors.dart';
 
-class BackBackButton extends StatelessWidget {
-  const BackBackButton({Key key}) : super(key: key);
+class FpbbBackButton extends StatelessWidget {
+  const FpbbBackButton({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

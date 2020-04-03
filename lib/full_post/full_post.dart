@@ -14,6 +14,7 @@ import 'package:Tufa/top_post_part/tpp.dart';
 import 'package:Tufa/vertical_line.dart';
 import 'package:Tufa/post_text.dart';
 import 'package:Tufa/modal_bottom_sheet/mbsh.dart';
+import 'package:flutter/rendering.dart';
 
 import 'package:Tufa/top_post_part/autor_name.dart';
 import 'package:Tufa/top_post_part/publication_date.dart';
@@ -29,9 +30,37 @@ class FullPost extends StatefulWidget {
 class FullPostState extends State<FullPost>
     with SingleTickerProviderStateMixin {
   String someText =
-      'Got permission to FullPost some screenshots of our company internal immediate mode UI game engine editor. So far only good experiences for both programmers and artists. Some advantages were instant onboarding of team into UI programming and 1/3 in code size compared to old Qt code.'
+      'Got permission to post some screenshots of our company internal immediate mode UI game engine editor. So far only good experiences for both programmers and artists. Some advantages were instant onboarding of team into UI programming and 1/3 in code size compared to old Qt code.'
+      'Over the years, Ive learned the lesson of input vs output on the interwebs. You spend days on something and it flies under the radar. You spend a few minutes making shitty  drawings on screenshots and everyone loves it xD Remember, always do art for yourself. Not others <3'
+      'Managed to tie the caustics and dispersion effects into the roughness and normal inputs of my glass shader properly so imperfection maps effect it correctly. Its a subtle difference compared to the Blender original but I like it a lot I think.'
+      'Got permission to post some screenshots of our company internal immediate mode UI game engine editor. So far only good experiences for both programmers and artists. Some advantages were instant onboarding of team into UI programming and 1/3 in code size compared to old Qt code.'
       'Over the years, Ive learned the lesson of input vs output on the interwebs. You spend days on something and it flies under the radar. You spend a few minutes making shitty  drawings on screenshots and everyone loves it xD Remember, always do art for yourself. Not others <3'
       'Managed to tie the caustics and dispersion effects into the roughness and normal inputs of my glass shader properly so imperfection maps effect it correctly. Its a subtle difference compared to the Blender original but I like it a lot I think.';
+
+  ScrollController scrollController;
+
+  bool _isVisible = true;
+  @override
+  void initState() {
+    super.initState();
+    _isVisible = true;
+    scrollController = new ScrollController();
+    scrollController.addListener(() {
+      if (scrollController.position.userScrollDirection ==
+          ScrollDirection.reverse) {
+        setState(() {
+          _isVisible = false;
+        });
+      }
+      if (scrollController.position.userScrollDirection ==
+          ScrollDirection.forward) {
+        setState(() {
+          _isVisible = true;
+        });
+      }
+    });
+  }
+
   bool bookmarked = false;
   void modalBottomSheet() {
     showModalBottomSheet(
@@ -76,8 +105,13 @@ class FullPostState extends State<FullPost>
   final bool hasImage = true;
 
   build(context) => Scaffold(
-        bottomNavigationBar: FullPostBottomBar(),
+        //bottomNavigationBar: FullPostBottomBar(),
+        bottomNavigationBar: AnimatedContainer(
+            duration: Duration(milliseconds: 200),
+            height: _isVisible ? 60 : 0.0,
+            child: FullPostBottomBar()),
         body: SingleChildScrollView(
+          controller: scrollController,
           child: Container(
             padding: EdgeInsets.fromLTRB(
                 btnSize, standartMargin - 1, btnSize, standartMargin * 2),
@@ -170,17 +204,3 @@ class FullPostState extends State<FullPost>
         ),
       );
 }
-
-/*
-List<IconData> bookmarkIcons = [
-    AntDesign.staro,
-    AntDesign.star,
-  ];
-  //MaterialCommunityIcons.dots_horizontal,
-  List<IconData> list = [
-    MaterialIcons.expand_more,
-    Feather.share_2,
-    AntDesign.staro,
-    MaterialCommunityIcons.comment_outline,
-  ];
-  */
