@@ -60,6 +60,7 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
     MaterialIcons.expand_more,
     Feather.share_2,
     AntDesign.staro,
+    AntDesign.filter,
     MaterialCommunityIcons.comment_outline,
   ];
 
@@ -110,18 +111,24 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                                 */
                                   List.generate(
                                 (cns.maxHeight - 20) <
-                                        ((btnSize + standartMargin) * 3 +
+                                        ((btnSize + standartMargin) * 4 +
                                             btnSize)
                                     ? (cns.maxHeight - 20) <
-                                            ((btnSize + standartMargin) * 2 +
+                                            ((btnSize + standartMargin) * 3 +
                                                 btnSize)
                                         ? (cns.maxHeight - 20) <
-                                                ((btnSize + standartMargin) +
+                                                ((btnSize + standartMargin) *
+                                                        2 +
                                                     btnSize)
-                                            ? 1
-                                            : 2
-                                        : 3
-                                    : 4,
+                                            ? (cns.maxHeight - 20) <
+                                                    ((btnSize +
+                                                            standartMargin) +
+                                                        btnSize)
+                                                ? 1
+                                                : 2
+                                            : 3
+                                        : 4
+                                    : 5,
                                 (i) => ButtonContainer(
                                   icon: list[i],
                                   margin: EdgeInsets.fromLTRB(

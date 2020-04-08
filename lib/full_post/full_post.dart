@@ -105,7 +105,6 @@ class FullPostState extends State<FullPost>
   final bool hasImage = true;
 
   build(context) => Scaffold(
-        //bottomNavigationBar: FullPostBottomBar(),
         bottomNavigationBar: AnimatedContainer(
             duration: Duration(milliseconds: 200),
             height: _isVisible ? 60 : 0.0,

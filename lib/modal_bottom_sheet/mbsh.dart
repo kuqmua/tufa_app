@@ -48,7 +48,7 @@ class _MbshState extends State<Mbsh> {
                     ),
                     Expanded(
                       child: Container(
-                        margin: EdgeInsets.fromLTRB(30, 30, 30, 30),
+                        margin: EdgeInsets.fromLTRB(30, 20, 30, 20),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
@@ -66,10 +66,6 @@ class _MbshState extends State<Mbsh> {
                             MbshChoice(
                                 icon: SimpleLineIcons.user_follow,
                                 text: 'Follow user'),
-                            MyDivider(),
-                            MbshChoice(
-                                icon: SimpleLineIcons.user_unfollow,
-                                text: 'Unfollow user'),
                             MyDivider(),
                             MbshChoice(
                                 icon: Entypo.block,

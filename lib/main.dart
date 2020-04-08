@@ -118,7 +118,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   bool loginPage = false;
   bool isLoading = false;
-  bool isFullPost = true;
+  bool isFullPost = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
