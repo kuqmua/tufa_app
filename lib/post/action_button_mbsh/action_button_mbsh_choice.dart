@@ -1,10 +1,11 @@
 import 'package:Tufa/colors.dart';
 import 'package:flutter/material.dart';
 
-class MbshChoice extends StatelessWidget {
+class ActionButtonMbshChoice extends StatelessWidget {
   final IconData icon;
   final String text;
-  const MbshChoice({Key key, @required this.icon, @required this.text})
+  const ActionButtonMbshChoice(
+      {Key key, @required this.icon, @required this.text})
       : super(key: key);
 
   @override

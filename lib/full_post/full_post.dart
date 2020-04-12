@@ -9,19 +9,16 @@ import 'package:image_picker_saver/image_picker_saver.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 */
-import 'package:Tufa/button_container.dart';
-import 'package:Tufa/top_post_part/tpp.dart';
-import 'package:Tufa/vertical_line.dart';
-import 'package:Tufa/post_text.dart';
-import 'package:Tufa/modal_bottom_sheet/mbsh.dart';
+
+import 'package:Tufa/data_wrappers/post_text.dart';
+
 import 'package:flutter/rendering.dart';
 
-import 'package:Tufa/top_post_part/autor_name.dart';
-import 'package:Tufa/top_post_part/publication_date.dart';
-import 'package:Tufa/top_post_part/provider_icon.dart';
-import 'package:Tufa/top_post_part/provider_name.dart';
+import 'package:Tufa/data_wrappers/autor_name.dart';
+import 'package:Tufa/data_wrappers/publication_date.dart';
+import 'package:Tufa/data_wrappers/provider_name.dart';
 import 'package:Tufa/colors.dart';
-import 'package:Tufa/full_post_bottom_bar/full_post_bottom_bar.dart';
+import 'package:Tufa/full_post/full_post_bottom_bar/full_post_bottom_bar.dart';
 
 class FullPost extends StatefulWidget {
   createState() => FullPostState();
@@ -61,6 +58,7 @@ class FullPostState extends State<FullPost>
     });
   }
 
+/*
   bool bookmarked = false;
   void modalBottomSheet() {
     showModalBottomSheet(
@@ -71,19 +69,20 @@ class FullPostState extends State<FullPost>
           return Mbsh();
         });
   }
-
+*/
   void share() {
     final RenderBox box = context.findRenderObject();
     shareOne.Share.share(someText,
         subject: 'youtube.com',
         sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
   }
-
+/*
   void addOrRemoveFromBookmarks() {
     setState(() {
       bookmarked = !bookmarked;
     });
   }
+  */
 
   List<IconData> bookmarkIcons = [
     AntDesign.staro,
@@ -107,7 +106,9 @@ class FullPostState extends State<FullPost>
   build(context) => Scaffold(
         bottomNavigationBar: AnimatedContainer(
             duration: Duration(milliseconds: 200),
-            height: _isVisible ? 60 : 0.0,
+            height: _isVisible
+                ? 55 // THIS IS THE HEIGTH OF ListViewBottomBar()!
+                : 0.0,
             child: FullPostBottomBar()),
         body: SingleChildScrollView(
           controller: scrollController,
@@ -124,9 +125,6 @@ class FullPostState extends State<FullPost>
                       margin: EdgeInsets.only(bottom: 10),
                       child: Container(
                         margin: EdgeInsets.only(top: 10),
-                        //padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                        //color: Colors.red,
-
                         child: Row(
                           children: <Widget>[
                             Container(

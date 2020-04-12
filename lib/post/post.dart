@@ -2,18 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:share/share.dart' as shareOne;
 import 'dart:ui';
-import 'package:permission/permission.dart';
-import 'package:esys_flutter_share/esys_flutter_share.dart' as esysFlutterShare;
-import 'package:image_picker_saver/image_picker_saver.dart';
-import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
 
-import 'package:Tufa/button_container.dart';
-import 'package:Tufa/top_post_part/tpp.dart';
+import 'package:Tufa/post/post_button_container.dart';
+import 'package:Tufa/post/tpp.dart';
 import 'package:Tufa/vertical_line.dart';
-import 'package:Tufa/post_text.dart';
-import 'package:Tufa/modal_bottom_sheet/mbsh.dart';
-//import 'package:Tufa/colors.dart';
+import 'package:Tufa/data_wrappers/post_text.dart';
+import 'package:Tufa/post/action_button_mbsh/action_button_mbsh.dart';
 
 class Post extends StatefulWidget {
   createState() => PostState();
@@ -34,7 +28,7 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
         backgroundColor: Colors.transparent,
         barrierColor: Colors.black.withOpacity(0.5),
         builder: (context) {
-          return Mbsh();
+          return ActionButtonMbsh();
         });
   }
 
@@ -129,7 +123,7 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                                             : 3
                                         : 4
                                     : 5,
-                                (i) => ButtonContainer(
+                                (i) => PostButtonContainer(
                                   icon: list[i],
                                   margin: EdgeInsets.fromLTRB(
                                       0, 0, 0, standartMargin),

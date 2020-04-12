@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:Tufa/top_post_part/autor_name.dart';
-import 'package:Tufa/top_post_part/publication_date.dart';
-import 'package:Tufa/top_post_part/provider_icon.dart';
-import 'package:Tufa/top_post_part/provider_name.dart';
+import 'package:Tufa/data_wrappers/autor_name.dart';
+import 'package:Tufa/data_wrappers/publication_date.dart';
+import 'package:Tufa/data_wrappers/provider_icon.dart';
+import 'package:Tufa/data_wrappers/provider_name.dart';
 import 'package:Tufa/colors.dart';
 
 class Tpp extends StatefulWidget {

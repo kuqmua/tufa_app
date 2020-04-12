@@ -1,18 +1,18 @@
 import 'package:Tufa/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:Tufa/modal_bottom_sheet/mbsh_choice.dart';
+import 'package:Tufa/post/action_button_mbsh/action_button_mbsh_choice.dart';
+import 'package:Tufa/post/action_button_mbsh/action_button_mbsh_line_gradient.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:Tufa/my_divider.dart';
-import 'package:Tufa/modal_bottom_sheet/mbsh_line_gradient.dart';
 
-class Mbsh extends StatefulWidget {
-  Mbsh({Key key}) : super(key: key);
+class ActionButtonMbsh extends StatefulWidget {
+  ActionButtonMbsh({Key key}) : super(key: key);
 
   @override
-  _MbshState createState() => _MbshState();
+  _ActionButtonMbshState createState() => _ActionButtonMbshState();
 }
 
-class _MbshState extends State<Mbsh> {
+class _ActionButtonMbshState extends State<ActionButtonMbsh> {
   List<IconData> list = [
     MaterialIcons.expand_more,
     Feather.share_2,
@@ -32,7 +32,7 @@ class _MbshState extends State<Mbsh> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              MbshLineGradient(),
+              ActionButtonMbshLineGradient(),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -52,28 +52,29 @@ class _MbshState extends State<Mbsh> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            MbshChoice(
+                            ActionButtonMbshChoice(
                                 icon: Feather.share_2, text: 'Share post'),
                             MyDivider(),
-                            MbshChoice(
+                            ActionButtonMbshChoice(
                                 icon: AntDesign.staro,
                                 text: 'Add in bookmarks'),
                             MyDivider(),
-                            MbshChoice(
+                            ActionButtonMbshChoice(
                                 icon: MaterialCommunityIcons.comment_outline,
                                 text: 'Open Comments'),
                             MyDivider(),
-                            MbshChoice(
+                            ActionButtonMbshChoice(
                                 icon: SimpleLineIcons.user_follow,
                                 text: 'Follow user'),
                             MyDivider(),
-                            MbshChoice(
+                            ActionButtonMbshChoice(
                                 icon: Entypo.block,
                                 text: 'Block content provider'),
                             MyDivider(),
-                            MbshChoice(icon: AntDesign.filter, text: 'Filter'),
+                            ActionButtonMbshChoice(
+                                icon: AntDesign.filter, text: 'Filter'),
                             MyDivider(),
-                            MbshChoice(
+                            ActionButtonMbshChoice(
                                 icon: AntDesign.link, text: 'Show post links'),
                           ],
                         ),
@@ -82,7 +83,7 @@ class _MbshState extends State<Mbsh> {
                   ],
                 ),
               ),
-              MbshLineGradient(),
+              ActionButtonMbshLineGradient(),
             ],
           ),
         ));

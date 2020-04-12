@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:Tufa/colors.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
-class ButtonContainer extends StatelessWidget {
+class PostButtonContainer extends StatelessWidget {
   final IconData icon;
   final EdgeInsetsGeometry margin;
   final double backgroundSize;
@@ -11,7 +11,7 @@ class ButtonContainer extends StatelessWidget {
   final VoidCallback onTap;
   final bool bookmarked;
 
-  const ButtonContainer(
+  const PostButtonContainer(
       {Key key,
       @required this.icon,
       this.margin,

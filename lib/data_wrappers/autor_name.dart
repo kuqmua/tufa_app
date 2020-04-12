@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:Tufa/colors.dart';
 
 class AutorName extends StatefulWidget {
   final Color textColor;

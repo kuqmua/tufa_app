@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:Tufa/colors.dart';
 
-class MbshLineGradient extends StatelessWidget {
-  const MbshLineGradient({Key key}) : super(key: key);
+class ActionButtonMbshLineGradient extends StatelessWidget {
+  const ActionButtonMbshLineGradient({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
