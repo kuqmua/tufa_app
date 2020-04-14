@@ -152,7 +152,7 @@ class _SearchPageBottomBarState extends State<SearchPageBottomBar> {
                       borderSide: BorderSide(color: softerwhite, width: 0.2),
                       borderRadius: BorderRadius.all(Radius.circular(15)),
                     ),
-                    hintText: "search feed for last hour",
+                    hintText: "search ", //feed for last hour
                     hintStyle: TextStyle(color: grey, fontSize: 18),
                     filled: true,
                   ),

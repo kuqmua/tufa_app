@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-//import 'package:Tufa/wrapper.dart';
 import 'package:Tufa/colors.dart';
 import 'package:Tufa/login_screen/login_screen.dart';
 import 'package:Tufa/my_list_view/my_list_view.dart';
 import 'package:Tufa/full_post/full_post.dart';
 import 'package:Tufa/search_page/search_page.dart';
+//import 'package:Tufa/search_page/chat_window.dart';
 
 void main() => runApp(MyApp());
 
@@ -93,14 +93,19 @@ class _MyHomePageState extends State<MyHomePage> {
   bool loginPage = false;
   bool isLoading = false;
   bool isFullPost = false;
-  bool searchPage = true;
+  bool searchPage = false;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: loginPage
-            ? LoginScreen()
-            : isFullPost
-                ? FullPost()
-                : searchPage ? SearchPage() : MyListView(isLoading: false));
+    return
+        //TextFieldExample()
+
+        SafeArea(
+            top: false,
+            bottom: false,
+            child: loginPage
+                ? LoginScreen()
+                : isFullPost
+                    ? FullPost()
+                    : searchPage ? SearchPage() : MyListView(isLoading: false));
   }
 }

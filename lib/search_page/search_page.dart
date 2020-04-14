@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'dart:ui';
+//import 'dart:ui';
 
 import 'package:Tufa/search_page/search_page_bottom_bar.dart';
 import 'package:flutter/rendering.dart';
+import 'package:Tufa/colors.dart';
 
 class SearchPage extends StatefulWidget {
   createState() => SearchPageState();
@@ -40,43 +41,27 @@ class SearchPageState extends State<SearchPage>
   }
 
   build(context) => Scaffold(
-        body: Stack(children: <Widget>[
-          SingleChildScrollView(
-            controller: scrollController,
-            child: Container(
-              padding: EdgeInsets.fromLTRB(
-                  btnSize, standartMargin - 1, btnSize, standartMargin * 2),
-              child: Column(
-                children: <Widget>[
-                  ClipRRect(
-                      borderRadius: BorderRadius.circular(15.0),
-                      child: Image(image: AssetImage('assets/k800x50.jpg'))),
-                  ClipRRect(
-                      borderRadius: BorderRadius.circular(15.0),
-                      child: Image(image: AssetImage('assets/k800x50.jpg'))),
-                  ClipRRect(
-                      borderRadius: BorderRadius.circular(15.0),
-                      child: Image(image: AssetImage('assets/k800x50.jpg'))),
-                  ClipRRect(
-                      borderRadius: BorderRadius.circular(15.0),
-                      child: Image(image: AssetImage('assets/k800x50.jpg'))),
-                  ClipRRect(
-                      borderRadius: BorderRadius.circular(15.0),
-                      child: Image(image: AssetImage('assets/k800x50.jpg'))),
-                  ClipRRect(
-                      borderRadius: BorderRadius.circular(15.0),
-                      child: Image(image: AssetImage('assets/k800x50.jpg'))),
-                ],
-              ),
+      resizeToAvoidBottomPadding: true,
+      resizeToAvoidBottomInset: true,
+      body: Stack(children: <Widget>[
+        SingleChildScrollView(
+          controller: scrollController,
+          child: Container(
+            padding: EdgeInsets.fromLTRB(
+                btnSize, standartMargin - 1, btnSize, standartMargin * 2),
+            child: Column(
+              children: <Widget>[
+                Container(height: 1000, width: 400, color: backgroundColor)
+              ],
             ),
           ),
-          Positioned(
-              bottom: 0,
-              child: AnimatedContainer(
-                child: SearchPageBottomBar(),
-                duration: Duration(milliseconds: 200),
-                height: _isVisible ? 55 : 0.0,
-              )),
-        ]),
-      );
+        ),
+        Positioned(
+            bottom: 0,
+            child: AnimatedContainer(
+              child: SearchPageBottomBar(),
+              duration: Duration(milliseconds: 200),
+              height: _isVisible ? 55 : 0.0,
+            )),
+      ]));
 }
