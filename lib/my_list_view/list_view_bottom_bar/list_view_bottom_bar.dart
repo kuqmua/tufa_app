@@ -17,7 +17,15 @@ class _ListViewBottomBarState extends State<ListViewBottomBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //height: 40,
+      decoration: BoxDecoration(
+        color: Theme.of(context).primaryColor,
+        border: Border(
+          top: BorderSide(
+            color: softerwhite,
+            width: 0.2,
+          ),
+        ),
+      ),
       child: BottomAppBar(
           color: backgroundColor,
           child: Row(

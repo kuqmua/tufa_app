@@ -18,7 +18,12 @@ class MyApp extends StatelessWidget {
       systemNavigationBarIconBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.light,
     ));
-
+    /*
+    SystemChrome.setEnabledSystemUIOverlays([]);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+    ));
+    */
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
@@ -93,19 +98,16 @@ class _MyHomePageState extends State<MyHomePage> {
   bool loginPage = false;
   bool isLoading = false;
   bool isFullPost = false;
-  bool searchPage = false;
+  bool searchPage = true;
   @override
   Widget build(BuildContext context) {
-    return
-        //TextFieldExample()
-
-        SafeArea(
-            top: false,
-            bottom: false,
-            child: loginPage
-                ? LoginScreen()
-                : isFullPost
-                    ? FullPost()
-                    : searchPage ? SearchPage() : MyListView(isLoading: false));
+    return SafeArea(
+        //top: true,
+        //bottom: true,
+        child: loginPage
+            ? LoginScreen()
+            : isFullPost
+                ? FullPost()
+                : searchPage ? SearchPage() : MyListView(isLoading: false));
   }
 }
