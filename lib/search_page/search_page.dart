@@ -51,7 +51,11 @@ class SearchPageState extends State<SearchPage>
                 btnSize, standartMargin - 1, btnSize, standartMargin * 2),
             child: Column(
               children: <Widget>[
-                Container(height: 1000, width: 400, color: backgroundColor)
+                Container(
+                    margin: EdgeInsets.fromLTRB(50, 0, 0, 0),
+                    height: 1000,
+                    width: 400,
+                    color: Colors.red)
               ],
             ),
           ),

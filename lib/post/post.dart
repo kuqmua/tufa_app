@@ -83,26 +83,26 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                               children:
                                   /*<Widget>[
 
-                              ButtonContainer(
-                                icon: list[1],
-                                margin: EdgeInsets.fromLTRB(
-                                    0, 0, 0, standartMargin),
-                                backgroundSize: btnSize,
-                                iconSize: iconSize,
-                                borderWidth: 0.75,
-                                onTap: share,
-                              ),
-                              ButtonContainer(
-                                icon: list[0],
-                                margin: EdgeInsets.fromLTRB(
-                                    0, 0, 0, standartMargin),
-                                backgroundSize: btnSize,
-                                iconSize: iconSize,
-                                borderWidth: 0.75,
-                                onTap: modalBottomSheet,
-                              ),
-                            ]
-                                */
+                          ButtonContainer(
+                            icon: list[1],
+                            margin: EdgeInsets.fromLTRB(
+                                0, 0, 0, standartMargin),
+                            backgroundSize: btnSize,
+                            iconSize: iconSize,
+                            borderWidth: 0.75,
+                            onTap: share,
+                          ),
+                          ButtonContainer(
+                            icon: list[0],
+                            margin: EdgeInsets.fromLTRB(
+                                0, 0, 0, standartMargin),
+                            backgroundSize: btnSize,
+                            iconSize: iconSize,
+                            borderWidth: 0.75,
+                            onTap: modalBottomSheet,
+                          ),
+                        ]
+                            */
                                   List.generate(
                                 (cns.maxHeight - 20) <
                                         ((btnSize + standartMargin) * 4 +

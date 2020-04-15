@@ -16,27 +16,29 @@ class ListViewBottomBarStack extends StatefulWidget {
 class _ListViewBottomBarStackState extends State<ListViewBottomBarStack> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor,
-        border: Border(
-          top: BorderSide(
-            color: softerwhite,
-            width: 0.2,
+    return Material(
+      color: Theme.of(context).primaryColor,
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          border: Border(
+            top: BorderSide(
+              color: softerwhite,
+              width: 0.2,
+            ),
           ),
         ),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          LvHomeButton(),
-          LvFindButton(),
-          LvFilterButton(),
-          LvBookmarkButton(),
-          LvMenuButton(),
-        ],
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            LvHomeButton(),
+            LvFindButton(),
+            LvFilterButton(),
+            LvBookmarkButton(),
+            LvMenuButton(),
+          ],
+        ),
       ),
     );
   }

@@ -17,29 +17,31 @@ class FullPostBottomBarStack extends StatefulWidget {
 class _FullPostBottomBarStackState extends State<FullPostBottomBarStack> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor,
-          border: Border(
-            top: BorderSide(
-              //                    <--- top side
-              color: softerwhite,
-              width: 0.2,
+    return Material(
+      color: Theme.of(context).primaryColor,
+      child: Container(
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            border: Border(
+              top: BorderSide(
+                //                    <--- top side
+                color: softerwhite,
+                width: 0.2,
+              ),
             ),
           ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            FpbbBackButton(),
-            FpbbSearchButton(),
-            FpbbFilterButton(),
-            FpbbBookmarkButton(),
-            FpbbShareButton(),
-            FpbbMenuButton(),
-          ],
-        ));
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              FpbbBackButton(),
+              FpbbSearchButton(),
+              FpbbFilterButton(),
+              FpbbBookmarkButton(),
+              FpbbShareButton(),
+              FpbbMenuButton(),
+            ],
+          )),
+    );
   }
 }

@@ -23,96 +23,98 @@ class _SearchPageBottomBarState extends State<SearchPageBottomBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor,
-          border: Border(
-            top: BorderSide(
-              //                    <--- top side
-              color: softerwhite,
-              width: 0.2,
-            ),
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              //height: 20,
-              child: IconButton(
-                  icon: new Icon(
-                    AntDesign.arrowleft,
-                    color: grey,
-                  ),
-                  onPressed: () {}),
-            ),
-            Expanded(
-              child: Container(
-                height: 40,
-                child: TextField(
-                  style: TextStyle(color: grey, fontSize: 18),
-                  maxLengthEnforced: true,
-                  enableSuggestions: true,
-                  enableInteractiveSelection: true,
-                  cursorColor: blue,
-                  autocorrect: false,
-                  autofocus: false,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    fillColor: darkBackgroundColor,
-                    contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    prefixIcon: Icon(
-                      AntDesign.search1,
-                      color: grey,
-                      size: 14,
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: softerwhite, width: 0.1),
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: softerwhite, width: 0.1),
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                    ),
-                    hintText: "search ", //feed for last hour
-                    hintStyle: TextStyle(color: grey, fontSize: 18),
-                    filled: true,
-                  ),
-                  obscureText: false,
-                  onSubmitted: (String value) async {
-                    await showDialog<void>(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text('Thanks!'),
-                          content: Text('You typed "$value".'),
-                          actions: <Widget>[
-                            FlatButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Text('OK'),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  },
-                ),
+    return Material(
+      color: Theme.of(context).primaryColor,
+      child: Container(
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            border: Border(
+              top: BorderSide(
+                //                    <--- top side
+                color: softerwhite,
+                width: 0.2,
               ),
             ),
-            Container(
-              //height: 20,
-              child: IconButton(
-                  icon: new Icon(
-                    Entypo.menu,
-                    color: grey,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                //height: 20,
+                child: IconButton(
+                    icon: new Icon(
+                      AntDesign.arrowleft,
+                      color: grey,
+                    ),
+                    onPressed: () {}),
+              ),
+              Expanded(
+                child: Container(
+                  height: 40,
+                  child: TextField(
+                    style: TextStyle(color: grey, fontSize: 18),
+                    maxLengthEnforced: true,
+                    enableSuggestions: true,
+                    enableInteractiveSelection: true,
+                    cursorColor: blue,
+                    autocorrect: false,
+                    autofocus: false,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      fillColor: darkBackgroundColor,
+                      contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      prefixIcon: Icon(
+                        AntDesign.search1,
+                        color: grey,
+                        size: 14,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: softerwhite, width: 0.1),
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: softerwhite, width: 0.1),
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                      ),
+                      hintText: "search ", //feed for last hour
+                      hintStyle: TextStyle(color: grey, fontSize: 18),
+                      filled: true,
+                    ),
+                    obscureText: false,
+                    onSubmitted: (String value) async {
+                      await showDialog<void>(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text('Thanks!'),
+                            content: Text('You typed "$value".'),
+                            actions: <Widget>[
+                              FlatButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('OK'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
                   ),
-                  onPressed: modalBottomSheet),
-            ),
-          ],
-        ));
+                ),
+              ),
+              Container(
+                //height: 20,
+                child: IconButton(
+                    icon: new Icon(
+                      Entypo.menu,
+                      color: grey,
+                    ),
+                    onPressed: modalBottomSheet),
+              ),
+            ],
+          )),
+    );
   }
 }
