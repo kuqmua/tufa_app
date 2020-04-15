@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:Tufa/colors.dart';
 import 'package:Tufa/login_screen/login_screen.dart';
-import 'package:Tufa/my_list_view/my_list_view.dart';
-import 'package:Tufa/full_post/full_post.dart';
+//import 'package:Tufa/my_list_view/my_list_view.dart';
+import 'package:Tufa/my_list_view/my_list_view_stack.dart';
+//import 'package:Tufa/full_post/full_post.dart';
+import 'package:Tufa/full_post/full_post_stack.dart';
 import 'package:Tufa/search_page/search_page.dart';
 //import 'package:Tufa/search_page/chat_window.dart';
 
@@ -18,8 +20,9 @@ class MyApp extends StatelessWidget {
       systemNavigationBarIconBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.light,
     ));
+    //SystemChrome.setEnabledSystemUIOverlays([]);
     /*
-    SystemChrome.setEnabledSystemUIOverlays([]);
+    
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
     ));
@@ -30,7 +33,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'Tufa',
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       home: MyHomePage(),
       theme: ThemeData(
         primaryColor: backgroundColor,
@@ -98,12 +101,12 @@ class _MyHomePageState extends State<MyHomePage> {
   bool loginPage = false;
   bool isLoading = false;
   bool isFullPost = false;
-  bool searchPage = true;
+  bool searchPage = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        //top: true,
-        //bottom: true,
+        top: true,
+        bottom: true,
         child: loginPage
             ? LoginScreen()
             : isFullPost

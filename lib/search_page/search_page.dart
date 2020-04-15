@@ -41,9 +41,9 @@ class SearchPageState extends State<SearchPage>
   }
 
   build(context) => Scaffold(
-      resizeToAvoidBottomPadding: true,
-      resizeToAvoidBottomInset: true,
-      body: Stack(children: <Widget>[
+          //resizeToAvoidBottomPadding: true,
+          //resizeToAvoidBottomInset: true,
+          body: Stack(children: <Widget>[
         SingleChildScrollView(
           controller: scrollController,
           child: Container(
