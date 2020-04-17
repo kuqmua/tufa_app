@@ -24,28 +24,30 @@ class PostButtonContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: backgroundSize,
-      height: backgroundSize,
-      margin: margin ?? null,
-      decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor,
-        border: Border.all(
-          color: Theme.of(context).accentColor,
-          width: borderWidth,
+    return Material(
+      color: backgroundColor,
+      child: Container(
+        width: backgroundSize,
+        height: backgroundSize,
+        margin: margin ?? null,
+        decoration: BoxDecoration(
+          //color: backgroundColor,
+          border: Border.all(
+            color: Theme.of(context).accentColor,
+            width: borderWidth,
+          ),
+          borderRadius: BorderRadius.all(Radius.circular(15)),
         ),
-        borderRadius: BorderRadius.all(Radius.circular(15)),
-      ),
-      child: IconButton(
-        onPressed: onTap,
-        splashColor: Theme.of(context).splashColor,
-        icon: Icon(
-          bookmarked == null
-              ? icon
-              : bookmarked == false ? icon : AntDesign.star,
-          size: iconSize,
-          color: grey,
-        ),
+        child: IconButton(
+            onPressed: onTap,
+            splashColor: Theme.of(context).splashColor,
+            icon: Icon(
+              bookmarked == null
+                  ? icon
+                  : bookmarked == false ? icon : AntDesign.star,
+              size: iconSize,
+              color: grey,
+            )),
       ),
     );
   }

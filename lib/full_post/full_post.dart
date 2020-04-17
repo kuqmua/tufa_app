@@ -174,6 +174,7 @@ class FullPostState extends State<FullPost>
                       padding: const EdgeInsets.only(bottom: 10.0),
                       child: PostText(
                         text: someText,
+                        fontSize: 19,
                         textOverflow: TextOverflow.clip,
                       ),
                     ),

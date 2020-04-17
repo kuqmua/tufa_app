@@ -41,31 +41,30 @@ class SearchPageState extends State<SearchPage>
   }
 
   build(context) => Scaffold(
-          //resizeToAvoidBottomPadding: true,
-          //resizeToAvoidBottomInset: true,
-          body: Stack(children: <Widget>[
-        SingleChildScrollView(
-          controller: scrollController,
-          child: Container(
-            padding: EdgeInsets.fromLTRB(
-                btnSize, standartMargin - 1, btnSize, standartMargin * 2),
-            child: Column(
-              children: <Widget>[
-                Container(
-                    margin: EdgeInsets.fromLTRB(50, 0, 0, 0),
-                    height: 1000,
-                    width: 400,
-                    color: Colors.red)
-              ],
-            ),
+      bottomNavigationBar: AnimatedContainer(
+        duration: Duration(milliseconds: 200),
+        height: _isVisible ? 55 : 0.0,
+        child: SearchPageBottomBar(),
+      ),
+      body: SingleChildScrollView(
+        controller: scrollController,
+        child: Container(
+          padding: EdgeInsets.fromLTRB(
+              btnSize, standartMargin - 1, btnSize, standartMargin * 2),
+          child: Column(
+            children: <Widget>[
+              Container(
+                  margin: EdgeInsets.fromLTRB(50, 0, 0, 0),
+                  height: 1000,
+                  width: 400,
+                  color: Colors.red)
+            ],
           ),
         ),
+      ));
+}
+/*
         Positioned(
             bottom: 0,
-            child: AnimatedContainer(
-              child: SearchPageBottomBar(),
-              duration: Duration(milliseconds: 200),
-              height: _isVisible ? 55 : 0.0,
-            )),
-      ]));
-}
+            child: ),
+            */

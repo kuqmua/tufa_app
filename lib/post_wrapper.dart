@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:Tufa/post/post.dart';
+//import 'package:Tufa/post/post_reorg.dart';
 import 'package:Tufa/my_divider.dart';
 
 class PostWrapper extends StatefulWidget {

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'package:Tufa/post_wrapper.dart';
-import 'package:Tufa/my_list_view/list_view_bottom_bar/list_view_bottom_bar.dart';
-import 'package:Tufa/my_list_view/list_view_bottom_bar/list_view_bottom_bar_stack.dart';
 
 class MyListView extends StatefulWidget {
   final bool isLoading;
@@ -51,29 +49,10 @@ class _MyListViewState extends State<MyListView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        /*
-        bottomNavigationBar: AnimatedContainer(
-            duration: Duration(milliseconds: 200),
-            height: _isVisible
-                ? 55 // THIS IS THE HEIGTH OF ListViewBottomBar()!
-                : 0.0,
-            child: ListViewBottomBar()
-            //child: SearchBottomBar()
-            ),
-            */
-        body: Stack(children: [
-      widget.isLoading
-          ? Center(
-              child: CircularProgressIndicator(),
-            )
-          : buildBody(),
-      Positioned(
-          bottom: 0,
-          child: AnimatedContainer(
-            child: ListViewBottomBarStack(),
-            duration: Duration(milliseconds: 200),
-            height: _isVisible ? 55 : 0.0,
-          )),
-    ]));
+        body: widget.isLoading
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : buildBody());
   }
 }

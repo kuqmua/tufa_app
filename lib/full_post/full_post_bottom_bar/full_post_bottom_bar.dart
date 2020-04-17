@@ -19,7 +19,7 @@ class _FullPostBottomBarState extends State<FullPostBottomBar> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor,
+        //color: Theme.of(context).primaryColor,
         border: Border(
           top: BorderSide(
             color: softerwhite,

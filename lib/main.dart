@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:Tufa/colors.dart';
 import 'package:Tufa/login_screen/login_screen.dart';
-//import 'package:Tufa/my_list_view/my_list_view.dart';
-import 'package:Tufa/my_list_view/my_list_view_stack.dart';
-//import 'package:Tufa/full_post/full_post.dart';
-import 'package:Tufa/full_post/full_post_stack.dart';
+import 'package:Tufa/my_list_view/my_list_view.dart';
+//import 'package:Tufa/my_list_view/my_list_view_stack.dart';
+import 'package:Tufa/full_post/full_post.dart';
+//import 'package:Tufa/full_post/full_post_stack.dart';
 import 'package:Tufa/search_page/search_page.dart';
 //import 'package:Tufa/search_page/chat_window.dart';
 
@@ -101,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool loginPage = false;
   bool isLoading = false;
   bool isFullPost = false;
-  bool searchPage = false;
+  bool searchPage = true;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
