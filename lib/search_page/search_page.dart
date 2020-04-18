@@ -6,6 +6,8 @@ import 'package:flutter/rendering.dart';
 import 'package:Tufa/colors.dart';
 
 class SearchPage extends StatefulWidget {
+  final ScrollController scrollController;
+  SearchPage({Key key, this.scrollController}) : super(key: key);
   createState() => SearchPageState();
 }
 
@@ -13,41 +15,9 @@ class SearchPageState extends State<SearchPage>
     with SingleTickerProviderStateMixin {
   static const double btnSize = 20.0;
   static const double standartMargin = 5.0;
-  static const double fontSize = 16.0;
-  static const double iconSize = 20.0;
 
-  ScrollController scrollController;
-
-  bool _isVisible = true;
-  @override
-  void initState() {
-    super.initState();
-    _isVisible = true;
-    scrollController = new ScrollController();
-    scrollController.addListener(() {
-      if (scrollController.position.userScrollDirection ==
-          ScrollDirection.reverse) {
-        setState(() {
-          _isVisible = false;
-        });
-      }
-      if (scrollController.position.userScrollDirection ==
-          ScrollDirection.forward) {
-        setState(() {
-          _isVisible = true;
-        });
-      }
-    });
-  }
-
-  build(context) => Scaffold(
-      bottomNavigationBar: AnimatedContainer(
-        duration: Duration(milliseconds: 200),
-        height: _isVisible ? 55 : 0.0,
-        child: SearchPageBottomBar(),
-      ),
-      body: SingleChildScrollView(
-        controller: scrollController,
+  build(context) => SingleChildScrollView(
+        controller: widget.scrollController,
         child: Container(
           padding: EdgeInsets.fromLTRB(
               btnSize, standartMargin - 1, btnSize, standartMargin * 2),
@@ -96,7 +66,7 @@ class SearchPageState extends State<SearchPage>
             ],
           ),
         ),
-      ));
+      );
 }
 /*
         Positioned(

@@ -8,6 +8,8 @@ import 'package:Tufa/full_post/full_post.dart';
 //import 'package:Tufa/full_post/full_post_stack.dart';
 import 'package:Tufa/search_page/search_page.dart';
 //import 'package:Tufa/search_page/chat_window.dart';
+import 'package:Tufa/bottom_bar/bottom_bar.dart';
+import 'package:flutter/rendering.dart';
 
 void main() => runApp(MyApp());
 
@@ -98,22 +100,59 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool loginPage = true;
+  bool isListView = false;
   bool isLoading = false;
   bool isFullPost = false;
-  bool searchPage = true;
+  bool isSearchPage = false;
+  bool isLoginPage = true;
+
+  ScrollController scrollController;
+  bool isVisible = true;
+  @override
+  void initState() {
+    super.initState();
+    isVisible = true;
+    scrollController = new ScrollController();
+    scrollController.addListener(() {
+      if (scrollController.position.userScrollDirection ==
+          ScrollDirection.reverse) {
+        setState(() {
+          isVisible = false;
+        });
+      }
+      if (scrollController.position.userScrollDirection ==
+          ScrollDirection.forward) {
+        setState(() {
+          isVisible = true;
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         top: true,
         bottom: true,
         child: Scaffold(
-            body: loginPage
-                ? LoginScreen()
+            bottomNavigationBar: isListView || isFullPost || isSearchPage
+                ? BottomBar(
+                    isVisible: isVisible,
+                    listView: isListView,
+                    fullPost: isFullPost,
+                    searchPage: isSearchPage,
+                    loginPage: isLoginPage,
+                  )
+                : null,
+            body: isListView
+                ? MyListView(
+                    isLoading: isLoading, scrollController: scrollController)
                 : isFullPost
-                    ? FullPost()
-                    : searchPage
-                        ? SearchPage()
-                        : MyListView(isLoading: false)));
+                    ? FullPost(scrollController: scrollController)
+                    : isSearchPage
+                        ? SearchPage(scrollController: scrollController)
+                        : isLoginPage
+                            ? LoginScreen()
+                            : Center(child: Text('NOTHING'))));
   }
 }

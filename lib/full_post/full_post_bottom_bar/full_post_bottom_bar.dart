@@ -17,29 +17,18 @@ class FullPostBottomBar extends StatefulWidget {
 class _FullPostBottomBarState extends State<FullPostBottomBar> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        //color: Theme.of(context).primaryColor,
-        border: Border(
-          top: BorderSide(
-            color: softerwhite,
-            width: 0.2,
-          ),
-        ),
-      ),
-      child: BottomAppBar(
-          color: backgroundColor,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              FpbbBackButton(),
-              FpbbSearchButton(),
-              FpbbFilterButton(),
-              FpbbBookmarkButton(),
-              FpbbShareButton(),
-              FpbbMenuButton(),
-            ],
-          )),
-    );
+    return BottomAppBar(
+        color: backgroundColor,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            FpbbBackButton(),
+            FpbbSearchButton(),
+            FpbbFilterButton(),
+            FpbbBookmarkButton(),
+            FpbbShareButton(),
+            FpbbMenuButton(),
+          ],
+        ));
   }
 }

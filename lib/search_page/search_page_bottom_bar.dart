@@ -23,97 +23,88 @@ class _SearchPageBottomBarState extends State<SearchPageBottomBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        decoration: BoxDecoration(
-          border: Border(
-            top: BorderSide(
-              color: softerwhite,
-              width: 0.2,
-            ),
+    return BottomAppBar(
+      color: backgroundColor,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Container(
+            width: MediaQuery.of(context).size.width * 0.13,
+            child: IconButton(
+                icon: new Icon(
+                  AntDesign.arrowleft,
+                  color: grey,
+                ),
+                onPressed: () {}),
           ),
-        ),
-        padding: EdgeInsets.fromLTRB(0, 7, 0, 7),
-        child: BottomAppBar(
-          color: backgroundColor,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                width: MediaQuery.of(context).size.width * 0.13,
-                child: IconButton(
-                    icon: new Icon(
-                      AntDesign.arrowleft,
-                      color: grey,
-                    ),
-                    onPressed: () {}),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.74,
+            child: TextField(
+              style: TextStyle(color: grey, fontSize: 18),
+              maxLengthEnforced: true,
+              enableSuggestions: true,
+              enableInteractiveSelection: true,
+              cursorColor: blue,
+              autocorrect: false,
+              autofocus: false,
+              keyboardType: TextInputType.text,
+              decoration: InputDecoration(
+                fillColor: darkBackgroundColor,
+                contentPadding: EdgeInsets.fromLTRB(15, 3, 15, 3),
+
+                prefixIcon: Icon(
+                  AntDesign.search1,
+                  color: grey,
+                  size: 14,
+                ),
+
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: softerwhite, width: 0.1),
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: softerwhite, width: 0.1),
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                ),
+
+                hintText: "search ", //feed for last hour
+                hintStyle: TextStyle(color: grey, fontSize: 18),
+                filled: true,
               ),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.74,
-                child: TextField(
-                  style: TextStyle(color: grey, fontSize: 18),
-                  maxLengthEnforced: true,
-                  enableSuggestions: true,
-                  enableInteractiveSelection: true,
-                  cursorColor: blue,
-                  autocorrect: false,
-                  autofocus: false,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    fillColor: darkBackgroundColor,
-                    contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    prefixIcon: Icon(
-                      AntDesign.search1,
-                      color: grey,
-                      size: 14,
-                    ),
-
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: softerwhite, width: 0.1),
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: softerwhite, width: 0.1),
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                    ),
-
-                    hintText: "search ", //feed for last hour
-                    hintStyle: TextStyle(color: grey, fontSize: 18),
-                    filled: true,
-                  ),
-                  obscureText: false,
-                  onSubmitted: (String value) async {
-                    await showDialog<void>(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text('Thanks!'),
-                          content: Text('You typed "$value".'),
-                          actions: <Widget>[
-                            FlatButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Text('OK'),
-                            ),
-                          ],
-                        );
-                      },
+              obscureText: false,
+              onSubmitted: (String value) async {
+                await showDialog<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Thanks!'),
+                      content: Text('You typed "$value".'),
+                      actions: <Widget>[
+                        FlatButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('OK'),
+                        ),
+                      ],
                     );
                   },
-                ),
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.13,
-                child: IconButton(
-                    icon: new Icon(
-                      Entypo.menu,
-                      color: grey,
-                    ),
-                    onPressed: modalBottomSheet),
-              ),
-            ],
+                );
+              },
+            ),
           ),
-        ));
+          Container(
+            width: MediaQuery.of(context).size.width * 0.13,
+            child: IconButton(
+                icon: new Icon(
+                  Entypo.menu,
+                  color: grey,
+                ),
+                onPressed: modalBottomSheet),
+          ),
+        ],
+      ),
+    );
   }
 }
