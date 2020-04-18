@@ -7,7 +7,7 @@ class SignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
-      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+      padding: EdgeInsets.fromLTRB(0, 14, 0, 14),
       color: white,
       child: Text(
         "Sign in",

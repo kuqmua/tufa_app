@@ -98,7 +98,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool loginPage = false;
+  bool loginPage = true;
   bool isLoading = false;
   bool isFullPost = false;
   bool searchPage = true;
@@ -107,10 +107,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return SafeArea(
         top: true,
         bottom: true,
-        child: loginPage
-            ? LoginScreen()
-            : isFullPost
-                ? FullPost()
-                : searchPage ? SearchPage() : MyListView(isLoading: false));
+        child: Scaffold(
+            body: loginPage
+                ? LoginScreen()
+                : isFullPost
+                    ? FullPost()
+                    : searchPage
+                        ? SearchPage()
+                        : MyListView(isLoading: false)));
   }
 }

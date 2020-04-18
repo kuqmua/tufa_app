@@ -54,10 +54,45 @@ class SearchPageState extends State<SearchPage>
           child: Column(
             children: <Widget>[
               Container(
-                  margin: EdgeInsets.fromLTRB(50, 0, 0, 0),
-                  height: 1000,
-                  width: 400,
-                  color: Colors.red)
+                margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                height: 100,
+                color: Colors.blueAccent,
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                height: 100,
+                color: Colors.blueAccent,
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                height: 100,
+                color: Colors.blueAccent,
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                height: 100,
+                color: Colors.blueAccent,
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                height: 100,
+                color: Colors.blueAccent,
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                height: 100,
+                color: Colors.blueAccent,
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                height: 100,
+                color: Colors.blueAccent,
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                height: 100,
+                color: Colors.blueAccent,
+              ),
             ],
           ),
         ),

@@ -6,7 +6,9 @@ class TufaSvg extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset('assets/svg/tufa.svg',
-        height: 200, color: Colors.white, semanticsLabel: 'Acme Logo');
+    return SvgPicture.asset('assets/svg/tufacut.svg',
+        //height: 90,
+        color: Colors.white,
+        semanticsLabel: 'Acme Logo');
   }
 }

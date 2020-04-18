@@ -7,6 +7,7 @@ class SignUpButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlatButton(
+      padding: EdgeInsets.fromLTRB(0, 14, 0, 14),
       color: borderColor,
       child: Text(
         "Sign up",
