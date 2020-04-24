@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:Tufa/colors.dart';
 
-class LvMenuButton extends StatelessWidget {
-  const LvMenuButton({Key key}) : super(key: key);
+class BbFindButton extends StatelessWidget {
+  const BbFindButton({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
         icon: new Icon(
-          Entypo.menu,
+          AntDesign.search1,
           color: grey,
         ),
         disabledColor: Colors.green,

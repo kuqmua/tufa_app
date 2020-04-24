@@ -4,7 +4,7 @@ description: A new Flutter application.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.3.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -17,7 +17,6 @@ dependencies:
   http:
   esys_flutter_share: ^1.0.2
   permission: ^0.1.7
-
 #  expandable: ^4.1.2
 #  flutter_speed_dial: ^1.2.5
 #  rect_getter: ^0.0.1
@@ -28,7 +27,7 @@ dev_dependencies:
 
 flutter:
   assets:
-    - assets/svg/tufa.svg
+    - assets/svg/tufacut.svg
     - assets/cat200x200x30.jpg
     - assets/k800x50.jpg
   fonts:

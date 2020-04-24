@@ -23,7 +23,8 @@ class _SearchPageBottomBarState extends State<SearchPageBottomBar> {
 
   @override
   Widget build(BuildContext context) {
-    return BottomAppBar(
+    return Container(
+      //height: 550,
       color: backgroundColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -1,14 +1,14 @@
+import 'package:Tufa/bottom_bar/bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:Tufa/colors.dart';
 import 'package:Tufa/login_screen/login_screen.dart';
-import 'package:Tufa/my_list_view/my_list_view.dart';
+import 'package:Tufa/feed_page/feed_page.dart';
 //import 'package:Tufa/my_list_view/my_list_view_stack.dart';
 import 'package:Tufa/full_post/full_post.dart';
 //import 'package:Tufa/full_post/full_post_stack.dart';
 import 'package:Tufa/search_page/search_page.dart';
 //import 'package:Tufa/search_page/chat_window.dart';
-import 'package:Tufa/bottom_bar/bottom_bar.dart';
 import 'package:flutter/rendering.dart';
 
 void main() => runApp(MyApp());
@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
           focusColor: blue,
           hoverColor: Colors.yellow,
           highlightColor: Colors.red,
-          splashColor: grey,
+          splashColor: Colors.red,
           colorScheme: ColorScheme(
               primary: Colors.red,
               primaryVariant: Colors.red[400],
@@ -102,9 +102,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   bool isListView = false;
   bool isLoading = false;
-  bool isFullPost = false;
+  bool isFullPost = true;
   bool isSearchPage = false;
-  bool isLoginPage = true;
+  bool isLoginPage = false;
 
   ScrollController scrollController;
   bool isVisible = true;
@@ -135,24 +135,87 @@ class _MyHomePageState extends State<MyHomePage> {
         top: true,
         bottom: true,
         child: Scaffold(
-            bottomNavigationBar: isListView || isFullPost || isSearchPage
-                ? BottomBar(
-                    isVisible: isVisible,
-                    listView: isListView,
-                    fullPost: isFullPost,
-                    searchPage: isSearchPage,
-                    loginPage: isLoginPage,
-                  )
-                : null,
+            bottomNavigationBar:
+                isFullPost ? null : BottomBar(isVisible: isVisible),
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(50.0),
+              child: AppBar(
+                title: Text('Random title'),
+              ),
+            ),
             body: isListView
-                ? MyListView(
+                ? FeedPage(
                     isLoading: isLoading, scrollController: scrollController)
                 : isFullPost
-                    ? FullPost(scrollController: scrollController)
+                    ? FullPost(
+                        //scrollController: scrollController
+                        )
                     : isSearchPage
-                        ? SearchPage(scrollController: scrollController)
+                        ? SearchPage(
+                            //scrollController: scrollController
+                            )
                         : isLoginPage
                             ? LoginScreen()
                             : Center(child: Text('NOTHING'))));
   }
 }
+/*
+          drawer: Theme(
+            data: Theme.of(context).copyWith(canvasColor: backgroundColor),
+            child: Drawer(
+              child: ListView(children: <Widget>[
+                UserAccountsDrawerHeader(
+                  accountEmail: Text('sac'),
+                  accountName: Text('name'),
+                  currentAccountPicture: CircleAvatar(
+                    radius: 15,
+                    backgroundColor: Colors.red,
+                    foregroundColor: Colors.amber,
+                    /*
+                      child: Image(
+                        image: AssetImage('assets/cat200x200x30.jpg'),
+                      )
+                      */
+                  ),
+                ),
+                ListTile(
+                  title: Text('Home'),
+                  trailing: Icon(
+                    Icons.bluetooth,
+                    color: Colors.white,
+                  ),
+                ),
+               
+              ]),
+            ),
+          ),
+          */
+/*
+          body: NestedScrollView(
+            controller: scrollController,
+            headerSliverBuilder:
+                (BuildContext context, bool innerBoxIsScrolled) {
+              return <Widget>[
+                SliverAppBar(
+                  title: Text('slivertitle'),
+                  pinned: true,
+                  floating: true,
+                  forceElevated: innerBoxIsScrolled,
+                )
+              ];
+            },
+            body: isListView
+                ? MyListView(
+                    isLoading: isLoading, scrollController: scrollController)
+                : isFullPost
+                    ? FullPost(
+                        //scrollController: scrollController
+                        )
+                    : isSearchPage
+                        ? SearchPage(
+                            //scrollController: scrollController
+                            )
+                        : isLoginPage
+                            ? LoginScreen()
+                            : Center(child: Text('NOTHING')),
+                            */

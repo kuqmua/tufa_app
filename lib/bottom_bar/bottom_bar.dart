@@ -1,25 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-
 import 'package:Tufa/colors.dart';
-import 'package:Tufa/full_post/full_post_bottom_bar/full_post_bottom_bar.dart';
-import 'package:Tufa/search_page/search_page_bottom_bar.dart';
-import 'package:Tufa/my_list_view/list_view_bottom_bar/list_view_bottom_bar.dart';
+import 'package:Tufa/bottom_bar/bb_home_button.dart';
+import 'package:Tufa/bottom_bar/bb_find_button.dart';
+import 'package:Tufa/bottom_bar/bb_filter_button.dart';
+import 'package:Tufa/bottom_bar/bb_bookmark_button.dart';
+import 'package:Tufa/bottom_bar/bb_menu_button.dart';
+import 'package:flutter/rendering.dart';
 
 class BottomBar extends StatefulWidget {
   final bool isVisible;
-  final bool listView;
-  final bool fullPost;
-  final bool searchPage;
-  final bool loginPage;
-  BottomBar(
-      {Key key,
-      this.isVisible,
-      this.listView,
-      this.fullPost,
-      this.searchPage,
-      this.loginPage})
-      : super(key: key);
+  BottomBar({
+    Key key,
+    @required this.isVisible,
+  }) : super(key: key);
 
   @override
   _BottomBarState createState() => _BottomBarState();
@@ -32,23 +25,29 @@ class _BottomBarState extends State<BottomBar>
     return AnimatedContainer(
         duration: Duration(milliseconds: 200),
         height: widget.isVisible
-            ? 55 // THIS IS THE HEIGTH OF ListViewBottomBar()!
+            ? 50 // THIS IS THE HEIGTH OF BottomBar()!
             : 0.0,
         child: Container(
             decoration: BoxDecoration(
               border: Border(
                 top: BorderSide(
-                  color: softerwhite,
-                  width: 0.2,
+                  color: borderColor,
+                  width: 0.5,
                 ),
               ),
             ),
-            child: widget.listView
-                ? ListViewBottomBar()
-                : widget.fullPost
-                    ? FullPostBottomBar()
-                    : widget.searchPage
-                        ? SearchPageBottomBar()
-                        : widget.loginPage ? null : null));
+            child: BottomAppBar(
+                color: backgroundColor,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    BbHomeButton(),
+                    BbFindButton(),
+                    BbFilterButton(),
+                    BbBookmarkButton(),
+                    BbMenuButton(),
+                  ],
+                ))));
   }
 }
