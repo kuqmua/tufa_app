@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
       statusBarColor: Colors.transparent,
     ));
     */
+
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
@@ -100,9 +101,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool isListView = false;
+  bool isListView = true;
   bool isLoading = false;
-  bool isFullPost = true;
+  bool isFullPost = false;
   bool isSearchPage = false;
   bool isLoginPage = false;
 
@@ -137,23 +138,13 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Scaffold(
             bottomNavigationBar:
                 isFullPost ? null : BottomBar(isVisible: isVisible),
-            appBar: PreferredSize(
-              preferredSize: Size.fromHeight(50.0),
-              child: AppBar(
-                title: Text('Random title'),
-              ),
-            ),
             body: isListView
                 ? FeedPage(
                     isLoading: isLoading, scrollController: scrollController)
                 : isFullPost
-                    ? FullPost(
-                        //scrollController: scrollController
-                        )
+                    ? FullPost()
                     : isSearchPage
-                        ? SearchPage(
-                            //scrollController: scrollController
-                            )
+                        ? SearchPage()
                         : isLoginPage
                             ? LoginScreen()
                             : Center(child: Text('NOTHING'))));
@@ -219,3 +210,30 @@ class _MyHomePageState extends State<MyHomePage> {
                             ? LoginScreen()
                             : Center(child: Text('NOTHING')),
                             */
+
+/*
+bottomNavigationBar:
+                isFullPost ? null : BottomBar(isVisible: isVisible),
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(50.0),
+              child: AppBar(
+                title: Text('Random title'),
+              ),
+            ),
+            body: isListView
+                ? FeedPage(
+                    isLoading: isLoading, scrollController: scrollController)
+                : isFullPost
+                    ? FullPost(
+                        //scrollController: scrollController
+                        )
+                    : isSearchPage
+                        ? SearchPage(
+                            //scrollController: scrollController
+                            )
+                        : isLoginPage
+                            ? LoginScreen()
+                            : Center(child: Text('NOTHING'))
+
+
+*/

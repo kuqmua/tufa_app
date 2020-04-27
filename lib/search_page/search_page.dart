@@ -117,17 +117,19 @@ class SearchPageState extends State<SearchPage>
     });
   }
 
-  build(context) => SingleChildScrollView(
-        controller: scrollController,
-        child: Container(
-          padding: EdgeInsets.fromLTRB(btnSize, 0, btnSize, 0),
-          child: Column(
-            children: <Widget>[
-              Container(
-                height: 1200,
-                color: Colors.blueGrey,
-              ),
-            ],
+  build(context) => Scaffold(
+        body: SingleChildScrollView(
+          controller: scrollController,
+          child: Container(
+            padding: EdgeInsets.fromLTRB(btnSize, 0, btnSize, 0),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  height: 1200,
+                  color: Colors.blueGrey,
+                ),
+              ],
+            ),
           ),
         ),
       );
