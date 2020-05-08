@@ -64,6 +64,10 @@ class _SearchMbshState extends State<SearchMbsh> {
                               }).toList(),
                               onChanged: (_) {},
                             ),
+                            Switch(
+                              onChanged: null,
+                              value: false,
+                            ),
                             DropdownButton<String>(
                               hint: Text('with image'),
                               items: <String>['A', 'B', 'C', 'D']

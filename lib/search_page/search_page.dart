@@ -124,6 +124,10 @@ class SearchPageState extends State<SearchPage>
             padding: EdgeInsets.fromLTRB(btnSize, 0, btnSize, 0),
             child: Column(
               children: <Widget>[
+                Switch(
+                  onChanged: null,
+                  value: false,
+                ),
                 Container(
                   height: 1200,
                   color: Colors.blueGrey,

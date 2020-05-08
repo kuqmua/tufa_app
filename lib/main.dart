@@ -1,4 +1,3 @@
-import 'package:Tufa/bottom_bar/bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:Tufa/colors.dart';
@@ -35,6 +34,15 @@ class MyApp extends StatelessWidget {
     ]);
 
     return MaterialApp(
+      //initialRoute: '/',
+      /*
+  routes: {
+    // When navigating to the "/" route, build the FirstScreen widget.
+    '/': (context) => LoginScreen(),
+    // When navigating to the "/second" route, build the SecondScreen widget.
+    '/second': (context) => FeedPage(isLoading: false,),
+    },
+    */
       title: 'Tufa',
       debugShowCheckedModeBanner: false,
       home: MyHomePage(),
@@ -101,7 +109,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool isListView = true;
+  bool isFeedPage = true;
   bool isLoading = false;
   bool isFullPost = false;
   bool isSearchPage = false;
@@ -136,9 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
         top: true,
         bottom: true,
         child: Scaffold(
-            bottomNavigationBar:
-                isFullPost ? null : BottomBar(isVisible: isVisible),
-            body: isListView
+            body: isFeedPage
                 ? FeedPage(
                     isLoading: isLoading, scrollController: scrollController)
                 : isFullPost
@@ -150,90 +156,3 @@ class _MyHomePageState extends State<MyHomePage> {
                             : Center(child: Text('NOTHING'))));
   }
 }
-/*
-          drawer: Theme(
-            data: Theme.of(context).copyWith(canvasColor: backgroundColor),
-            child: Drawer(
-              child: ListView(children: <Widget>[
-                UserAccountsDrawerHeader(
-                  accountEmail: Text('sac'),
-                  accountName: Text('name'),
-                  currentAccountPicture: CircleAvatar(
-                    radius: 15,
-                    backgroundColor: Colors.red,
-                    foregroundColor: Colors.amber,
-                    /*
-                      child: Image(
-                        image: AssetImage('assets/cat200x200x30.jpg'),
-                      )
-                      */
-                  ),
-                ),
-                ListTile(
-                  title: Text('Home'),
-                  trailing: Icon(
-                    Icons.bluetooth,
-                    color: Colors.white,
-                  ),
-                ),
-               
-              ]),
-            ),
-          ),
-          */
-/*
-          body: NestedScrollView(
-            controller: scrollController,
-            headerSliverBuilder:
-                (BuildContext context, bool innerBoxIsScrolled) {
-              return <Widget>[
-                SliverAppBar(
-                  title: Text('slivertitle'),
-                  pinned: true,
-                  floating: true,
-                  forceElevated: innerBoxIsScrolled,
-                )
-              ];
-            },
-            body: isListView
-                ? MyListView(
-                    isLoading: isLoading, scrollController: scrollController)
-                : isFullPost
-                    ? FullPost(
-                        //scrollController: scrollController
-                        )
-                    : isSearchPage
-                        ? SearchPage(
-                            //scrollController: scrollController
-                            )
-                        : isLoginPage
-                            ? LoginScreen()
-                            : Center(child: Text('NOTHING')),
-                            */
-
-/*
-bottomNavigationBar:
-                isFullPost ? null : BottomBar(isVisible: isVisible),
-            appBar: PreferredSize(
-              preferredSize: Size.fromHeight(50.0),
-              child: AppBar(
-                title: Text('Random title'),
-              ),
-            ),
-            body: isListView
-                ? FeedPage(
-                    isLoading: isLoading, scrollController: scrollController)
-                : isFullPost
-                    ? FullPost(
-                        //scrollController: scrollController
-                        )
-                    : isSearchPage
-                        ? SearchPage(
-                            //scrollController: scrollController
-                            )
-                        : isLoginPage
-                            ? LoginScreen()
-                            : Center(child: Text('NOTHING'))
-
-
-*/
