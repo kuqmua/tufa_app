@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:Tufa/colors.dart';
-import 'package:Tufa/feed_page/bottom_bar/bb_home_button.dart';
-import 'package:Tufa/feed_page/bottom_bar/bb_find_button.dart';
-import 'package:Tufa/feed_page/bottom_bar/bb_filter_button.dart';
-import 'package:Tufa/feed_page/bottom_bar/bb_bookmark_button.dart';
-import 'package:Tufa/feed_page/bottom_bar/bb_menu_button.dart';
+import 'package:Tufa/bottom_bar/bb_home_button.dart';
+import 'package:Tufa/bottom_bar/bb_find_button.dart';
+import 'package:Tufa/bottom_bar/bb_filter_button.dart';
+import 'package:Tufa/bottom_bar/bb_bookmark_button.dart';
+import 'package:Tufa/bottom_bar/bb_menu_button.dart';
 import 'package:flutter/rendering.dart';
 
 class BottomBar extends StatefulWidget {

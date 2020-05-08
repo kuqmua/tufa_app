@@ -13,7 +13,9 @@ class SignInButton extends StatelessWidget {
         "Sign in",
         style: Theme.of(context).textTheme.headline3,
       ),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushNamed(context, '/bottomNavPageWrapper');
+      },
     );
   }
 }

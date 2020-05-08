@@ -3,11 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:Tufa/colors.dart';
 import 'package:Tufa/login_screen/login_screen.dart';
 import 'package:Tufa/feed_page/feed_page.dart';
-//import 'package:Tufa/my_list_view/my_list_view_stack.dart';
 import 'package:Tufa/full_post/full_post.dart';
-//import 'package:Tufa/full_post/full_post_stack.dart';
 import 'package:Tufa/search_page/search_page.dart';
-//import 'package:Tufa/search_page/chat_window.dart';
+import 'package:Tufa/bottom_nav_page_wrapper.dart';
 import 'package:flutter/rendering.dart';
 
 void main() => runApp(MyApp());
@@ -34,18 +32,16 @@ class MyApp extends StatelessWidget {
     ]);
 
     return MaterialApp(
-      //initialRoute: '/',
-      /*
-  routes: {
-    // When navigating to the "/" route, build the FirstScreen widget.
-    '/': (context) => LoginScreen(),
-    // When navigating to the "/second" route, build the SecondScreen widget.
-    '/second': (context) => FeedPage(isLoading: false,),
-    },
-    */
+      initialRoute: '/',
+      routes: {
+        '/': (context) => LoginScreen(),
+        '/bottomNavPageWrapper': (context) => BottomNavPageWrapper(),
+        '/feedPage': (context) => FeedPage(),
+        '/searchPage': (context) => SearchPage(),
+        '/fullPost': (context) => FullPost(),
+      },
       title: 'Tufa',
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
       theme: ThemeData(
         primaryColor: backgroundColor,
         accentColor: borderColor,
@@ -98,61 +94,5 @@ class MyApp extends StatelessWidget {
         splashColor: grey,
       ),
     );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  bool isFeedPage = true;
-  bool isLoading = false;
-  bool isFullPost = false;
-  bool isSearchPage = false;
-  bool isLoginPage = false;
-
-  ScrollController scrollController;
-  bool isVisible = true;
-  @override
-  void initState() {
-    super.initState();
-    isVisible = true;
-    scrollController = new ScrollController();
-    scrollController.addListener(() {
-      if (scrollController.position.userScrollDirection ==
-          ScrollDirection.reverse) {
-        setState(() {
-          isVisible = false;
-        });
-      }
-      if (scrollController.position.userScrollDirection ==
-          ScrollDirection.forward) {
-        setState(() {
-          isVisible = true;
-        });
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-        top: true,
-        bottom: true,
-        child: Scaffold(
-            body: isFeedPage
-                ? FeedPage(
-                    isLoading: isLoading, scrollController: scrollController)
-                : isFullPost
-                    ? FullPost()
-                    : isSearchPage
-                        ? SearchPage()
-                        : isLoginPage
-                            ? LoginScreen()
-                            : Center(child: Text('NOTHING'))));
   }
 }

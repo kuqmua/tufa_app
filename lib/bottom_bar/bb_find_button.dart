@@ -13,6 +13,8 @@ class BbFindButton extends StatelessWidget {
           color: grey,
         ),
         disabledColor: Colors.green,
-        onPressed: () {});
+        onPressed: () {
+          Navigator.pushNamed(context, '/searchPage');
+        });
   }
 }
