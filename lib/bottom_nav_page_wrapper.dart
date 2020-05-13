@@ -33,19 +33,41 @@ class _BottomNavPageWrapperState extends State<BottomNavPageWrapper> {
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           currentIndex: _index,
           backgroundColor: backgroundColor,
           onTap: (newIndex) => setState(() => _index = newIndex),
           items: [
             BottomNavigationBarItem(
                 icon: Icon(Icons.home, color: grey),
-                title: Text("Home", style: TextStyle(color: grey))),
+                title: Container(
+                    height: 0.0,
+                    child: Text("",
+                        style: TextStyle(color: grey, fontSize: 0.0)))),
             BottomNavigationBarItem(
                 icon: Icon(AntDesign.search1, color: grey),
-                title: Text("Search", style: TextStyle(color: grey))),
+                title: Container(
+                    height: 0.0,
+                    child: Text("",
+                        style: TextStyle(color: grey, fontSize: 0.0)))),
             BottomNavigationBarItem(
                 icon: Icon(AntDesign.filter, color: grey),
-                title: Text("Filter", style: TextStyle(color: grey))),
+                title: Container(
+                    height: 0.0,
+                    child: Text("",
+                        style: TextStyle(color: grey, fontSize: 0.0)))),
+            BottomNavigationBarItem(
+                icon: Icon(Feather.bookmark, color: grey),
+                title: Container(
+                    height: 0.0,
+                    child: Text("",
+                        style: TextStyle(color: grey, fontSize: 0.0)))),
+            BottomNavigationBarItem(
+                icon: Icon(Entypo.menu, color: grey),
+                title: Container(
+                    height: 0.0,
+                    child: Text("",
+                        style: TextStyle(color: grey, fontSize: 0.0)))),
           ],
         ),
         body: callPage(_index),

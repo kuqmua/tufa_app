@@ -1,7 +1,8 @@
-//import 'package:Tufa/bottom_bar/bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:Tufa/post/post.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class FeedPage extends StatefulWidget {
   FeedPage({
@@ -13,6 +14,10 @@ class FeedPage extends StatefulWidget {
 }
 
 class _FeedPageState extends State<FeedPage> {
+  List widgets = [];
+  Map post = Map();
+  Map loadingState = Map();
+
   bool isLoading = false;
 
   ScrollController scrollController;
@@ -20,6 +25,9 @@ class _FeedPageState extends State<FeedPage> {
   @override
   void initState() {
     super.initState();
+
+    loadData();
+
     isVisible = true;
     scrollController = new ScrollController();
     scrollController.addListener(() {
@@ -36,6 +44,43 @@ class _FeedPageState extends State<FeedPage> {
         });
       }
     });
+  }
+
+  Widget getRow(BuildContext context, int i) {
+    var postId = widgets[i];
+    var postData = post[postId];
+
+    String title = postData == null ? "Loading" : postData["title"];
+    if (postData == null) {
+      loadPost(postId);
+    }
+
+    return Post(
+      postText: title,
+    );
+  }
+
+  loadData() async {
+    String dataURL =
+        "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty";
+    http.Response response = await http.get(dataURL);
+    setState(() {
+      widgets = json.decode(response.body).take(25).toList();
+    });
+  }
+
+  loadPost(int item) async {
+    if (loadingState[item] == true) {
+      return;
+    }
+    loadingState[item] = true;
+    String dataURL =
+        "https://hacker-news.firebaseio.com/v0/item/$item.json?print=pretty";
+    http.Response response = await http.get(dataURL);
+    setState(() {
+      post[item] = json.decode(response.body);
+    });
+    loadingState[item] = false;
   }
 
   @override
@@ -64,8 +109,9 @@ class _FeedPageState extends State<FeedPage> {
                   ),
                   child: ListView.builder(
                     controller: scrollController,
-                    itemCount: 5,
-                    itemBuilder: (ctx, i) => Post(),
+                    itemCount: widgets.length,
+                    itemBuilder: (BuildContext context, int position) =>
+                        getRow(context, position),
                   ))),
     );
   }

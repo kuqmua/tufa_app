@@ -5,15 +5,18 @@ import 'dart:ui';
 
 import 'package:Tufa/post/post_button_container.dart';
 import 'package:Tufa/post/tpp.dart';
-import 'package:Tufa/vertical_line.dart';
 import 'package:Tufa/data_wrappers/post_text.dart';
 import 'package:Tufa/post/action_button_mbsh/action_button_mbsh.dart';
-/*
+
 class Post extends StatefulWidget {
+  final String postText;
+  Post({Key key, @required this.postText}) : super(key: key);
+
   createState() => PostState();
 }
 
 class PostState extends State<Post> with SingleTickerProviderStateMixin {
+  /*
   String someText =
       'Got permission to post some screenshots of our company internal immediate mode UI game engine editor. So far only good experiences for both programmers and artists. Some advantages were instant onboarding of team into UI programming and 1/3 in code size compared to old Qt code.'
       'Over the years, Ive learned the lesson of input vs output on the interwebs. You spend days on something and it flies under the radar. You spend a few minutes making shitty  drawings on screenshots and everyone loves it xD Remember, always do art for yourself. Not others <3'
@@ -21,6 +24,7 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
       'Got permission to post some screenshots of our company internal immediate mode UI game engine editor. So far only good experiences for both programmers and artists. Some advantages were instant onboarding of team into UI programming and 1/3 in code size compared to old Qt code.'
       'Over the years, Ive learned the lesson of input vs output on the interwebs. You spend days on something and it flies under the radar. You spend a few minutes making shitty  drawings on screenshots and everyone loves it xD Remember, always do art for yourself. Not others <3'
       'Managed to tie the caustics and dispersion effects into the roughness and normal inputs of my glass shader properly so imperfection maps effect it correctly. Its a subtle difference compared to the Blender original but I like it a lot I think.';
+      */
   bool bookmarked = false;
   void modalBottomSheet() {
     showModalBottomSheet(
@@ -34,190 +38,7 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
 
   void share() {
     final RenderBox box = context.findRenderObject();
-    shareOne.Share.share(someText,
-        subject: 'youtube.com',
-        sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
-  }
-
-  void addOrRemoveFromBookmarks() {
-    setState(() {
-      bookmarked = !bookmarked;
-    });
-  }
-
-  List<IconData> bookmarkIcons = [
-    AntDesign.staro,
-    AntDesign.star,
-  ];
-  //MaterialCommunityIcons.dots_horizontal,
-  List<IconData> list = [
-    MaterialIcons.expand_more,
-    Feather.share_2,
-    AntDesign.staro,
-    AntDesign.filter,
-    MaterialCommunityIcons.comment_outline,
-  ];
-
-  static const double btnSize = 40.0;
-  static const double standartMargin = 5.0;
-  static const double fontSize = 16.0;
-  static const double iconSize = 20.0;
-  final bool large = false;
-  final bool hasImage = true;
-
-  build(context) => Container(
-        padding: EdgeInsets.fromLTRB(standartMargin, 0, standartMargin, 0),
-        child: Stack(children: [
-          Container(
-            padding: EdgeInsets.fromLTRB(
-                btnSize + standartMargin,
-                standartMargin - 1,
-                btnSize + standartMargin,
-                standartMargin * 2),
-            //margin: EdgeInsets.fromLTRB(0, , 0, 0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    Tpp(
-                      standartMargin: standartMargin,
-                    ),
-                    PostText(
-                      fontSize: 17,
-                      text: someText,
-                      maxLines: hasImage ? 5 : 10,
-                    ),
-                  ],
-                ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(0, standartMargin, 0, 0),
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15.0),
-                      child: Image(
-                          //height: 165,
-                          //width: 295,
-                          image: AssetImage('assets/k800x50.jpg'))),
-                ),
-              ],
-            ),
-          ),
-          Positioned(
-            child: LayoutBuilder(
-                builder: (context, cns) => Stack(
-                      children: <Widget>[
-                        VerticalLine(
-                          btnSize: btnSize,
-                        ),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(
-                              0, standartMargin, 0, standartMargin),
-                          child: Column(children: <Widget>[
-                            Column(
-                              children: List.generate(
-                                (cns.maxHeight - 20) <
-                                        ((btnSize + standartMargin) * 4 +
-                                            btnSize)
-                                    ? (cns.maxHeight - 20) <
-                                            ((btnSize + standartMargin) * 3 +
-                                                btnSize)
-                                        ? (cns.maxHeight - 20) <
-                                                ((btnSize + standartMargin) *
-                                                        2 +
-                                                    btnSize)
-                                            ? (cns.maxHeight - 20) <
-                                                    ((btnSize +
-                                                            standartMargin) +
-                                                        btnSize)
-                                                ? 1
-                                                : 2
-                                            : 3
-                                        : 4
-                                    : 5,
-                                (i) => PostButtonContainer(
-                                  icon: list[i],
-                                  margin: EdgeInsets.fromLTRB(
-                                      0, 0, 0, standartMargin),
-                                  backgroundSize: btnSize,
-                                  iconSize: iconSize,
-                                  borderWidth: 0.75,
-                                  bookmarked: i == 2 ? bookmarked : null,
-                                  onTap: i == 0
-                                      ? modalBottomSheet
-                                      : i == 1
-                                          ? share
-                                          : i == 2
-                                              ? addOrRemoveFromBookmarks
-                                              : null,
-                                ),
-                              ),
-                            ),
-                          ]),
-                        ),
-                      ],
-                    )),
-            right: 0,
-            top: 0,
-            bottom: 0,
-          ),
-          Positioned(
-            child: LayoutBuilder(
-                builder: (context, cns) => Stack(
-                      children: <Widget>[
-                        VerticalLine(
-                          btnSize: btnSize,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: standartMargin),
-                          child: Column(children: <Widget>[
-                            ClipRRect(
-                                borderRadius: BorderRadius.circular(15.0),
-                                child: Image(
-                                    height: btnSize,
-                                    width: btnSize,
-                                    image:
-                                        AssetImage('assets/cat200x200x30.jpg')))
-                          ]),
-                        ),
-                      ],
-                    )),
-            left: 0,
-            top: 0,
-            bottom: 0,
-          ),
-        ]),
-      );
-}
-*/
-
-class Post extends StatefulWidget {
-  createState() => PostState();
-}
-
-class PostState extends State<Post> with SingleTickerProviderStateMixin {
-  String someText =
-      'Got permission to post some screenshots of our company internal immediate mode UI game engine editor. So far only good experiences for both programmers and artists. Some advantages were instant onboarding of team into UI programming and 1/3 in code size compared to old Qt code.'
-      'Over the years, Ive learned the lesson of input vs output on the interwebs. You spend days on something and it flies under the radar. You spend a few minutes making shitty  drawings on screenshots and everyone loves it xD Remember, always do art for yourself. Not others <3'
-      'Managed to tie the caustics and dispersion effects into the roughness and normal inputs of my glass shader properly so imperfection maps effect it correctly. Its a subtle difference compared to the Blender original but I like it a lot I think.'
-      'Got permission to post some screenshots of our company internal immediate mode UI game engine editor. So far only good experiences for both programmers and artists. Some advantages were instant onboarding of team into UI programming and 1/3 in code size compared to old Qt code.'
-      'Over the years, Ive learned the lesson of input vs output on the interwebs. You spend days on something and it flies under the radar. You spend a few minutes making shitty  drawings on screenshots and everyone loves it xD Remember, always do art for yourself. Not others <3'
-      'Managed to tie the caustics and dispersion effects into the roughness and normal inputs of my glass shader properly so imperfection maps effect it correctly. Its a subtle difference compared to the Blender original but I like it a lot I think.';
-  bool bookmarked = false;
-  void modalBottomSheet() {
-    showModalBottomSheet(
-        context: context,
-        backgroundColor: Colors.transparent,
-        barrierColor: Colors.black.withOpacity(0.5),
-        builder: (context) {
-          return ActionButtonMbsh();
-        });
-  }
-
-  void share() {
-    final RenderBox box = context.findRenderObject();
-    shareOne.Share.share(someText,
+    shareOne.Share.share(widget.postText,
         subject: 'youtube.com',
         sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
   }
@@ -280,6 +101,8 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                     0),
                 width: MediaQuery.of(context).size.width * 0.77,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Tpp(
                       standartMargin: 5,
@@ -290,10 +113,11 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                       ),
                       child: PostText(
                         fontSize: 17,
-                        text: someText,
+                        text: widget.postText,
                         maxLines: hasImage ? 5 : 10,
                       ),
                     ),
+                    /*
                     Container(
                       padding: EdgeInsets.only(
                         top: MediaQuery.of(context).size.height * 0.01,
@@ -303,6 +127,7 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                           child:
                               Image(image: AssetImage('assets/k800x50.jpg'))),
                     ),
+                    */
                   ],
                 ),
               ),
@@ -319,10 +144,6 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
               builder: (context, cns) => Stack(
                 children: <Widget>[
                   Container(
-                    /*
-                    margin: const EdgeInsets.fromLTRB(
-                        0, standartMargin, 0, standartMargin),
-                        */
                     child: Column(children: <Widget>[
                       Column(
                         children: List.generate(
