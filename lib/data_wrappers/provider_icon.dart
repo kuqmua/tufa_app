@@ -8,7 +8,7 @@ class ProviderIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Icon(
-      FontAwesome.reddit_square,
+      MaterialCommunityIcons.hackernews,
       size: iconSize ?? 17,
     );
   }

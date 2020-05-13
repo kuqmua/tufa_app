@@ -26,18 +26,9 @@ class PostButtonContainer extends StatelessWidget {
     return Material(
       color: backgroundColor,
       child: Container(
-        width: backgroundSize,
-        height: backgroundSize,
-        decoration: BoxDecoration(
-          //color: backgroundColor,
-          /*
-          border: Border.all(
-            color: Theme.of(context).accentColor,
-            width: borderWidth,
-          ),
-          */
-          borderRadius: BorderRadius.all(Radius.circular(15)),
-        ),
+        //margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.width * 0.02),
+        //height: backgroundSize,
+        //width: backgroundSize,
         child: IconButton(
             onPressed: onTap,
             splashColor: Theme.of(context).splashColor,

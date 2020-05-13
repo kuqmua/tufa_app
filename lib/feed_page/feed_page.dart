@@ -18,8 +18,6 @@ class _FeedPageState extends State<FeedPage> {
   Map post = Map();
   Map loadingState = Map();
 
-  bool isLoading = false;
-
   ScrollController scrollController;
   bool isVisible;
   @override
@@ -86,33 +84,24 @@ class _FeedPageState extends State<FeedPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      top: true,
-      bottom: true,
-      child: Scaffold(
-          //bottomNavigationBar: BottomBar(),
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(50.0),
-            child: AppBar(
-              title: Text('Random title'),
+        top: true,
+        bottom: true,
+        child: Scaffold(
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(50.0),
+              child: AppBar(
+                title: Text('Tufa'),
+              ),
             ),
-          ),
-          body: isLoading
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
-              : Padding(
-                  padding: EdgeInsets.fromLTRB(
-                    MediaQuery.of(context).size.width * 0.015,
-                    0,
-                    MediaQuery.of(context).size.width * 0.015,
-                    0,
-                  ),
-                  child: ListView.builder(
+            body: widgets == null
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : ListView.builder(
                     controller: scrollController,
                     itemCount: widgets.length,
                     itemBuilder: (BuildContext context, int position) =>
                         getRow(context, position),
-                  ))),
-    );
+                  )));
   }
 }
