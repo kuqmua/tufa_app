@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:Tufa/feed_page/feed_page.dart';
+import 'package:Tufa/test_feed_page/test_feed_page.dart';
 import 'package:Tufa/search_page/search_page.dart';
 import 'package:Tufa/colors.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -21,6 +22,8 @@ class _BottomNavPageWrapperState extends State<BottomNavPageWrapper> {
 
       case 1:
         return SearchPage();
+      case 2:
+        return PostScreen(title: 'books'); //TODO: remove it
 
         break;
       default:

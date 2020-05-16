@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:Tufa/data_wrappers/autor_name.dart';
 import 'package:Tufa/data_wrappers/publication_date.dart';
-import 'package:Tufa/data_wrappers/provider_icon.dart';
+//import 'package:Tufa/data_wrappers/provider_icon.dart';
 import 'package:Tufa/data_wrappers/provider_name.dart';
 import 'package:Tufa/colors.dart';
 
 class Tpp extends StatefulWidget {
   final double standartMargin;
-  Tpp({Key key, @required this.standartMargin}) : super(key: key);
+  final String postAutor;
+  Tpp({Key key, @required this.standartMargin, @required this.postAutor})
+      : super(key: key);
 
   @override
   _TppState createState() => _TppState();
@@ -30,7 +32,7 @@ class _TppState extends State<Tpp> {
             child: Container(
                 margin: EdgeInsets.only(right: widget.standartMargin),
                 child: AutorName(
-                  autorText: 'Random autor',
+                  autorText: widget.postAutor,
                   fontSize: 18,
                   textColor: white,
                 ))),
@@ -39,6 +41,7 @@ class _TppState extends State<Tpp> {
               margin: EdgeInsets.only(right: widget.standartMargin),
               child: ProviderName(
                 providerText: 'r/pytorch',
+                fontSize: 16,
                 textColor: grey,
               )),
         ),
@@ -47,6 +50,7 @@ class _TppState extends State<Tpp> {
             child: PublicationDate(
               dateText: '1h',
               textColor: grey,
+              fontSize: 16,
             )),
       ],
     );

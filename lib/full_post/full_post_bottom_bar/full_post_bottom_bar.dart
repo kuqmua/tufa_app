@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:Tufa/colors.dart';
 import 'package:Tufa/full_post/full_post_bottom_bar/fpbb_back_button.dart';
-import 'package:Tufa/full_post/full_post_bottom_bar/fpbb_search_button.dart';
+//import 'package:Tufa/full_post/full_post_bottom_bar/fpbb_search_button.dart';
 import 'package:Tufa/full_post/full_post_bottom_bar/fpbb_filter_button.dart';
 import 'package:Tufa/full_post/full_post_bottom_bar/fpbb_bookmark_button.dart';
 import 'package:Tufa/full_post/full_post_bottom_bar/fpbb_share_button.dart';

@@ -20,6 +20,7 @@ class _FeedPageState extends State<FeedPage> {
 
   ScrollController scrollController;
   bool isVisible;
+
   @override
   void initState() {
     super.initState();
@@ -55,6 +56,7 @@ class _FeedPageState extends State<FeedPage> {
 
     return Post(
       postText: title,
+      postAutor: 'postAutor',
     );
   }
 
