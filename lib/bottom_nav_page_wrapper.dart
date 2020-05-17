@@ -23,7 +23,7 @@ class _BottomNavPageWrapperState extends State<BottomNavPageWrapper> {
       case 1:
         return SearchPage();
       case 2:
-        return PostScreen(title: 'books'); //TODO: remove it
+        return PostScreen(title: 'wow'); //TODO: remove it
 
         break;
       default:

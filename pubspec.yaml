@@ -18,7 +18,7 @@ dependencies:
   permission: ^0.1.7
   http: 0.12.0+4
   cached_network_image: ^2.2.0+1
-  flutter_custom_tabs: "^0.6.0" #  REMOVE ITS ONLY TEST
+
 #  expandable: ^4.1.2
 #  flutter_speed_dial: ^1.2.5
 #  rect_getter: ^0.0.1

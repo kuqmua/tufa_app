@@ -18,7 +18,7 @@ class _AutorNameState extends State<AutorName> {
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
           fontFamily: 'Lora',
-          fontWeight: FontWeight.w300,
+          fontWeight: FontWeight.w500,
           fontSize: widget.fontSize,
           color: widget.textColor,
         ));

@@ -12,7 +12,12 @@ import 'package:Tufa/post/action_button_mbsh/action_button_mbsh.dart';
 class Post extends StatefulWidget {
   final String postText;
   final String postAutor;
-  Post({Key key, @required this.postText, @required this.postAutor})
+  final String subreddit;
+  Post(
+      {Key key,
+      @required this.postText,
+      @required this.postAutor,
+      this.subreddit})
       : super(key: key);
 
   createState() => PostState();
@@ -104,9 +109,9 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Tpp(
-                        standartMargin: 5,
-                        postAutor: widget.postAutor,
-                      ),
+                          standartMargin: 5,
+                          postAutor: widget.postAutor,
+                          subreddit: widget.subreddit),
                       Container(
                         padding: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height * 0.006,
@@ -117,7 +122,6 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                           maxLines: hasImage ? 5 : 10,
                         ),
                       ),
-                      /*
                       Container(
                           padding: EdgeInsets.only(
                             top: MediaQuery.of(context).size.height * 0.015,
@@ -130,7 +134,6 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                               'https://elets-adm.ru/assets/images/resources/11788/e180ba3aafa90790dc2f03fdca690a6a188aef86.jpg',
                             ),
                           )),
-                          */
                     ],
                   ),
                 ),

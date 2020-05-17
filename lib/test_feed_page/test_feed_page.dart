@@ -16,25 +16,47 @@ Future<List<Posts>> fetchPosts(http.Client client, topic) async {
 }
 
 List<Posts> parsePosts(String responseBody) {
-  final parsed = json
-      .decode(responseBody)['data']['children']
-      .cast<Map<String, dynamic>>();
+  print('responseBody $responseBody');
+  print('................................................end of responseBody');
+  final parsedJson = json.decode(responseBody)['data']['children'];
+  print('parsedJson $parsedJson /n');
 
-  return parsed.map<Posts>((json) => Posts.fromJson(json['data'])).toList();
+  print(
+      '................................................end of dataparsedJson');
+
+  final parsedCastedJson = parsedJson.cast<Map<String, dynamic>>();
+  print('parsedCastedJson $parsedCastedJson');
+
+  print(
+      '................................................end of parsedCastedJson');
+  final parsedCastedMappedJson =
+      parsedCastedJson.map<Posts>((json) => Posts.fromJson(json['data']));
+  print('parsedCastedMappedJson ');
+  print('$parsedCastedMappedJson');
+  print('......................................end of parsedCastedMappedJson');
+  final parsedCastedMappedListedJson = parsedCastedMappedJson.toList();
+  print('parsedCastedMappedListedJson ');
+  print('$parsedCastedMappedListedJson');
+  print(
+      '........................................end of parsedCastedMappedListedJson');
+  return parsedCastedMappedListedJson;
 }
 
 class Posts {
   final String title;
-  final String permalink;
-  final String score;
-
-  Posts({this.title, this.permalink, this.score});
+  final String author;
+  final String subreddit;
+  Posts({this.title, this.author, this.subreddit});
 
   factory Posts.fromJson(Map<String, dynamic> json) {
+    print('json[author]');
+    final jsonnnn = json['author'];
+    print('$jsonnnn');
+    print('json[author]');
     return Posts(
         title: json['title'],
-        permalink: json['permalink'],
-        score: json['score'].toString());
+        author: json['author'],
+        subreddit: json['subreddit']);
   }
 }
 
@@ -81,13 +103,14 @@ class PostsList extends StatelessWidget {
           var title = posts[index].title.length > 100
               ? "${posts[index].title.substring(0, 100)}..."
               : posts[index].title;
-          var score = posts[index].score;
-          var link = posts[index].permalink;
 
+          var author = posts[index].author;
+          var subreddit = posts[index].subreddit;
           return InkWell(
             child: Post(
               postText: title,
-              postAutor: 'sos',
+              postAutor: author,
+              subreddit: subreddit,
             ),
           );
         });

@@ -8,7 +8,12 @@ import 'package:Tufa/colors.dart';
 class Tpp extends StatefulWidget {
   final double standartMargin;
   final String postAutor;
-  Tpp({Key key, @required this.standartMargin, @required this.postAutor})
+  final String subreddit;
+  Tpp(
+      {Key key,
+      @required this.standartMargin,
+      @required this.postAutor,
+      this.subreddit})
       : super(key: key);
 
   @override
@@ -40,7 +45,7 @@ class _TppState extends State<Tpp> {
           child: Container(
               margin: EdgeInsets.only(right: widget.standartMargin),
               child: ProviderName(
-                providerText: 'r/pytorch',
+                providerText: 'r/' + widget.subreddit ?? 'filler',
                 fontSize: 16,
                 textColor: grey,
               )),
