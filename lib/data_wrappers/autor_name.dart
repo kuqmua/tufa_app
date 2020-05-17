@@ -14,11 +14,12 @@ class AutorName extends StatefulWidget {
 class _AutorNameState extends State<AutorName> {
   @override
   Widget build(BuildContext context) {
-    return Text(widget.autorText,
+    return Text(
+        widget.autorText[0].toUpperCase() + widget.autorText.substring(1),
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
           fontFamily: 'Lora',
-          fontWeight: FontWeight.w500,
+          fontWeight: FontWeight.w600,
           fontSize: widget.fontSize,
           color: widget.textColor,
         ));

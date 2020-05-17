@@ -57,6 +57,7 @@ class _FeedPageState extends State<FeedPage> {
     return Post(
       postText: title,
       postAutor: 'postAutor',
+      subreddit: 'feed_page',
     );
   }
 

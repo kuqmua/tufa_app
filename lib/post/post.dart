@@ -68,17 +68,14 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(
-          0,
-          MediaQuery.of(context).size.height * 0.005,
-          0,
-          MediaQuery.of(context).size.height * 0.005),
+      padding: EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height * 0.00,
+          0, MediaQuery.of(context).size.height * 0.005),
       child: Stack(children: <Widget>[
         Container(
           //width: MediaQuery.of(context).size.width * 0.75,
           padding: EdgeInsets.fromLTRB(
               0,
-              MediaQuery.of(context).size.height * 0.01,
+              MediaQuery.of(context).size.height * 0.015,
               0,
               MediaQuery.of(context).size.height * 0.01),
           child: Row(
@@ -87,13 +84,13 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
             children: <Widget>[
               Container(
                 padding: EdgeInsets.fromLTRB(
-                    0, MediaQuery.of(context).size.height * 0.006, 0, 0),
+                    0, MediaQuery.of(context).size.height * 0.005, 0, 0),
                 margin: EdgeInsets.fromLTRB(
                     MediaQuery.of(context).size.width * 0.02,
                     0,
                     MediaQuery.of(context).size.width * 0.02,
                     0),
-                width: MediaQuery.of(context).size.width * 0.1,
+                width: MediaQuery.of(context).size.width * 0.12,
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
                     child:
@@ -102,7 +99,7 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
               Expanded(
                 child: Container(
                   padding: EdgeInsets.only(
-                    right: MediaQuery.of(context).size.width * 0.14,
+                    right: MediaQuery.of(context).size.width * 0.12,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -146,7 +143,7 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
           top: 0,
           bottom: 0,
           child: Container(
-            width: MediaQuery.of(context).size.width * 0.14,
+            width: MediaQuery.of(context).size.width * 0.12,
             margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
             child: Center(
               child: LayoutBuilder(
@@ -171,8 +168,7 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                             : 5,
                         (i) => PostButtonContainer(
                           icon: list[i],
-                          backgroundSize:
-                              MediaQuery.of(context).size.width * 0.14,
+
                           iconSize: MediaQuery.of(context).size.width * 0.05,
                           //borderWidth: 0.75,
                           bookmarked: i == 2 ? bookmarked : null,

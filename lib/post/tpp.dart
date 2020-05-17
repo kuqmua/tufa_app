@@ -45,7 +45,7 @@ class _TppState extends State<Tpp> {
           child: Container(
               margin: EdgeInsets.only(right: widget.standartMargin),
               child: ProviderName(
-                providerText: 'r/' + widget.subreddit ?? 'filler',
+                providerText: 'r/' + widget.subreddit ?? 'todo',
                 fontSize: 16,
                 textColor: grey,
               )),
