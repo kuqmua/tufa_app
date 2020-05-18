@@ -7,38 +7,60 @@ import 'package:flutter/material.dart';
 import 'package:Tufa/post/post.dart';
 import 'package:http/http.dart' as http;
 
-String url = 'https://www.reddit.com';
-
-Future<List<Posts>> fetchPosts(http.Client client, topic) async {
-  final response = await client.get("$url/r/$topic/hot.json");
+/*
+Future<List<Posts>> fetchPosts() async {
+  final response =
+      await http.get("https://hacker-news.firebaseio.com/v0/topstories.json");
 
   return compute(parsePosts, response.body);
+}
+*/
+List<String> hackerNewsStoriesTypes = ['top', 'new', 'best'];
+
+Future<String> fetchHackerNewsStories(String hackerNewsStoriesType) async {
+  final response =
+      await http.get("https://hacker-news.firebaseio.com/v0/topstories.json");
+  if (response.statusCode == 200) {
+    final List<int> hackerNewsStoriesIdsIntList =
+        parseHackerNewsStoriesIdsFromJson(response.body);
+    if (hackerNewsStoriesIdsIntList.isNotEmpty) {
+      final String hackerNewsStoryUrl =
+          'https://hacker-news.firebaseio.com/v0/item/${hackerNewsStoriesIdsIntList.first.toString()}.json';
+      final hackerNewsStoryResponse = await http.get(hackerNewsStoryUrl);
+      if (hackerNewsStoryResponse.statusCode == 200) {
+        dynamic parsed = json.decode(hackerNewsStoryResponse.body);
+      }
+    }
+  }
+}
+
+List<int> parseHackerNewsStoriesIdsFromJson(String hackerNewsStoriesJsonIds) {
+  dynamic parsed = json.decode(hackerNewsStoriesJsonIds);
+  List<int> listhackerNewsStoriesOfIds = List<int>.from(parsed);
+  return listhackerNewsStoriesOfIds;
 }
 
 List<Posts> parsePosts(String responseBody) {
   print('responseBody $responseBody');
   print('................................................end of responseBody');
-  final parsedJson = json.decode(responseBody)['data']['children'];
+  final parsedJson = json.decode(responseBody);
   print('parsedJson $parsedJson /n');
-
-  print(
-      '................................................end of dataparsedJson');
+  print(parsedJson.length);
+  print('...........................end of dataparsedJson');
+  //final storyUrl = 'https://hacker-news.firebaseio.com/v0/item/${iditem}.json';
 
   final parsedCastedJson = parsedJson.cast<Map<String, dynamic>>();
   print('parsedCastedJson $parsedCastedJson');
-
-  print(
-      '................................................end of parsedCastedJson');
+  print('...........................end of parsedCastedJson');
   final parsedCastedMappedJson =
       parsedCastedJson.map<Posts>((json) => Posts.fromJson(json['data']));
   print('parsedCastedMappedJson ');
   print('$parsedCastedMappedJson');
-  print('......................................end of parsedCastedMappedJson');
+  print('...................end of parsedCastedMappedJson');
   final parsedCastedMappedListedJson = parsedCastedMappedJson.toList();
   print('parsedCastedMappedListedJson ');
   print('$parsedCastedMappedListedJson');
-  print(
-      '........................................end of parsedCastedMappedListedJson');
+  print('..........end of parsedCastedMappedListedJson');
   return parsedCastedMappedListedJson;
 }
 
@@ -60,32 +82,26 @@ class Posts {
   }
 }
 
-class PostScreen extends StatefulWidget {
-  final String title;
-
-  const PostScreen({Key key, this.title}) : super(key: key);
+class HackerNewsWrapper extends StatefulWidget {
+  const HackerNewsWrapper({Key key}) : super(key: key);
   @override
-  PostScreenState createState() => new PostScreenState(this.title);
+  HackerNewsWrapperState createState() => HackerNewsWrapperState();
 }
 
-class PostScreenState extends State<PostScreen> {
-  final String topic;
-  PostScreenState(this.topic);
-
+class HackerNewsWrapperState extends State<HackerNewsWrapper> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder<List<Posts>>(
-          future: fetchPosts(http.Client(), topic),
+          //future: fetchPosts(),
           builder: (context, snapshot) {
-            if (snapshot.hasError) print(
-                  //snapshot.error
-                  'snapshot error');
+        if (snapshot.hasError)
+          print(snapshot.error.toString() + ' snapshot error');
 
-            return snapshot.hasData
-                ? PostsList(posts: snapshot.data)
-                : Center(child: CircularProgressIndicator());
-          }),
+        return snapshot.hasData
+            ? PostsList(posts: snapshot.data)
+            : Center(child: CircularProgressIndicator());
+      }),
     );
   }
 }

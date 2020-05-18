@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:Tufa/feed_page/feed_page.dart';
-import 'package:Tufa/test_feed_page/test_feed_page.dart';
+import 'package:Tufa/test_widget_pages/reddit_wrapper.dart';
+import 'package:Tufa/test_widget_pages/hackernews_wrapper.dart';
 import 'package:Tufa/search_page/search_page.dart';
 import 'package:Tufa/colors.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -23,8 +24,9 @@ class _BottomNavPageWrapperState extends State<BottomNavPageWrapper> {
       case 1:
         return SearchPage();
       case 2:
-        return PostScreen(title: 'wow'); //TODO: remove it
-
+        return RedditWrapper(title: 'wow'); //TODO: remove it
+      case 3:
+        return HackerNewsWrapper();
         break;
       default:
         return FeedPage();

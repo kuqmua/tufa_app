@@ -24,6 +24,14 @@ class _FeedPageState extends State<FeedPage> {
   @override
   void initState() {
     super.initState();
+    loadData() async {
+      String dataURL =
+          "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty";
+      http.Response response = await http.get(dataURL);
+      setState(() {
+        widgets = json.decode(response.body).take(25).toList();
+      });
+    }
 
     loadData();
 
@@ -59,15 +67,6 @@ class _FeedPageState extends State<FeedPage> {
       postAutor: 'postAutor',
       subreddit: 'feed_page',
     );
-  }
-
-  loadData() async {
-    String dataURL =
-        "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty";
-    http.Response response = await http.get(dataURL);
-    setState(() {
-      widgets = json.decode(response.body).take(25).toList();
-    });
   }
 
   loadPost(int item) async {
