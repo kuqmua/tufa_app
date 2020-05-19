@@ -18,9 +18,6 @@ class _FeedPageState extends State<FeedPage> {
   Map post = Map();
   Map loadingState = Map();
 
-  ScrollController scrollController;
-  bool isVisible;
-
   @override
   void initState() {
     super.initState();
@@ -34,53 +31,6 @@ class _FeedPageState extends State<FeedPage> {
     }
 
     loadData();
-
-    isVisible = true;
-    scrollController = new ScrollController();
-    scrollController.addListener(() {
-      if (scrollController.position.userScrollDirection ==
-          ScrollDirection.reverse) {
-        setState(() {
-          isVisible = false;
-        });
-      }
-      if (scrollController.position.userScrollDirection ==
-          ScrollDirection.forward) {
-        setState(() {
-          isVisible = true;
-        });
-      }
-    });
-  }
-
-  Widget getRow(BuildContext context, int i) {
-    var postId = widgets[i];
-    var postData = post[postId];
-
-    String title = postData == null ? "Loading" : postData["title"];
-    if (postData == null) {
-      loadPost(postId);
-    }
-
-    return Post(
-      postText: title,
-      postAutor: 'postAutor',
-      subreddit: 'feed_page',
-    );
-  }
-
-  loadPost(int item) async {
-    if (loadingState[item] == true) {
-      return;
-    }
-    loadingState[item] = true;
-    String dataURL =
-        "https://hacker-news.firebaseio.com/v0/item/$item.json?print=pretty";
-    http.Response response = await http.get(dataURL);
-    setState(() {
-      post[item] = json.decode(response.body);
-    });
-    loadingState[item] = false;
   }
 
   @override
@@ -100,10 +50,91 @@ class _FeedPageState extends State<FeedPage> {
                     child: CircularProgressIndicator(),
                   )
                 : ListView.builder(
-                    controller: scrollController,
                     itemCount: widgets.length,
-                    itemBuilder: (BuildContext context, int position) =>
-                        getRow(context, position),
-                  )));
+                    itemBuilder: (BuildContext context, int position) {
+                      var postId = widgets[position];
+                      var postData = post[postId];
+
+                      String title =
+                          postData == null ? "Loading" : postData["title"];
+                      if (postData == null) {
+                        loadPost(int item) async {
+                          if (loadingState[item] == true) {
+                            return;
+                          }
+                          loadingState[item] = true;
+                          String dataURL =
+                              "https://hacker-news.firebaseio.com/v0/item/$item.json?print=pretty";
+                          http.Response response = await http.get(dataURL);
+                          setState(() {
+                            post[item] = json.decode(response.body);
+                          });
+                          loadingState[item] = false;
+                        }
+
+                        loadPost(postId);
+                      }
+
+                      return Post(
+                        postText: title,
+                        postAutor: 'postAutor',
+                        subreddit: 'feed_page',
+                      );
+                    })));
   }
+}
+
+HackerNewsStoryWrapper hackerNewsStoryWrapperFromJson(String str) =>
+    HackerNewsStoryWrapper.fromJson(json.decode(str));
+
+String hackerNewsStoryWrapperToJson(HackerNewsStoryWrapper data) =>
+    json.encode(data.toJson());
+
+class HackerNewsStoryWrapper {
+  String by;
+  int descendants;
+  int id;
+  List<int> kids;
+  int score;
+  int time;
+  String title;
+  String type;
+  String url;
+
+  HackerNewsStoryWrapper({
+    this.by,
+    this.descendants,
+    this.id,
+    this.kids,
+    this.score,
+    this.time,
+    this.title,
+    this.type,
+    this.url,
+  });
+
+  factory HackerNewsStoryWrapper.fromJson(Map<String, dynamic> json) =>
+      HackerNewsStoryWrapper(
+        by: json["by"],
+        descendants: json["descendants"],
+        id: json["id"],
+        kids: List<int>.from(json["kids"].map((x) => x)),
+        score: json["score"],
+        time: json["time"],
+        title: json["title"],
+        type: json["type"],
+        url: json["url"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "by": by,
+        "descendants": descendants,
+        "id": id,
+        "kids": List<dynamic>.from(kids.map((x) => x)),
+        "score": score,
+        "time": time,
+        "title": title,
+        "type": type,
+        "url": url,
+      };
 }

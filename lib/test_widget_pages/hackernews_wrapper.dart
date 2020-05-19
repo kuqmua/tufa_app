@@ -17,18 +17,24 @@ Future<List<Posts>> fetchPosts() async {
 */
 List<String> hackerNewsStoriesTypes = ['top', 'new', 'best'];
 
-Future<String> fetchHackerNewsStories(String hackerNewsStoriesType) async {
+List<HackerNewsStoryWrapper> hackerNewsList;
+
+Future<List<HackerNewsStoryWrapper>> fetchHackerNewsStories() async {
   final response =
       await http.get("https://hacker-news.firebaseio.com/v0/topstories.json");
   if (response.statusCode == 200) {
     final List<int> hackerNewsStoriesIdsIntList =
         parseHackerNewsStoriesIdsFromJson(response.body);
     if (hackerNewsStoriesIdsIntList.isNotEmpty) {
-      final String hackerNewsStoryUrl =
-          'https://hacker-news.firebaseio.com/v0/item/${hackerNewsStoriesIdsIntList.first.toString()}.json';
-      final hackerNewsStoryResponse = await http.get(hackerNewsStoryUrl);
-      if (hackerNewsStoryResponse.statusCode == 200) {
-        dynamic parsed = json.decode(hackerNewsStoryResponse.body);
+      print('hackerNewsStoriesIdsIntList' +
+          hackerNewsStoriesIdsIntList.runtimeType.toString());
+      List<int> twfive = hackerNewsStoriesIdsIntList.take(25);
+      for (var item in twfive) {
+        final response = await http.get(
+            "https://hacker-news.firebaseio.com/v0/item/$item.json?print=pretty");
+        //final responseDecoded = json.decode(response.body);
+        final HackerNewsStoryWrapper hackerNewsStoryWrapper =
+            hackerNewsStoryWrapperFromJson(response.body);
       }
     }
   }
@@ -38,48 +44,6 @@ List<int> parseHackerNewsStoriesIdsFromJson(String hackerNewsStoriesJsonIds) {
   dynamic parsed = json.decode(hackerNewsStoriesJsonIds);
   List<int> listhackerNewsStoriesOfIds = List<int>.from(parsed);
   return listhackerNewsStoriesOfIds;
-}
-
-List<Posts> parsePosts(String responseBody) {
-  print('responseBody $responseBody');
-  print('................................................end of responseBody');
-  final parsedJson = json.decode(responseBody);
-  print('parsedJson $parsedJson /n');
-  print(parsedJson.length);
-  print('...........................end of dataparsedJson');
-  //final storyUrl = 'https://hacker-news.firebaseio.com/v0/item/${iditem}.json';
-
-  final parsedCastedJson = parsedJson.cast<Map<String, dynamic>>();
-  print('parsedCastedJson $parsedCastedJson');
-  print('...........................end of parsedCastedJson');
-  final parsedCastedMappedJson =
-      parsedCastedJson.map<Posts>((json) => Posts.fromJson(json['data']));
-  print('parsedCastedMappedJson ');
-  print('$parsedCastedMappedJson');
-  print('...................end of parsedCastedMappedJson');
-  final parsedCastedMappedListedJson = parsedCastedMappedJson.toList();
-  print('parsedCastedMappedListedJson ');
-  print('$parsedCastedMappedListedJson');
-  print('..........end of parsedCastedMappedListedJson');
-  return parsedCastedMappedListedJson;
-}
-
-class Posts {
-  final String title;
-  final String author;
-  final String subreddit;
-  Posts({this.title, this.author, this.subreddit});
-
-  factory Posts.fromJson(Map<String, dynamic> json) {
-    print('json[author]');
-    final jsonnnn = json['author'];
-    print('$jsonnnn');
-    print('json[author]');
-    return Posts(
-        title: json['title'],
-        author: json['author'],
-        subreddit: json['subreddit']);
-  }
 }
 
 class HackerNewsWrapper extends StatefulWidget {
@@ -92,43 +56,103 @@ class HackerNewsWrapperState extends State<HackerNewsWrapper> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<List<Posts>>(
-          //future: fetchPosts(),
+      body: FutureBuilder<List<HackerNewsStoryWrapper>>(
+          future: fetchHackerNewsStories(),
           builder: (context, snapshot) {
-        if (snapshot.hasError)
-          print(snapshot.error.toString() + ' snapshot error');
+            if (snapshot.hasError)
+              print(snapshot.error.toString() + ' snapshot error');
 
-        return snapshot.hasData
-            ? PostsList(posts: snapshot.data)
-            : Center(child: CircularProgressIndicator());
-      }),
+            return snapshot.hasData
+                ? HackerNewsPostsList(hackerNewsStoryWrapperList: snapshot.data)
+                : Center(child: CircularProgressIndicator());
+          }),
     );
   }
 }
 
-class PostsList extends StatelessWidget {
-  final List<Posts> posts;
+class HackerNewsPostsList extends StatelessWidget {
+  final List<HackerNewsStoryWrapper> hackerNewsStoryWrapperList;
 
-  const PostsList({Key key, this.posts}) : super(key: key);
+  const HackerNewsPostsList({Key key, this.hackerNewsStoryWrapperList})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: posts.length,
+        itemCount: hackerNewsStoryWrapperList.length,
         itemBuilder: (context, index) {
-          var title = posts[index].title.length > 100
-              ? "${posts[index].title.substring(0, 100)}..."
-              : posts[index].title;
+          var title = hackerNewsStoryWrapperList[index].title.length > 100
+              ? "${hackerNewsStoryWrapperList[index].title.substring(0, 100)}..."
+              : hackerNewsStoryWrapperList[index].title;
 
-          var author = posts[index].author;
-          var subreddit = posts[index].subreddit;
+          var by = hackerNewsStoryWrapperList[index].by;
+          //var subreddit = hackerNewsStoryWrapperList[index].subreddit;
           return InkWell(
             child: Post(
               postText: title,
-              postAutor: author,
-              subreddit: subreddit,
+              postAutor: by,
+              subreddit: 'subreddit',
             ),
           );
         });
   }
+}
+
+// To parse this JSON data, do
+//
+//     final hackerNewsStoryWrapper = hackerNewsStoryWrapperFromJson(jsonString);
+
+HackerNewsStoryWrapper hackerNewsStoryWrapperFromJson(String str) =>
+    HackerNewsStoryWrapper.fromJson(json.decode(str));
+
+String hackerNewsStoryWrapperToJson(HackerNewsStoryWrapper data) =>
+    json.encode(data.toJson());
+
+class HackerNewsStoryWrapper {
+  String by;
+  int descendants;
+  int id;
+  List<int> kids;
+  int score;
+  int time;
+  String title;
+  String type;
+  String url;
+
+  HackerNewsStoryWrapper({
+    this.by,
+    this.descendants,
+    this.id,
+    this.kids,
+    this.score,
+    this.time,
+    this.title,
+    this.type,
+    this.url,
+  });
+
+  factory HackerNewsStoryWrapper.fromJson(Map<String, dynamic> json) =>
+      HackerNewsStoryWrapper(
+        by: json["by"],
+        descendants: json["descendants"],
+        id: json["id"],
+        kids: List<int>.from(json["kids"].map((x) => x)),
+        score: json["score"],
+        time: json["time"],
+        title: json["title"],
+        type: json["type"],
+        url: json["url"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "by": by,
+        "descendants": descendants,
+        "id": id,
+        "kids": List<dynamic>.from(kids.map((x) => x)),
+        "score": score,
+        "time": time,
+        "title": title,
+        "type": type,
+        "url": url,
+      };
 }

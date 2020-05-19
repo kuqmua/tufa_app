@@ -9,55 +9,27 @@ import 'package:http/http.dart' as http;
 
 String url = 'https://www.reddit.com';
 
-Future<List<Posts>> fetchPosts(http.Client client, topic) async {
+Future<List<RedditPost>> fetchPosts(http.Client client, topic) async {
   final response = await client.get("$url/r/$topic/hot.json");
-
-  return compute(parsePosts, response.body);
+  if (response.statusCode == 200) {
+    return parsePosts(response.body);
+  } else {
+    print('response.statusCode == 200 is false');
+    return null;
+  }
 }
 
-List<Posts> parsePosts(String responseBody) {
-  print('responseBody $responseBody');
-  print('................................................end of responseBody');
+List<RedditPost> parsePosts(String responseBody) {
   final parsedJson = json.decode(responseBody)['data']['children'];
-  print('parsedJson $parsedJson /n');
-
-  print(
-      '................................................end of dataparsedJson');
 
   final parsedCastedJson = parsedJson.cast<Map<String, dynamic>>();
-  print('parsedCastedJson $parsedCastedJson');
 
-  print(
-      '................................................end of parsedCastedJson');
-  final parsedCastedMappedJson =
-      parsedCastedJson.map<Posts>((json) => Posts.fromJson(json['data']));
-  print('parsedCastedMappedJson ');
-  print('$parsedCastedMappedJson');
-  print('......................................end of parsedCastedMappedJson');
+  final parsedCastedMappedJson = parsedCastedJson
+      .map<RedditPost>((json) => RedditPost.fromJson(json['data']));
+
   final parsedCastedMappedListedJson = parsedCastedMappedJson.toList();
-  print('parsedCastedMappedListedJson ');
-  print('$parsedCastedMappedListedJson');
-  print(
-      '........................................end of parsedCastedMappedListedJson');
+
   return parsedCastedMappedListedJson;
-}
-
-class Posts {
-  final String title;
-  final String author;
-  final String subreddit;
-  Posts({this.title, this.author, this.subreddit});
-
-  factory Posts.fromJson(Map<String, dynamic> json) {
-    print('json[author]');
-    final jsonnnn = json['author'];
-    print('$jsonnnn');
-    print('json[author]');
-    return Posts(
-        title: json['title'],
-        author: json['author'],
-        subreddit: json['subreddit']);
-  }
 }
 
 class RedditWrapper extends StatefulWidget {
@@ -75,37 +47,36 @@ class RedditWrapperState extends State<RedditWrapper> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<List<Posts>>(
+      body: FutureBuilder<List<RedditPost>>(
           future: fetchPosts(http.Client(), topic),
           builder: (context, snapshot) {
-            if (snapshot.hasError) print(
-                  //snapshot.error
-                  'snapshot error');
+            if (snapshot.hasError)
+              print(snapshot.error.toString() + 'snapshot error');
 
             return snapshot.hasData
-                ? PostsList(posts: snapshot.data)
+                ? RedditPostsListView(redditPostsList: snapshot.data)
                 : Center(child: CircularProgressIndicator());
           }),
     );
   }
 }
 
-class PostsList extends StatelessWidget {
-  final List<Posts> posts;
+class RedditPostsListView extends StatelessWidget {
+  final List<RedditPost> redditPostsList;
 
-  const PostsList({Key key, this.posts}) : super(key: key);
+  const RedditPostsListView({Key key, this.redditPostsList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: posts.length,
-        itemBuilder: (context, index) {
-          var title = posts[index].title.length > 100
-              ? "${posts[index].title.substring(0, 100)}..."
-              : posts[index].title;
+        itemCount: redditPostsList.length,
+        itemBuilder: (context, position) {
+          var title = redditPostsList[position].title.length > 100
+              ? "${redditPostsList[position].title.substring(0, 100)}..."
+              : redditPostsList[position].title;
 
-          var author = posts[index].author;
-          var subreddit = posts[index].subreddit;
+          var author = redditPostsList[position].author;
+          var subreddit = redditPostsList[position].subreddit;
           return InkWell(
             child: Post(
               postText: title,
@@ -114,5 +85,23 @@ class PostsList extends StatelessWidget {
             ),
           );
         });
+  }
+}
+
+class RedditPost {
+  final String title;
+  final String author;
+  final String subreddit;
+  RedditPost({this.title, this.author, this.subreddit});
+
+  factory RedditPost.fromJson(Map<String, dynamic> json) {
+    print('json[author]');
+    final jsonnnn = json['author'];
+    print('$jsonnnn');
+    print('json[author]');
+    return RedditPost(
+        title: json['title'],
+        author: json['author'],
+        subreddit: json['subreddit']);
   }
 }
