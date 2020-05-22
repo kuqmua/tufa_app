@@ -13,11 +13,15 @@ class Post extends StatefulWidget {
   final String postText;
   final String postAutor;
   final String subreddit;
+  final String imageLink;
+  final String autorIcon;
   Post(
       {Key key,
       @required this.postText,
       @required this.postAutor,
-      this.subreddit})
+      this.subreddit,
+      this.imageLink,
+      this.autorIcon})
       : super(key: key);
 
   createState() => PostState();
@@ -93,8 +97,9 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                 width: MediaQuery.of(context).size.width * 0.12,
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
-                    child:
-                        Image(image: AssetImage('assets/cat200x200x30.jpg'))),
+                    child: Image(
+                        image: AssetImage(
+                            widget.autorIcon ?? 'assets/cat200x200x30.jpg'))),
               ),
               Expanded(
                 child: Container(
@@ -119,18 +124,20 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                           maxLines: hasImage ? 5 : 10,
                         ),
                       ),
-                      Container(
-                          padding: EdgeInsets.only(
-                            top: MediaQuery.of(context).size.height * 0.015,
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15.0),
-                            child:
-                                //Image(image: AssetImage('assets/k800x50.jpg')),
-                                Image.network(
-                              'https://elets-adm.ru/assets/images/resources/11788/e180ba3aafa90790dc2f03fdca690a6a188aef86.jpg',
+                      if (widget.imageLink != null)
+                        Container(
+                            padding: EdgeInsets.only(
+                              top: MediaQuery.of(context).size.height * 0.015,
                             ),
-                          )),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(15.0),
+                              child:
+                                  //Image(image: AssetImage('assets/k800x50.jpg')),
+                                  Image.network(
+                                widget.imageLink,
+                                //width: MediaQuery.of(context).size.width * 0.35,
+                              ),
+                            ))
                     ],
                   ),
                 ),

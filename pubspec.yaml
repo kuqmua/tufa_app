@@ -13,10 +13,12 @@ dependencies:
   flutter_icons: ^1.0.0+1
   flutter_svg: ^0.17.3+1
   share: ^0.6.3+6
-  #  image_picker_saver: ^0.3.0
+  intl: ^0.16.1
   esys_flutter_share: ^1.0.2
-  #  permission: ^0.1.7
   http: 0.12.0+4
+  #  image_picker_saver: ^0.3.0
+  #  permission: ^0.1.7
+
 #  cached_network_image: ^2.2.0+1
 
 #  expandable: ^4.1.2
@@ -31,6 +33,8 @@ flutter:
   assets:
     - assets/svg/tufacut.svg
     - assets/cat200x200x30.jpg
+    - assets/hackernews_icon.jpg
+    - assets/reddit_full_icon.jpg
     - assets/k800x50.jpg
   fonts:
     - family: Lora
