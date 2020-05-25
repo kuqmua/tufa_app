@@ -8,11 +8,13 @@ import 'package:Tufa/colors.dart';
 class Tpp extends StatefulWidget {
   final double standartMargin;
   final String postAutor;
+  final String postTime;
   final String subreddit;
   Tpp(
       {Key key,
       @required this.standartMargin,
       @required this.postAutor,
+      @required this.postTime,
       this.subreddit})
       : super(key: key);
 
@@ -53,7 +55,7 @@ class _TppState extends State<Tpp> {
         Container(
             margin: EdgeInsets.only(right: widget.standartMargin),
             child: PublicationDate(
-              dateText: '1h',
+              dateText: widget.postTime,
               textColor: grey,
               fontSize: 16,
             )),

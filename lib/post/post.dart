@@ -12,6 +12,7 @@ import 'package:Tufa/post/action_button_mbsh/action_button_mbsh.dart';
 class Post extends StatefulWidget {
   final String postText;
   final String postAutor;
+  final String postTime;
   final String subreddit;
   final String imageLink;
   final String autorIcon;
@@ -19,6 +20,7 @@ class Post extends StatefulWidget {
       {Key key,
       @required this.postText,
       @required this.postAutor,
+      @required this.postTime,
       this.subreddit,
       this.imageLink,
       this.autorIcon})
@@ -113,7 +115,8 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                       Tpp(
                           standartMargin: 5,
                           postAutor: widget.postAutor,
-                          subreddit: widget.subreddit),
+                          subreddit: widget.subreddit,
+                          postTime: widget.postTime),
                       Container(
                         padding: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height * 0.006,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:Tufa/feed_page/feed_page.dart';
 import 'package:Tufa/test_widget_pages/reddit_wrapper.dart';
-//import 'package:Tufa/test_widget_pages/reddit_wrapper_copy.dart';
 import 'package:Tufa/search_page/search_page.dart';
 import 'package:Tufa/colors.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -24,7 +23,7 @@ class _BottomNavPageWrapperState extends State<BottomNavPageWrapper> {
       case 1:
         return SearchPage();
       case 2:
-        return RedditWrapper(title: 'wow'); //TODO: remove it
+        return RedditWrapper(topic: 'hearthstone'); //TODO: remove it
 
         break;
       default:

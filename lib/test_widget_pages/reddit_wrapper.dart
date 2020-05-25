@@ -7,10 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:Tufa/post/post.dart';
 import 'package:http/http.dart' as http;
 
-String url = 'https://www.reddit.com';
-
 Future<List<RedditPost>> fetchPosts(topic) async {
-  final response = await http.get("$url/r/$topic/hot.json");
+  final response = await http.get("https://www.reddit.com/r/$topic/hot.json");
   if (response.statusCode == 200) {
     return parsePosts(response.body);
   } else {
@@ -33,11 +31,11 @@ List<RedditPost> parsePosts(String responseBody) {
 }
 
 class RedditWrapper extends StatefulWidget {
-  final String title;
+  final String topic;
 
-  const RedditWrapper({Key key, this.title}) : super(key: key);
+  const RedditWrapper({Key key, this.topic}) : super(key: key);
   @override
-  RedditWrapperState createState() => new RedditWrapperState(this.title);
+  RedditWrapperState createState() => new RedditWrapperState(this.topic);
 }
 
 class RedditWrapperState extends State<RedditWrapper> {
@@ -69,7 +67,13 @@ class RedditWrapperState extends State<RedditWrapper> {
 
                       var author = snapshot.data[position].author;
                       var subreddit = snapshot.data[position].subreddit;
-                      var imageLink = snapshot.data[position].thumbnail;
+                      double createdUtc = snapshot.data[position].createdUtc;
+
+                      DateTime date = new DateTime.fromMillisecondsSinceEpoch(
+                          createdUtc.round() * 1000,
+                          isUtc: false);
+
+                      //var imageLink = snapshot.data[position].thumbnail;
 
                       /*
                       var resolutions = imageinnerwrapper.resolutions;
@@ -107,79 +111,53 @@ class RedditWrapperState extends State<RedditWrapper> {
                           : endWidth;
                           */
 
-                      //print(snapshot.data[position].preview.listWithOneChildAsImage);
+                      String nonWorkingJsonPostImageUrl;
+                      String workingJsonPostImageUrl;
 
-                      //var sourceUrl = snapshot.data[position].preview.listWithOneChildAsImage[0].source.url; //parse this
-                      var preview = snapshot.data[position].preview;
-                      String sourceUrl;
-                      String endUrl;
-                      print(preview);
-                      if (preview == null) {
-                        imageLink = null;
-                        print('null in if');
+                      if (snapshot.data[position].preview == null) {
+                        print('preview == null');
                       } else {
-                        print('sourceUr else');
-                        sourceUrl = snapshot.data[position].preview
-                            .listWithOneChildAsImage[0].source.url;
-                        print(sourceUrl + 'in else');
-                        if (sourceUrl.startsWith('https://preview.redd.it/')) {
-                          print('sourceUrl After todo ' + sourceUrl);
-                          int dsdvsdv = sourceUrl.indexOf('?', 0);
-                          print('dsdvsdv ' + dsdvsdv.toString());
-                          String cropstrt = sourceUrl.substring(24, dsdvsdv);
-                          endUrl = 'https://i.redd.it/' + cropstrt;
-                          print(cropstrt);
-                        } else if (sourceUrl
+                        print('nonWorkingJsonPostImageUrl else');
+                        nonWorkingJsonPostImageUrl = snapshot.data[position]
+                            .preview.listWithOneChildAsImage[0].source.url;
+                        print(nonWorkingJsonPostImageUrl + ' in else');
+                        if (nonWorkingJsonPostImageUrl
+                            .startsWith('https://preview.redd.it/')) {
+                          print(
+                              'nonWorkingJsonPostImageUrl  startsWith(https://preview.redd.it/) ' +
+                                  nonWorkingJsonPostImageUrl);
+
+                          workingJsonPostImageUrl = 'https://i.redd.it/' +
+                              nonWorkingJsonPostImageUrl.substring(24, 41);
+                        } else if (nonWorkingJsonPostImageUrl
                             .startsWith('https://external-preview.redd.it/')) {
-                          sourceUrl = null;
+                          if (snapshot.data[position].url != null) {
+                            if (snapshot.data[position].url.contains('.jpg') ||
+                                snapshot.data[position].url.contains('.png') ||
+                                snapshot.data[position].url.contains('.webp')) {
+                              print('external_link');
+                              workingJsonPostImageUrl =
+                                  snapshot.data[position].url;
+
+                              print('succes external_link url');
+                            }
+                          }
                         }
                       }
-
+                      print(workingJsonPostImageUrl);
+                      print(date);
+                      var some = date.toString().substring(10, 16);
+                      print(some);
                       //String externalStartLink = 'https://external-preview';
                       //TODO: FIND OUT WHAT HAPPENS IN CHROMIUM THEN YOU USE COPY IMAGE ADRESS IN REDDIT
-
-                      /*
-                      parse images.source and images.resolutions
-                      if images.url begin with https://external-preview then use
-                      var url = snapshot.data[position].url;
-                      else if images.url begin with https://preview then 
-                      check each images.source and images.resolution and find something near 780 х 440
-                      choose one in images.source then use 
-                      images.source.width or
-                      images.resolution.width 
-                      and put it in 
-                      https://preview.redd.it/c968f3gdq3051.jpg?width=640&crop=smart&auto=webp&s=480538a72a28db4db6188f7301e6b3de06a37719
-                      as
-                      https://preview.redd.it/c968f3gdq3051.jpg?width=!!!!!!!!!HERE!!!!!!&crop=smart&auto=webp&s=480538a72a28db4db6188f7301e6b3de06a37719
-                      from
-                      https://preview.redd.it/c968f3gdq3051.jpg?auto=webp&amp;s=37f3f5ec9d1f6f2a4db64a8f250563c4dd129705
-                      so
-                      https://preview.redd.it/c968f3gdq3051.jpg? + width= + images.source.width + &crop=smart& + 
-                      auto=webp& + s=480538a72a28db4db6188f7301e6b3de06a37719
-                      which mean
-                      find .jpg? or .png? or maybe .webp?
-                      put after
-                      width=
-                      put after
-                      images.source.width
-                      put after
-                      &crop=smart&
-                      find and remove
-                      ;
-                      
-                      */
                       return InkWell(
                         child: Post(
-                          postText: title,
-                          postAutor: author,
-                          subreddit: subreddit,
-                          imageLink: endUrl,
-                          /*
-                          imageLink:
-                              'https://external-preview.redd.it/5Y1vwneat7sH5v3UcUTY7E2tpi4lYgJYSLgCO9eQJFo.jpg?width=640&crop=smart&auto=webp&s=9b3f662a2040125348f9faf032a5598b64986227',
-                              */
-                          autorIcon: 'assets/reddit_full_icon.jpg',
-                        ),
+                            postText: title,
+                            postAutor: author,
+                            subreddit: subreddit,
+                            imageLink: workingJsonPostImageUrl,
+                            autorIcon: 'assets/reddit_full_icon.jpg',
+                            postTime: some ?? 'unknown'),
                       );
                     })
                 : Center(child: CircularProgressIndicator());
@@ -195,13 +173,15 @@ class RedditPost {
   final String thumbnail;
   final Preview preview;
   final String url;
+  final double createdUtc;
   RedditPost(
       {this.title,
       this.author,
       this.subreddit,
       this.thumbnail,
       this.preview,
-      this.url});
+      this.url,
+      this.createdUtc});
 
   factory RedditPost.fromJson(Map<String, dynamic> json) {
     return RedditPost(
@@ -212,6 +192,7 @@ class RedditPost {
       url: json['url'] == null ? null : json['url'],
       preview:
           json["preview"] == null ? null : Preview.fromJson(json["preview"]),
+      createdUtc: json['created_utc'],
     );
   }
 }
