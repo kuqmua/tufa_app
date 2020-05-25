@@ -132,13 +132,15 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                             padding: EdgeInsets.only(
                               top: MediaQuery.of(context).size.height * 0.015,
                             ),
+                            width: MediaQuery.of(context).size.width * 0.72,
+                            height: 200,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(15.0),
-                              child:
-                                  //Image(image: AssetImage('assets/k800x50.jpg')),
-                                  Image.network(
-                                widget.imageLink,
-                                //width: MediaQuery.of(context).size.width * 0.35,
+                              child: FittedBox(
+                                child: Image.network(
+                                  widget.imageLink,
+                                ),
+                                fit: BoxFit.fill,
                               ),
                             ))
                     ],

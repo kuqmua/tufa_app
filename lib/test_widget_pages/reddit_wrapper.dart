@@ -68,12 +68,10 @@ class RedditWrapperState extends State<RedditWrapper> {
                       var author = snapshot.data[position].author;
                       var subreddit = snapshot.data[position].subreddit;
                       double createdUtc = snapshot.data[position].createdUtc;
-
+                      var thumbnail = snapshot.data[position].thumbnail;
                       DateTime date = new DateTime.fromMillisecondsSinceEpoch(
                           createdUtc.round() * 1000,
                           isUtc: false);
-
-                      //var imageLink = snapshot.data[position].thumbnail;
 
                       /*
                       var resolutions = imageinnerwrapper.resolutions;
@@ -155,7 +153,8 @@ class RedditWrapperState extends State<RedditWrapper> {
                             postText: title,
                             postAutor: author,
                             subreddit: subreddit,
-                            imageLink: workingJsonPostImageUrl,
+                            //imageLink: workingJsonPostImageUrl,
+                            imageLink: thumbnail,
                             autorIcon: 'assets/reddit_full_icon.jpg',
                             postTime: some ?? 'unknown'),
                       );
