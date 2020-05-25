@@ -14,7 +14,7 @@ class PostButtonContainer extends StatelessWidget {
       {Key key,
       @required this.icon,
       @required this.iconSize,
-      this.borderWidth,
+      @required this.borderWidth,
       this.onTap,
       this.bookmarked})
       : super(key: key);
@@ -23,16 +23,19 @@ class PostButtonContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: backgroundColor,
-      child: IconButton(
-          onPressed: onTap,
-          splashColor: Theme.of(context).splashColor,
-          icon: Icon(
-            bookmarked == null
-                ? icon
-                : bookmarked == false ? icon : AntDesign.star,
-            size: iconSize,
-            color: grey,
-          )),
+      child: Container(
+        height: borderWidth,
+        child: IconButton(
+            onPressed: onTap,
+            splashColor: Theme.of(context).splashColor,
+            icon: Icon(
+              bookmarked == null
+                  ? icon
+                  : bookmarked == false ? icon : AntDesign.star,
+              size: iconSize,
+              color: grey,
+            )),
+      ),
     );
   }
 }

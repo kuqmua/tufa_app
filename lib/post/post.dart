@@ -16,6 +16,7 @@ class Post extends StatefulWidget {
   final String subreddit;
   final String imageLink;
   final String autorIcon;
+  final bool hasImage;
   Post(
       {Key key,
       @required this.postText,
@@ -23,7 +24,8 @@ class Post extends StatefulWidget {
       @required this.postTime,
       this.subreddit,
       this.imageLink,
-      this.autorIcon})
+      this.autorIcon,
+      this.hasImage})
       : super(key: key);
 
   createState() => PostState();
@@ -90,7 +92,7 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
             children: <Widget>[
               Container(
                 padding: EdgeInsets.fromLTRB(
-                    0, MediaQuery.of(context).size.height * 0.005, 0, 0),
+                    0, MediaQuery.of(context).size.height * 0.000, 0, 0),
                 margin: EdgeInsets.fromLTRB(
                     MediaQuery.of(context).size.width * 0.02,
                     0,
@@ -106,13 +108,14 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
               Expanded(
                 child: Container(
                   padding: EdgeInsets.only(
-                    right: MediaQuery.of(context).size.width * 0.12,
+                    right: MediaQuery.of(context).size.width * 0.115,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Tpp(
+                          width: MediaQuery.of(context).size.width * 0.725,
                           standartMargin: 5,
                           postAutor: widget.postAutor,
                           subreddit: widget.subreddit,
@@ -127,21 +130,37 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                           maxLines: hasImage ? 5 : 10,
                         ),
                       ),
+                      Text(
+                        'has image = ' + widget.hasImage.toString(),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: 'Lora',
+                          fontWeight: FontWeight.w300,
+                          fontSize: 15,
+                          color: widget.hasImage ? Colors.green : Colors.red,
+                        ),
+                      ),
                       if (widget.imageLink != null)
                         Container(
                             padding: EdgeInsets.only(
                               top: MediaQuery.of(context).size.height * 0.015,
                             ),
-                            width: MediaQuery.of(context).size.width * 0.72,
-                            height: 200,
+                            width: MediaQuery.of(context).size.width * 0.725,
+                            //height: 200,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(15.0),
+                              child: Image.network(
+                                widget.imageLink,
+                              ),
+                              //TODO: fitted box must have height or maybe it would be a server logic
+                              /*
                               child: FittedBox(
                                 child: Image.network(
                                   widget.imageLink,
                                 ),
-                                fit: BoxFit.fill,
+                                fit: BoxFit.fitWidth,
                               ),
+                              */
                             ))
                     ],
                   ),
@@ -155,7 +174,7 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
           top: 0,
           bottom: 0,
           child: Container(
-            width: MediaQuery.of(context).size.width * 0.12,
+            width: MediaQuery.of(context).size.width * 0.115,
             margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
             child: Center(
               child: LayoutBuilder(
@@ -180,9 +199,9 @@ class PostState extends State<Post> with SingleTickerProviderStateMixin {
                             : 5,
                         (i) => PostButtonContainer(
                           icon: list[i],
-
                           iconSize: MediaQuery.of(context).size.width * 0.05,
-                          //borderWidth: 0.75,
+                          borderWidth:
+                              MediaQuery.of(context).size.width * 0.115,
                           bookmarked: i == 2 ? bookmarked : null,
                           onTap: i == 0
                               ? modalBottomSheet

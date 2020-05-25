@@ -10,11 +10,13 @@ class Tpp extends StatefulWidget {
   final String postAutor;
   final String postTime;
   final String subreddit;
+  final double width;
   Tpp(
       {Key key,
       @required this.standartMargin,
       @required this.postAutor,
       @required this.postTime,
+      @required this.width,
       this.subreddit})
       : super(key: key);
 
@@ -25,41 +27,43 @@ class Tpp extends StatefulWidget {
 class _TppState extends State<Tpp> {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        /*
-        Container(
-          margin: EdgeInsets.only(right: widget.standartMargin),
-          child: ProviderIcon(),
-        ),
-        */
-        Flexible(
-            fit: FlexFit.loose,
-            child: Container(
-                margin: EdgeInsets.only(right: widget.standartMargin),
-                child: AutorName(
-                  autorText: widget.postAutor,
-                  fontSize: 18,
-                  textColor: white,
-                ))),
-        Flexible(
-          child: Container(
-              margin: EdgeInsets.only(right: widget.standartMargin),
-              child: ProviderName(
-                providerText: 'r/' + widget.subreddit ?? 'todo',
-                fontSize: 16,
-                textColor: grey,
-              )),
-        ),
-        Container(
-            margin: EdgeInsets.only(right: widget.standartMargin),
-            child: PublicationDate(
-              dateText: widget.postTime,
-              textColor: grey,
-              fontSize: 16,
-            )),
-      ],
+    return Container(
+      width: widget.width,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                  margin: EdgeInsets.only(right: widget.standartMargin),
+                  child: AutorName(
+                    autorText: widget.postAutor,
+                    fontSize: 18,
+                    textColor: white,
+                  )),
+
+              //TODO: JUST CONTROL HOW MUCH SYMBOLS IN PARAMETRS + SOME FLEXIBLE LOGIC
+              /*
+              Container(
+                  margin: EdgeInsets.only(right: widget.standartMargin),
+                  child: ProviderName(
+                    providerText: 'r/' + widget.subreddit ?? 'todo',
+                    fontSize: 16,
+                    textColor: grey,
+                  )),
+                  */
+            ],
+          ),
+          Container(
+              //margin: EdgeInsets.only(right: widget.standartMargin),
+              child: PublicationDate(
+            dateText: widget.postTime,
+            textColor: grey,
+            fontSize: 15,
+          )),
+        ],
+      ),
     );
   }
 }

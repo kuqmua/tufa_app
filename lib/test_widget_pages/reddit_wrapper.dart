@@ -68,7 +68,7 @@ class RedditWrapperState extends State<RedditWrapper> {
                       var author = snapshot.data[position].author;
                       var subreddit = snapshot.data[position].subreddit;
                       double createdUtc = snapshot.data[position].createdUtc;
-                      var thumbnail = snapshot.data[position].thumbnail;
+                      //var thumbnail = snapshot.data[position].thumbnail;
                       DateTime date = new DateTime.fromMillisecondsSinceEpoch(
                           createdUtc.round() * 1000,
                           isUtc: false);
@@ -131,8 +131,12 @@ class RedditWrapperState extends State<RedditWrapper> {
                             .startsWith('https://external-preview.redd.it/')) {
                           if (snapshot.data[position].url != null) {
                             if (snapshot.data[position].url.contains('.jpg') ||
-                                snapshot.data[position].url.contains('.png') ||
-                                snapshot.data[position].url.contains('.webp')) {
+                                    snapshot.data[position].url
+                                        .contains('.png') ||
+                                    snapshot.data[position].url
+                                        .contains('.webp')
+                                //TODO: what should i do with .gif format?
+                                ) {
                               print('external_link');
                               workingJsonPostImageUrl =
                                   snapshot.data[position].url;
@@ -146,17 +150,20 @@ class RedditWrapperState extends State<RedditWrapper> {
                       print(date);
                       var some = date.toString().substring(10, 16);
                       print(some);
+                      bool hasImage = workingJsonPostImageUrl != null;
                       //String externalStartLink = 'https://external-preview';
                       //TODO: FIND OUT WHAT HAPPENS IN CHROMIUM THEN YOU USE COPY IMAGE ADRESS IN REDDIT
                       return InkWell(
                         child: Post(
-                            postText: title,
-                            postAutor: author,
-                            subreddit: subreddit,
-                            //imageLink: workingJsonPostImageUrl,
-                            imageLink: thumbnail,
-                            autorIcon: 'assets/reddit_full_icon.jpg',
-                            postTime: some ?? 'unknown'),
+                          postText: title,
+                          postAutor: author,
+                          subreddit: subreddit,
+                          imageLink: workingJsonPostImageUrl,
+                          //imageLink: thumbnail,
+                          autorIcon: 'assets/reddit_full_icon.jpg',
+                          postTime: some ?? 'unknown',
+                          hasImage: hasImage,
+                        ),
                       );
                     })
                 : Center(child: CircularProgressIndicator());
